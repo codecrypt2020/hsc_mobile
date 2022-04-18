@@ -1,0 +1,1040 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+
+:root {
+    /** primary **/
+    --ion-color-primary: #455A64;
+    --ion-color-primary-rgb: 69, 90, 100;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #3d4f58;
+    --ion-color-primary-tint: #586b74;
+    // --ion-color-primary: #4C4C4C;
+    // --ion-color-primary-rgb: 76, 76, 76;
+    // --ion-color-primary-contrast: #ffffff;
+    // --ion-color-primary-contrast-rgb: 255, 255, 255;
+    // --ion-color-primary-shade: #434343;
+    // --ion-color-primary-tint: #5e5e5e;
+    /** secondary #E9CD00**/
+    --ion-color-secondary: #E9CD00;
+    --ion-color-secondary-rgb: 233, 205, 0;
+    --ion-color-secondary-contrast: #000000;
+    --ion-color-secondary-contrast-rgb: 0, 0, 0;
+    --ion-color-secondary-shade: #cdb400;
+    --ion-color-secondary-tint: #ebd21a;
+    /** tertiary **/
+    --ion-color-tertiary: #5260ff;
+    --ion-color-tertiary-rgb: 82, 96, 255;
+    --ion-color-tertiary-contrast: #ffffff;
+    --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+    --ion-color-tertiary-shade: #4854e0;
+    --ion-color-tertiary-tint: #6370ff;
+    /** success **/
+    --ion-color-success: #2dd36f;
+    --ion-color-success-rgb: 45, 211, 111;
+    --ion-color-success-contrast: #ffffff;
+    --ion-color-success-contrast-rgb: 255, 255, 255;
+    --ion-color-success-shade: #28ba62;
+    --ion-color-success-tint: #42d77d;
+    /** warning **/
+    --ion-color-warning: #ffc409;
+    --ion-color-warning-rgb: 255, 196, 9;
+    --ion-color-warning-contrast: #000000;
+    --ion-color-warning-contrast-rgb: 0, 0, 0;
+    --ion-color-warning-shade: #e0ac08;
+    --ion-color-warning-tint: #ffca22;
+    /** danger **/
+    --ion-color-danger: #eb445a;
+    --ion-color-danger-rgb: 235, 68, 90;
+    --ion-color-danger-contrast: #ffffff;
+    --ion-color-danger-contrast-rgb: 255, 255, 255;
+    --ion-color-danger-shade: #cf3c4f;
+    --ion-color-danger-tint: #ed576b;
+    /** dark **/
+    --ion-color-dark: #222428;
+    --ion-color-dark-rgb: 34, 36, 40;
+    --ion-color-dark-contrast: #ffffff;
+    --ion-color-dark-contrast-rgb: 255, 255, 255;
+    --ion-color-dark-shade: #1e2023;
+    --ion-color-dark-tint: #383a3e;
+    /** medium **/
+    --ion-color-medium: #92949c;
+    --ion-color-medium-rgb: 146, 148, 156;
+    --ion-color-medium-contrast: #ffffff;
+    --ion-color-medium-contrast-rgb: 255, 255, 255;
+    --ion-color-medium-shade: #808289;
+    --ion-color-medium-tint: #9d9fa6;
+    /** light **/
+    --ion-color-light: #f4f5f8;
+    --ion-color-light-rgb: 244, 245, 248;
+    --ion-color-light-contrast: #000000;
+    --ion-color-light-contrast-rgb: 0, 0, 0;
+    --ion-color-light-shade: #d7d8da;
+    --ion-color-light-tint: #f5f6f9;
+}
+
+@media (prefers-color-scheme: light) {
+    /*
+   * Dark Colors
+   * -------------------------------------------
+   */
+    body {
+        // --ion-color-primary: #428cff;
+        // --ion-color-primary-rgb: 66, 140, 255;
+        // --ion-color-primary-contrast: #ffffff;
+        // --ion-color-primary-contrast-rgb: 255, 255, 255;
+        // --ion-color-primary-shade: #3a7be0;
+        // --ion-color-primary-tint: #5598ff;
+        // --ion-color-secondary: #50c8ff;
+        // --ion-color-secondary-rgb: 80, 200, 255;
+        // --ion-color-secondary-contrast: #ffffff;
+        // --ion-color-secondary-contrast-rgb: 255, 255, 255;
+        // --ion-color-secondary-shade: #46b0e0;
+        // --ion-color-secondary-tint: #62ceff;
+        // --ion-color-tertiary: #6a64ff;
+        // --ion-color-tertiary-rgb: 106, 100, 255;
+        // --ion-color-tertiary-contrast: #ffffff;
+        // --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+        // --ion-color-tertiary-shade: #5d58e0;
+        // --ion-color-tertiary-tint: #7974ff;
+        // --ion-color-success: #2fdf75;
+        // --ion-color-success-rgb: 47, 223, 117;
+        // --ion-color-success-contrast: #000000;
+        // --ion-color-success-contrast-rgb: 0, 0, 0;
+        // --ion-color-success-shade: #29c467;
+        // --ion-color-success-tint: #44e283;
+        // --ion-color-warning: #ffd534;
+        // --ion-color-warning-rgb: 255, 213, 52;
+        // --ion-color-warning-contrast: #000000;
+        // --ion-color-warning-contrast-rgb: 0, 0, 0;
+        // --ion-color-warning-shade: #e0bb2e;
+        // --ion-color-warning-tint: #ffd948;
+        // --ion-color-danger: #ff4961;
+        // --ion-color-danger-rgb: 255, 73, 97;
+        // --ion-color-danger-contrast: #ffffff;
+        // --ion-color-danger-contrast-rgb: 255, 255, 255;
+        // --ion-color-danger-shade: #e04055;
+        // --ion-color-danger-tint: #ff5b71;
+        // --ion-color-dark: #f4f5f8;
+        // --ion-color-dark-rgb: 244, 245, 248;
+        // --ion-color-dark-contrast: #000000;
+        // --ion-color-dark-contrast-rgb: 0, 0, 0;
+        // --ion-color-dark-shade: #d7d8da;
+        // --ion-color-dark-tint: #f5f6f9;
+        // --ion-color-medium: #989aa2;
+        // --ion-color-medium-rgb: 152, 154, 162;
+        // --ion-color-medium-contrast: #000000;
+        // --ion-color-medium-contrast-rgb: 0, 0, 0;
+        // --ion-color-medium-shade: #86888f;
+        // --ion-color-medium-tint: #a2a4ab;
+        // --ion-color-light: #222428;
+        // --ion-color-light-rgb: 34, 36, 40;
+        // --ion-color-light-contrast: #ffffff;
+        // --ion-color-light-contrast-rgb: 255, 255, 255;
+        // --ion-color-light-shade: #1e2023;
+        // --ion-color-light-tint: #383a3e;
+    }
+    /*
+   * iOS Dark Theme
+   * -------------------------------------------
+   */
+    // .ios body {
+    //     --ion-background-color: #000000;
+    //     --ion-background-color-rgb: 0, 0, 0;
+    //     --ion-text-color: #ffffff;
+    //     --ion-text-color-rgb: 255, 255, 255;
+    //     --ion-color-step-50: #0d0d0d;
+    //     --ion-color-step-100: #1a1a1a;
+    //     --ion-color-step-150: #262626;
+    //     --ion-color-step-200: #333333;
+    //     --ion-color-step-250: #404040;
+    //     --ion-color-step-300: #4d4d4d;
+    //     --ion-color-step-350: #595959;
+    //     --ion-color-step-400: #666666;
+    //     --ion-color-step-450: #737373;
+    //     --ion-color-step-500: #808080;
+    //     --ion-color-step-550: #8c8c8c;
+    //     --ion-color-step-600: #999999;
+    //     --ion-color-step-650: #a6a6a6;
+    //     --ion-color-step-700: #b3b3b3;
+    //     --ion-color-step-750: #bfbfbf;
+    //     --ion-color-step-800: #cccccc;
+    //     --ion-color-step-850: #d9d9d9;
+    //     --ion-color-step-900: #e6e6e6;
+    //     --ion-color-step-950: #f2f2f2;
+    //     --ion-item-background: #000000;
+    //     --ion-card-background: #1c1c1d;
+    // }
+    // .ios ion-modal {
+    //     --ion-background-color: var(--ion-color-step-100);
+    //     --ion-toolbar-background: var(--ion-color-step-150);
+    //     --ion-toolbar-border-color: var(--ion-color-step-250);
+    // }
+    /*
+   * Material Design Dark Theme
+   * -------------------------------------------
+   */
+    // .md body {
+    //     --ion-background-color: #121212;
+    //     --ion-background-color-rgb: 18, 18, 18;
+    //     --ion-text-color: #ffffff;
+    //     --ion-text-color-rgb: 255, 255, 255;
+    //     --ion-border-color: #222222;
+    //     --ion-color-step-50: #1e1e1e;
+    //     --ion-color-step-100: #2a2a2a;
+    //     --ion-color-step-150: #363636;
+    //     --ion-color-step-200: #414141;
+    //     --ion-color-step-250: #4d4d4d;
+    //     --ion-color-step-300: #595959;
+    //     --ion-color-step-350: #656565;
+    //     --ion-color-step-400: #717171;
+    //     --ion-color-step-450: #7d7d7d;
+    //     --ion-color-step-500: #898989;
+    //     --ion-color-step-550: #949494;
+    //     --ion-color-step-600: #a0a0a0;
+    //     --ion-color-step-650: #acacac;
+    //     --ion-color-step-700: #b8b8b8;
+    //     --ion-color-step-750: #c4c4c4;
+    //     --ion-color-step-800: #d0d0d0;
+    //     --ion-color-step-850: #dbdbdb;
+    //     --ion-color-step-900: #e7e7e7;
+    //     --ion-color-step-950: #f3f3f3;
+    //     --ion-item-background: #1e1e1e;
+    //     --ion-toolbar-background: #1f1f1f;
+    //     --ion-tab-bar-background: #1f1f1f;
+    //     --ion-card-background: #1e1e1e;
+    // }
+}
+
+@media(orientation: portrait) {
+    ion-content {
+        padding-top: constant(safe-area-inset-top); //ios 11.2
+        padding-top: env(safe-area-inset-top); //ios 11.1
+    }
+}
+
+// ------------------------- Default Fonts -----------------------------------
+@font-face {
+    font-family: "AvantGarde-Demi";
+    src: url("../assets/fonts/AVANTGA2.TTF");
+}
+
+@font-face {
+    font-family: "AvantGardeITCbyBT-Medium";
+    src: url("../assets/fonts/AVGARDM.TTF");
+}
+
+@font-face {
+    font-family: "AvantGardeITCbyBT-Book";
+    src: url("../assets/fonts/AVGARDN.TTF");
+}
+
+// ------------------------- Fonts  -----------------------------------------
+.fontLandingPageText {
+    font-family: AvantGardeITCbyBT-Medium !important;
+    letter-spacing: normal !important;
+    text-align: center !important;
+}
+
+.textfont {
+    font-family: AvantGardeITCbyBT-Medium !important;
+    letter-spacing: normal !important;
+}
+
+.fontButton {
+    font-family: AvantGardeITCbyBT-Medium !important;
+    letter-spacing: normal !important;
+    text-align: center !important;
+}
+
+.headingFont {
+    font-family: AvantGardeITCbyBT-Medium !important;
+    letter-spacing: normal !important;
+}
+
+.tabButtonFont {
+    font-family: AvantGardeITCbyBT-Book !important;
+    letter-spacing: normal !important;
+}
+
+.lightFont {
+    font-family: AvantGardeITCbyBT-Book !important;
+    letter-spacing: normal !important;
+}
+
+.dashboardHeader {
+    font-family: AvantGarde-Demi !important;
+    letter-spacing: normal !important;
+}
+
+// ------------------------- Default margin -----------------------------------
+.font-size-page-heading {
+    font-size: 20px !important;
+}
+
+.font-size-button {
+    font-size: 14px !important;
+}
+
+.font-size-input {
+    font-size: 14px !important;
+}
+
+.font-size-error-msg {
+    font-size: 10px !important;
+}
+
+.font-size1-heading {
+    font-size: 20px !important;
+}
+
+.font-size-heading {
+    font-size: 16px !important;
+}
+
+.font-size-sub-heading {
+    font-size: 14px !important;
+}
+
+.font-size-content {
+    font-size: 12px !important;
+}
+
+.font-size-large {
+    font-size: 22px !important;
+}
+
+.font-size-e-large {
+    font-size: 24px !important;
+}
+
+.font-size-e-large-landing {
+    font-size: 42px !important;
+}
+
+.font-size-32 {
+    font-size: 32px !important;
+}
+
+.font-size-e-small {
+    font-size: 10px !important;
+}
+
+.font-size-18 {
+    font-size: 18px !important;
+}
+
+.font-size-16 {
+    font-size: 16px !important;
+}
+
+// ------------------------- Default margin -----------------------------------
+.margin1 {
+    margin: 1px !important;
+}
+
+.margin2 {
+    margin: 2px !important;
+}
+
+.margin3 {
+    margin: 3px !important;
+}
+
+.margin4 {
+    margin: 4px !important;
+}
+
+.margin5 {
+    margin: 5px !important;
+}
+
+.margin7 {
+    margin: 7px !important;
+}
+
+.margin8 {
+    margin: 8px !important;
+}
+
+.margin10 {
+    margin: 10px !important;
+}
+
+.margin12 {
+    margin: 12px !important;
+}
+
+.margin15 {
+    margin: 16px !important;
+}
+
+.margin16 {
+    margin: 16px !important;
+}
+
+.margin20 {
+    margin: 20px !important;
+}
+
+.margin24 {
+    margin: 24px !important;
+}
+
+.margin30 {
+    margin: 30px !important;
+}
+
+.margin25 {
+    margin: 25px !important;
+}
+
+.margin40 {
+    margin: 40px !important;
+}
+
+.marginContent25 {
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+}
+
+.ml-5 {
+    margin-left: 5px !important;
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+}
+
+.ml-15 {
+    margin-left: 15px !important;
+}
+
+.ml-20 {
+    margin-left: 20px !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mt-15 {
+    margin-top: 15px !important;
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+// ------------------------- Default padding -----------------------------------
+.padding1 {
+    padding: 1px !important;
+}
+
+.padding2 {
+    padding: 2px !important;
+}
+
+.padding3 {
+    padding: 3px !important;
+}
+
+.padding4 {
+    padding: 4px !important;
+}
+
+.padding5 {
+    padding: 5px !important;
+}
+
+.padding7 {
+    padding: 7px !important;
+}
+
+.padding8 {
+    padding: 8px !important;
+}
+
+.padding10 {
+    padding: 10px !important;
+}
+
+.padding12 {
+    padding: 12px !important;
+}
+
+.padding16 {
+    padding: 16px !important;
+}
+
+.padding20 {
+    padding: 20px !important;
+}
+
+.padding24 {
+    padding: 24px !important;
+}
+
+.padding30 {
+    padding: 30px !important;
+}
+
+.paddingContent25 {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+// ------------------------- Default Width -----------------------------------
+.width10 {
+    width: 10% !important;
+}
+
+.width20 {
+    width: 20% !important;
+}
+
+.width30 {
+    width: 30% !important;
+}
+
+.width40 {
+    width: 40% !important;
+}
+
+.width50 {
+    width: 50% !important;
+}
+
+.width60 {
+    width: 60% !important;
+}
+
+.width70 {
+    width: 70% !important;
+}
+
+.width80 {
+    width: 80% !important;
+}
+
+.width90 {
+    width: 90% !important;
+}
+
+.width100 {
+    width: 100% !important;
+}
+
+// ------------------------- Default align -----------------------------------
+.left-align {
+    text-align: left !important;
+}
+
+.right-align {
+    text-align: right !important;
+}
+
+.center-align {
+    text-align: center !important;
+}
+
+.end-align {
+    text-align: end !important;
+}
+
+// ------------------------- Default colors -----------------------------------
+.text-color-primary {
+    color: var(--ion-color-primary) !important;
+}
+
+.text-color-white {
+    color: #ffffff !important;
+}
+
+.text-color-black {
+    color: #000000 !important;
+}
+
+.text-color-gray {
+    color: #bbbbbb !important;
+}
+
+.text-color-dark-gray {
+    color: #918e8e !important;
+}
+
+.text-color-yellow {
+    color: #f3d31d !important;
+}
+
+.text-color-red {
+    color: #f15252 !important;
+}
+
+.text-color-green {
+    color: #2ba216 !important;
+}
+
+.text-color-orange {
+    color: #ef7d05 !important;
+}
+
+.container {
+    height: 100% !important;
+    padding: 0%;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+}
+
+.btn-landing {
+    width: 100% !important;
+    --background: #e8cd00 !important;
+    color: #000000 !important;
+    --box-shadow: none !important;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.77;
+    letter-spacing: 0.52px;
+    text-align: center;
+    --border-radius: 25px !important;
+}
+
+.div-landing {
+    width: 100% !important;
+    position: relative;
+    bottom: 0;
+}
+
+.btn_login {
+    width: 100% !important;
+    height: 40px !important;
+    position: absolute;
+    --background: var(--ion-color-primary) !important;
+    bottom: 0;
+    --box-shadow: none !important;
+    padding-left: 8%;
+    padding-right: 8%;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.77;
+    letter-spacing: 0.52px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 31px !important;
+    --border-radius: 10px !important;
+    --background-focused: var(--ion-color-primary) !important;
+    --background-hover: var(--ion-color-primary) !important;
+}
+
+input {
+    font-weight: normal !important;
+    font-stretch: normal !important;
+    font-style: normal !important;
+    line-height: 1.86 !important;
+    letter-spacing: 0.56px !important;
+    text-align: left !important;
+}
+
+.error-container {
+    .error {
+        color: #ec2a2a;
+        opacity: 0.72;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.83;
+        letter-spacing: 0.48px;
+        text-align: right;
+    }
+}
+
+.my-custom-class {
+    --background: #6d6363 !important;
+}
+
+.my-custom-class-cal {
+    --background: #ffffff !important;
+    z-index: 9999 !important;
+}
+
+.action-sheet-color {
+    --button-color: var(--ion-color-primary) !important;
+    font-family: AvantGardeITCbyBT-Medium !important;
+    letter-spacing: normal !important;
+    text-align: center !important;
+    font-size: 12px !important;
+}
+
+.TabBarIcon {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.ionToolbar {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.backButton {
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 10px !important;
+}
+
+.ratingsCssH {
+    font-family: AvantGarde-Demi !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-stretch: normal !important;
+    font-style: normal !important;
+    letter-spacing: normal !important;
+    text-align: left !important;
+    border: 1px solid #ccc;
+    color: #000 !important;
+}
+
+// issue status css
+.statusOpen {
+    border-radius: 19px;
+    padding: 4px 17px 4px 17px;
+    text-align: center;
+    border: 1px solid #85D4A4;
+    background: #E4FFF0;
+    color: #85D4A4;
+}
+
+.statusClose {
+    border: 1px solid #EE6C6C;
+    border-radius: 19px;
+    padding: 4px 17px 4px 17px;
+    background: #FEF1F0;
+    text-align: center;
+    color: #EE6C6C;
+}
+
+.statusINP_R {
+    border: 1px solid #F19A4C;
+    border-radius: 19px;
+    padding: 4px 10px 4px 10px;
+    background: #FFF4EB;
+    text-align: center;
+    color: #F19A4C;
+}
+
+.idOpen {
+    color: #85D4A4;
+}
+
+.idClose {
+    color: #EE6C6C;
+}
+
+.idINP_R {
+    color: #F19A4C;
+}
+
+.s_high {
+    color: #fa0202;
+}
+
+.s_low {
+    color: #04f74e;
+}
+
+.s_m {
+    color: #ec9e0d;
+}
+
+.txtArea {
+    border: 1px solid #ccc !important;
+    border-radius: 10px !important;
+}
+
+.pNet {
+    margin: 0px !important;
+    text-align: center !important;
+    color: red !important;
+    padding: 2px !important;
+    background: #dedbdb !important;
+}
+
+.topShadow {
+    width: 100%;
+    height: 100;
+    padding-top: 25px;
+    -webkit-box-shadow: 0px -4px 16px rgba(190, 189, 189, 0.75);
+    -moz-box-shadow: 0px -4px 16px rgba(190, 189, 189, 0.75);
+    box-shadow: 0px -4px 16px rgba(190, 189, 189, 0.75);
+}
+
+.topBorder {
+    background: #fff;
+    border-top-left-radius: 48px;
+    border-top-right-radius: 48px;
+}
+
+.topBorderCD {
+    background: #fff;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.topShadowD {
+    width: 100%;
+    height: 100;
+    -webkit-box-shadow: 0px -4px 16px rgba(190, 189, 189, 0.75);
+    -moz-box-shadow: 0px -4px 16px rgba(190, 189, 189, 0.75);
+    box-shadow: 0px -4px 16px rgba(190, 189, 189, 0.75);
+}
+
+.topBorderD {
+    background: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.statusCSSPending {
+    background: #F6AE99!important;
+    text-align: center;
+    padding: 2px;
+    border-radius: 9px;
+    color: #000!important;
+    margin-top: 8px !important;
+}
+
+.statusCSSInP {
+    background: #FFC288 !important;
+    text-align: center;
+    padding: 2px;
+    border-radius: 9px;
+    color: #000!important;
+    margin-top: 8px !important;
+}
+
+.statusCSSCompleted {
+    background: #9AD9DB!important;
+    text-align: center;
+    padding: 2px;
+    border-radius: 9px;
+    color: #000!important;
+    margin-top: 8px !important;
+}
+
+.safeCss {
+    background-color: red !important;
+    color: #FFF !important;
+    padding: 10px !important;
+}
+
+.unsafeCss {
+    background-color: green !important;
+    color: #FFF !important;
+    padding: 10px !important;
+}
+
+.ios ion-modal {
+    --overflow: none;
+}
+
+.progressCircleP {
+    margin: 10px 2px 1px;
+    display: block;
+    width: 70px;
+    height: 70px;
+    line-height: 68px;
+    border: 1px solid #F6AE99;
+    border-radius: 50%;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    background: #F6AE99;
+    box-shadow: 0 0 3px #F6AE99;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.progressCircleC {
+    margin: 10px 2px 1px;
+    display: block;
+    width: 70px;
+    height: 70px;
+    line-height: 68px;
+    border: 1px solid #9AD9DB;
+    border-radius: 50%;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    background: #9AD9DB;
+    box-shadow: 0 0 3px #9AD9DB;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.progressCircleIP {
+    margin: 10px 2px 1px;
+    display: block;
+    width: 70px;
+    height: 70px;
+    line-height: 68px;
+    border: 1px solid #FFC288;
+    border-radius: 50%;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    background: #FFC288;
+    box-shadow: 0 0 3px #FFC288;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pOpen {
+    background: #E4FFF0 !important;
+    color: #608f73 !important;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.pClose {
+    background: #FEF1F0 !important;
+    color: #EE6C6C !important;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.pIN_P_R {
+    background: #FFF4EB !important;
+    color: #F19A4C !important;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.openStatus {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #85D4A4 !important;
+    background: #E4FFF0 !important;
+    color: #85D4A4 !important;
+}
+
+.iPStatus {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #FEA000 !important;
+    background: #f8eedd !important;
+    color: #FEA000 !important;
+}
+
+.closeStatus {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #85D4A4 !important;
+    background: #E4FFF0 !important;
+    color: #85D4A4 !important;
+}
+
+// PTW
+.openStatusPTW {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #F4511E !important;
+    background: #F4511E !important;
+    color: #fff !important;
+}
+
+.iPStatusPTW {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #FEA000 !important;
+    background: #FEA000 !important;
+    color: #fff !important;
+}
+
+.closeStatusPTW {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #C0CA33 !important;
+    background: #C0CA33 !important;
+    color: #fff !important;
+}
+
+.suspendStatusPTW {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #E65B66 !important;
+    background: #E65B66 !important;
+    color: #fff !important;
+}
+
+.expiredStatusPTW {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #90CDC3 !important;
+    background: #90CDC3 !important;
+    color: #fff !important;
+}
+
+.extendStatusPTW {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #094B95 !important;
+    background: #094B95 !important;
+    color: #fff !important;
+}

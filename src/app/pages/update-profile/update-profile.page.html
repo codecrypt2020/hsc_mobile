@@ -1,0 +1,101 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Update Profile</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <div style="text-align: center;">
+            <div>
+                <form class=" ion-padding" name="register" (ngSubmit)="userLogin(register)" #register="ngForm" novalidate autocomplete="off">
+                    <ion-list no-lines>
+                        <ion-item>
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="text" placeholder="User Name  " [(ngModel)]="userDetails.name" name="name" #name="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="register.submitted && register.form.controls.name.status == 'INVALID'">
+                            <p class="error" *ngIf="register.form.controls.name.errors.required">This field is required.</p>
+                        </div>
+                        <ion-item>
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="email" placeholder="Email ID  " [(ngModel)]="userDetails.email" name="email" #email="ngModel" disabled="true" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="register.submitted && register.form.controls.email.status == 'INVALID'">
+                            <p class="error" *ngIf="register.form.controls.email.errors.required">This field is required.</p>
+                        </div>
+                        <ion-item>
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="text" placeholder="Mobile Number" [(ngModel)]="userDetails.mobile" name="mobile" #mobile="ngModel" disabled="true" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="register.submitted && register.form.controls.mobile.status == 'INVALID'">
+                            <p class="error" *ngIf="register.form.controls.mobile.errors.required">This field is required.</p>
+                        </div>
+                        <ion-item style="display: none;">
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="password" placeholder="Password" [(ngModel)]="userDetails.password" name="password" #password="ngModel" required></ion-input>
+                        </ion-item>
+                        <div style="display: none;" class="error-container" *ngIf="register.submitted && register.form.controls.password.status == 'INVALID'">
+                            <p class="error" *ngIf="register.form.controls.password.errors.required">Password is required.</p>
+                        </div>
+
+                        <ion-item style="display: none;">
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="text" placeholder="type" [(ngModel)]="userDetails.type" name="type" #type="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="register.submitted && register.form.controls.type.status == 'INVALID'" style="display: none;">
+                            <p class="error" *ngIf="register.form.controls.type.errors.required">Type is required.</p>
+                        </div>
+                        <div style="padding-top: 70px;">
+                            <ion-button style="margin-bottom: 0px !important;" class="btn_login font-size-button fontButton" (click)="register.ngSubmit.emit()" expand="block">UPDATE</ion-button>
+                        </div>
+                    </ion-list>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="text-align: center;">
+            <div>
+                <form class=" ion-padding" name="chgpwd" (ngSubmit)="updatePassword(chgpwd)" #chgpwd="ngForm" novalidate autocomplete="off">
+                    <ion-list no-lines>
+                        <ion-item>
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="text" placeholder="Old Password" [(ngModel)]="userPassword.oldPassword" name="oldPassword" #oldPassword="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="chgpwd.submitted && chgpwd.form.controls.oldPassword.status == 'INVALID'">
+                            <p class="error" *ngIf="chgpwd.form.controls.oldPassword.errors.required">Old Password is required.</p>
+                        </div>
+                        <ion-item>
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="text" placeholder="New Password" [(ngModel)]="userPassword.newPassword" name="newPassword" #newPassword="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="chgpwd.submitted && chgpwd.form.controls.newPassword.status == 'INVALID'">
+                            <p class="error" *ngIf="chgpwd.form.controls.newPassword.errors.required">Password is required.</p>
+                        </div>
+                        <ion-item>
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="text" placeholder="Confirm Password" [(ngModel)]="userPassword.confirmNewPassword" name="confirmNewPassword" #confirmNewPassword="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="chgpwd.submitted && chgpwd.form.controls.confirmNewPassword.status == 'INVALID'">
+                            <p class="error" *ngIf="chgpwd.form.controls.confirmNewPassword.errors.required">Confirm Password is required.</p>
+                        </div>
+
+                        <ion-item style="display: none;">
+                            <ion-input class="font-size-input textfont" autocomplete="off" type="email" placeholder="Email ID  " [(ngModel)]="userPassword.email" name="email" #email="ngModel" disabled="true" required></ion-input>
+                        </ion-item>
+                        <div class="error-container" *ngIf="chgpwd.submitted && chgpwd.form.controls.email.status == 'INVALID'">
+                            <p class="error" *ngIf="chgpwd.form.controls.email.errors.required">This field is required.</p>
+                        </div>
+
+                        <div style="padding-top: 70px;">
+                            <ion-button style="margin-bottom: 0px !important;" class="btn_login font-size-button fontButton" (click)="chgpwd.ngSubmit.emit()" expand="block">UPDATE PASSWORD</ion-button>
+                        </div>
+                    </ion-list>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</ion-content>

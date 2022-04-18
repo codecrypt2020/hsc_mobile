@@ -1,0 +1,71 @@
+.addBtnCss {
+    padding: 5px 10px 5px 10px !important;
+    border-radius: 5px!important;
+    border: 1px solid #EE6C6C;
+    background: #FEF1F0!important;
+    color: #ee6c6c!important;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    z-index: 1000;
+    display: grid;
+}
+
+.dropdown-content-outer {
+    position: absolute;
+    background-color: white;
+    width: 94%;
+    z-index: 999;
+}
+
+.dropCss {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown-heading {
+    font-weight: bold;
+    color: #CCAABB;
+    min-width: 80%;
+    font-size: 15px;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    padding-left: 1em;
+    text-align: left;
+}
+
+.shodowCss {
+    -webkit-box-shadow: 0px 13px 8px -15px #178FAD;
+    -moz-box-shadow: 0px 13px 8px -15px #178FAD;
+    box-shadow: 0px 13px 8px -15px #178FAD;
+    border-radius: 25px !important;
+}
+
+.drop-icon {
+    font-size: 20px;
+    position: absolute;
+    right: 0px;
+    z-index: -1;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+ionic-selectable-modal ion-content ion-icon[aria-label="checkmark circle"] {
+    color: #E9CD00 !important;
+}
+
+ionic-selectable-modal ion-content ion-icon {
+    color: #E9CD00 !important;
+}
+
+.opacity1 {
+    opacity: 1;
+}
+
+.opacity2 {
+    opacity: 0.5;
+}

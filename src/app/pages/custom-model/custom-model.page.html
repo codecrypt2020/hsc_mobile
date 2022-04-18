@@ -1,0 +1,29 @@
+<div class="fullheight xc">
+    <div style="text-align: center !important;margin: 24px !important;">
+        <div class="parent" *ngIf="pop_up_type=='ch_list_submit'">
+            <div class="contentDiv clear">
+                <ion-icon name="checkmark-circle" style="width: 72px;height: 72px;color: #E9CD00;"></ion-icon>
+                <p class="margin10 text-color-primary font-size-18 headingFont" style="font-weight: bold;">{{title}}</p>
+                <p class="font-size-input lightFont" style="text-align: center;">{{msg}}</p>
+
+                <div style="text-align: center;">
+                    <ion-button expand="block" style="margin: 20px;text-transform: capitalize;" (click)="cancelDialog()">OK</ion-button>
+                    <!-- <ion-button size="small" style="margin: 10px;text-transform: capitalize;" (click)="goBack()">OK</ion-button> -->
+                </div>
+            </div>
+        </div>
+        <div class="parent" *ngIf="pop_up_type=='self_d'">
+            <div class="contentDiv clear">
+                <ion-icon *ngIf="result=='Yes'" name="checkmark-circle" style="width: 72px;height: 72px;color: green;"></ion-icon>
+                <ion-icon *ngIf="result=='No'" name="close-circle-outline" style="width: 72px;height: 72px;color: red;"></ion-icon>
+                <p class="margin10 text-color-primary font-size1-heading headingFont">{{title}}</p>
+                <p class="font-size-content lightFont" style="text-align: center;">{{msg}}</p>
+
+                <div style="margin: 20px;">
+                    <ion-button expand="block" style="margin: 10px;text-transform: capitalize;" (click)="goBack()">OK</ion-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,183 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-title>
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Profile</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="secondary" style="padding-right: 4px !important;">
+            <ion-button [routerLink]="['/update-profile']">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="create"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div *ngIf="!load_profile">
+        <ion-list>
+            <ion-item style="height:170px;">
+                <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 10px !important;">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 0px !important;">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+            </ion-item>
+            <ion-item style="height:170px;">
+                <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 10px !important;">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 0px !important;">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-label>
+                    <h3>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                    </p>
+                    <p>
+                        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                    </p>
+                </ion-label>
+            </ion-item>
+
+        </ion-list>
+    </div>
+    <div *ngIf="load_profile">
+
+        <ion-row class="userProfileDiv">
+            <ion-col>
+                <div (click)="selectImage()" class="userProfile" *ngIf="profileImg!=undefined"><img src="{{profileImg}}" onerror="this.onerror=null;this.src='/assets/imgs/user-default.png';" />
+                    <!-- <div *ngIf="isProfileUpload">
+                        <ion-spinner name="crescent"></ion-spinner>
+                    </div> -->
+                </div>
+                <div (click)="selectImage()" class="userProfile" *ngIf="profileImg==null || profileImg=='' || profileImg=='undefined'"><img src="assets/imgs/user-default.png" onerror="this.onerror=null;this.src='/assets/imgs/user-default.png';" /></div>
+
+            </ion-col>
+        </ion-row>
+        <ion-row class="userProfileDiv">
+            <ion-col text-center>
+                <p class="text-color-primary font-size1-heading headingFont" style="text-align:center !important;margin: 0px;line-height: 10px;font-weight: normal !important;">{{userDetails['emp_name']}}
+                </p>
+            </ion-col>
+        </ion-row>
+
+        <ion-list>
+            <ion-item lines="none">
+                <ion-avatar slot="start" style="text-align: end !important;">
+                    <ion-icon name="mail-outline" style="margin-top: 10px !important;"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                    <h2>
+                        <p class="text-color-primary font-size-sub-heading headingFont">{{userDetails['emp_email']}} </p>
+                    </h2>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-avatar slot="start" style="text-align: end !important;">
+                    <ion-icon name="phone-portrait-outline" style="margin-top: 10px !important;"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                    <h2>
+                        <p class="text-color-primary font-size-sub-heading headingFont">{{userDetails['emp_mobile']}} </p>
+                    </h2>
+                </ion-label>
+            </ion-item>
+            <!-- <ion-item lines="none">
+                <ion-avatar slot="start" style="text-align: end !important;">
+                    <ion-icon name="briefcase-outline" style="margin-top: 10px !important;"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                    <h2>
+                        <p class="text-color-primary font-size-sub-heading headingFont">{{getDesiganation()}} </p>
+                    </h2>
+                </ion-label>
+            </ion-item> -->
+            <ion-item lines="none">
+                <ion-avatar slot="start" style="text-align: end !important;">
+                    <ion-icon name="business-outline" style="margin-top: 10px !important;"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                    <h2>
+                        <p class="text-color-primary font-size-sub-heading headingFont">{{getOrganization()}} </p>
+                    </h2>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="logout()">
+                <ion-avatar slot="start" style="text-align: end !important;">
+                    <ion-icon name="log-out-outline" style="margin-top: 10px !important;"></ion-icon>
+                </ion-avatar>
+                <ion-label>
+                    <h2>
+                        <p class="text-color-primary font-size-sub-heading headingFont">Logout </p>
+                    </h2>
+                </ion-label>
+
+            </ion-item>
+        </ion-list>
+
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border" style="background-color: #fff !important;">
+    <div>
+        <p class="lightFont font-size-content pNet">App version : {{appVersion}}</p>
+    </div>
+</ion-footer>

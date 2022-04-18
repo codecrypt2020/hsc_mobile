@@ -1,0 +1,27 @@
+.container_login {
+    padding: 0%;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.list-ios {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 15px !important;
+    margin-bottom: 0px !important;
+    background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+.center {
+    text-align: center;
+    width: 100%;
+}
+
+.center p {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}

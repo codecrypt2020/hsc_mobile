@@ -1,0 +1,241 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons>
+            <ion-title>
+                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">UA/UC List</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="secondary" style="padding-right: 4px !important;" (click)="openNotiFication()">
+            <ion-icon class="notiIcon" slot="icon-only" name="notifications-outline"></ion-icon>
+            <span class="badge badge-light lightFont font-size-content" *ngIf="notificatioCount != '00'"> {{notificatioCount}}</span>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="getAllIncident()">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <!-- <div style="margin: 20px !important;">List of All Incident</div> -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" style="padding-bottom: 10px;background-color: #fff;">
+        <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Updating List..." class="text-color-primary font-size-sub-heading headingFont" style="background-color: #fff;">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div style="z-index: 999 !important;">
+        <div *ngIf="!is_list">
+            <ion-list>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngIf="is_list">
+            <p *ngIf="!getIncidentListLength()" class="text-color-primary font-size-heading headingFont" style="text-align: center !important;margin-top: 50px !important;">Issue not available.</p>
+            <div *ngIf="getIncidentListLength()">
+                <div style="margin: 4px !important;">
+                    <ion-row>
+                        <ion-col size="6" style="margin: 0px;padding: 0px;" *ngFor="let incident of incidentList let i=index" (click)="openInc_res(incident['id'],incident['status'],i)">
+                            <ion-card style="margin: 5px !important;padding: 4px;height: 95%;">
+                                <ion-card-content>
+                                    <div>
+                                        <div>
+                                            <ion-label *ngIf="incident['severity']== 'High'" class="s_high font-size-input headingFont">{{incident['severity']}}</ion-label>
+                                            <ion-label *ngIf="incident['severity']== 'Low'" class="s_low font-size-input headingFont">{{incident['severity']}}</ion-label>
+                                            <ion-label *ngIf="incident[ 'severity']=='Medium' " class="s_m font-size-input headingFont">{{incident['severity']}}</ion-label>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 8px !important; ">
+                                        <ion-label class="font-size-content lightFont " style="color:#929191 !important; ">Location</ion-label><br>
+                                        <ion-label class="font-size-content lightFont text-color-black ">{{incident['area_name']}}</ion-label>
+                                    </div>
+                                    <div style="margin-top: 8px !important; ">
+                                        <ion-label class="font-size-content lightFont " style="color:#929191 !important; ">Date & Time</ion-label><br>
+                                        <ion-label class="font-size-content lightFont text-color-black ">{{getFormatedDate(incident['date_time'])}}</ion-label>
+                                    </div>
+                                    <div style="margin-top: 8px !important; ">
+                                        <ion-label *ngIf="incident[ 'status']=='open' " class="font-size-e-small lightFont text-color-black">{{incident['status'] | titlecase }} from last {{getDays(incident)}} days</ion-label>
+                                        <ion-label *ngIf="incident[ 'status']=='close' " class="font-size-e-small lightFont text-color-black">Issue closed</ion-label>
+                                        <ion-label *ngIf="incident[ 'status']=='in progress' || incident[ 'status']=='in process' " class="font-size-e-small lightFont text-color-black">{{incident['status'] | titlecase }} from last {{getDays(incident)}} days</ion-label>
+                                        <ion-label *ngIf="incident[ 'status']=='review' " class="font-size-e-small lightFont text-color-black">{{incident['status'] | titlecase }} from last {{getDays(incident)}} days</ion-label>
+                                    </div>
+                                    <div style="text-align: end;margin-top: 16px; ">
+                                        <ion-label *ngIf="incident[ 'status']=='open' " class="statusOpen font-size-input lightFont ">{{incident['status'] | titlecase }}</ion-label>
+                                        <ion-label *ngIf="incident[ 'status']=='close' " class="statusClose font-size-input lightFont ">{{incident['status'] | titlecase }}</ion-label>
+                                        <ion-label *ngIf="incident[ 'status']=='in progress' || incident[ 'status']=='in process' " class="statusINP_R font-size-input lightFont ">{{incident['status'] | titlecase }}</ion-label>
+                                        <ion-label *ngIf="incident[ 'status']=='review' " class="statusINP_R font-size-input lightFont ">{{incident['status'] | titlecase }}</ion-label>
+                                    </div>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+
+                </div>
+            </div>
+        </div>
+        <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 40px;" [routerLink]="['/incident-details']">
+            <ion-fab-button>
+                <ion-icon name="add-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </div>
+</ion-content>

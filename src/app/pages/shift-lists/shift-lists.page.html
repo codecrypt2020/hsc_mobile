@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+
+        <ion-buttons>
+            <ion-button (click)="closeModal()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding-left: 0px;padding-right: 0px;">
+                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: left !important;">{{title}}</p>
+            </ion-title>
+        </ion-buttons>
+
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-radio-group value="{{selected_id}}" (ionChange)="changeShift($event)">
+            <ion-item *ngFor="let item of emplist let i=index ">
+                <ion-label>{{item['name']}}</ion-label>
+                <ion-radio mode="md" slot="start" value="{{item['id']}}"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+</ion-content>

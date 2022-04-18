@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Notifications</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <ion-card *ngFor="let item of noti_list let i=index" (click)="openIssue(item)">
+            <ion-card-header>
+                <ion-card-title class="marginLeft font-size-heading headingFont"> {{item['type']}} </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont">
+                {{item['title']}}
+            </ion-card-content>
+            <div style="padding: 8px;">
+                <p class="marginLeft font-size-content headingFont" style="margin: 0px;text-align: end;padding-bottom: 8px;padding-right: 8px;"> {{item['created_at'] | date:'MMM dd, YYYY hh:mm:ss'}} </p>
+            </div>
+        </ion-card>
+    </div>
+</ion-content>

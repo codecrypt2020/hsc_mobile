@@ -1,0 +1,276 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">{{cat_name}} PTW List</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-icon class="notiIcon" (click)="calendarModal()" slot="icon-only" name="calendar-outline"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <div style="padding-left: 10px !important;padding-right: 10px !important;display: flex !important;background-color:  blanchedalmond;" *ngIf="isDateFilter">
+            <div style="width: 100%;display: flex;text-align: center;">
+                <div style="width: 90%;display: flex;" (click)="calendarModal()">
+                    <div style="padding-left: 10px !important;padding-right: 10px !important;display: flex !important;width: 100%;">
+                        <div class="bottombarCss" style="display: flex !important;    text-align: center;justify-content: center;margin: auto;padding: 10px;">
+                            <div>
+                                <div class="date4picker headingFont font-size-content">&nbsp;&nbsp;{{ minDate | date:'MMM d, y'}}</div>
+                            </div>
+                            <div class="padding-left-right">&nbsp;<span> - </span>&nbsp;</div>
+                            <div>
+                                <div class="date4picker headingFont font-size-content ">{{ maxDate | date:'MMM d, y'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 10%;padding: 10px;">
+                    <ion-icon class="notiIcon" (click)="clearDateFilter()" slot="icon-only" name="close-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!is_list">
+            <ion-list>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngIf="is_list">
+            <div *ngIf="ptwList.length<1">
+                <p class="text-color-black font-size-content headingFont" style="text-align: center !important;margin-top: 50px !important;">PTW List Not Available</p>
+            </div>
+            <div *ngIf="ptwList.length>0">
+                <div *ngFor="let item of ptwList let i=index">
+                    <div style="border: 1px solid #ccc;margin: 10px;border-radius: 10px;padding: 15px;">
+                        <div style="width:100%;">
+                            <div style="width:100%;">
+                                <div (click)="openDetails(item['id'],item['cat_name'])">
+                                    <div style="width: 100%;display: flex;">
+                                        <div style="width: 70%;display: flex;">
+                                            <p class="font-size-heading headingFont" style="color: #455A64 !important;margin: 0px;">{{item['cat_name']}}</p>
+                                        </div>
+                                        <div style="width: 30%;display: flex;padding-left: 18px;">
+                                            <div style="margin: auto;" *ngIf="(isExpiredPTW(item['last_date']) && (item['permit_status']==2))">
+                                                <p *ngIf="(item['permit_status']==2)" class="marginLeft p1 text-color-primary font-size-content headingFont expiredStatusPTW">
+                                                    Expired
+                                                </p>
+                                            </div>
+                                            <div *ngIf="(!(isExpiredPTW(item['last_date'])) && (item['permit_status']==2))">
+                                                <div style="margin: auto;">
+                                                    <p *ngIf="item['permit_status']==2" class="marginLeft p1 text-color-primary font-size-content headingFont iPStatusPTW">
+                                                        In Progress
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="item['permit_status']!=2" style="margin: auto;">
+                                                <p *ngIf="item['permit_status']==1" class="marginLeft p1 text-color-primary font-size-content headingFont openStatusPTW">
+                                                    Open
+                                                </p>
+
+                                                <p *ngIf="item['permit_status']==3" class="marginLeft p1 text-color-primary font-size-content headingFont closeStatusPTW">
+                                                    Closed
+                                                </p>
+                                                <p *ngIf="item['permit_status']==4" class="marginLeft p1 text-color-primary font-size-content headingFont suspendStatusPTW">
+                                                    Suspended
+                                                </p>
+
+                                                <p *ngIf="(item['permit_status']==5)" class="marginLeft p1 text-color-primary font-size-content headingFont expiredStatusPTW">
+                                                    Expired
+                                                </p>
+
+                                                <p *ngIf="item['permit_status']==6" class="marginLeft p1 text-color-primary font-size-content headingFont extendStatusPTW">
+                                                    Extended
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-color-black font-size-content headingFont" style="margin: 0px;"> Start Date : {{item['start_date']| date:'MMM d, y'}}</p>
+                                    <p class="text-color-black font-size-content headingFont" style="margin: 0px;"> End Date : {{item['last_date']| date:'MMM d, y'}}</p>
+                                    <p class="text-color-black font-size-content headingFont" style="margin: 0px;"> Contract Type : {{getContractName(item['permit_contract_type'])}}</p>
+
+                                </div>
+                                <!-- <p class="font-size-content lightFont">End Date : {{item['last_date'] | date:'MMM d, y'}}</p> -->
+                                <p *ngIf="(item['permit_status']==2 || item['permit_status']==5)" (click)="extendPTW(item['id'],item['cat_name'])" class="marginLeft text-color-primary font-size-content headingFont extendCss">
+                                    Extend PTW
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <h1 style="height: 1px;margin: 10px 20px 0px 20px;background: #ccc;"></h1> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 40px;outline: none !important;" (click)="addPTW()">
+        <ion-fab-button>
+            <ion-icon name="add-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

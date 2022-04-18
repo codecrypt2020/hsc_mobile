@@ -1,0 +1,155 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Issue Response </p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <div>
+                <!-- <ion-label class="marginLeft p1 text-color-primary font-size-content headingFont openStatus">
+                    {{role | titlecase}}
+                </ion-label> -->
+            </div>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="width: 100% !important;">
+        <p class="text-color-primary font-size-heading headingFont" style="margin-top: 10px !important;margin-left: 20px !important;">Immediate Containment Action</p>
+        <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+            <ion-textarea placeholder="Enter detail description of issue" [(ngModel)]="des_ica" name="des_ica" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="5" mode="md" style="padding: 5px !important;"></ion-textarea>
+        </div>
+    </div>
+    <div style="width: 100% !important;">
+        <p class="text-color-primary font-size-heading headingFont" style="margin-top: 20px !important;margin-left: 20px !important;">Underlying Cause</p>
+        <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+            <ion-textarea placeholder="Enter detail description of issue" [(ngModel)]="des_uc" name="des_uc" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="5" mode="md" style="padding: 5px !important;"></ion-textarea>
+        </div>
+    </div>
+    <div class="margin10" [ngClass]="(is_in_progress) ? 'opacity2' : 'opacity1'">
+
+        <div style="display: flex;width: 100%;padding-left: 10px !important;margin-top: 20px;">
+            <div style="display: flex;width: 85%;"><span class="text-color-primary marginLeft font-size-heading headingFont">  Upload Images </span></div>
+            <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectPlantAdminImage()" /></div>
+        </div>
+        <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+            <div style="display: flex;text-transform: uppercase; ">
+                <ion-list style="padding-bottom: 20px;width: 100%;">
+                    <ion-row style="margin: 4px !important;">
+                        <ion-col class="thumbnail" size="4" *ngFor="let image of selected_images_ip let i=index">
+                            <div style="width: 100% !important;height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                <img class="user-profile-img " src="{{image}}" alt="" style="width: 100% !important;height: 100%;border-radius: 20px;object-fit: cover;" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-list>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="width: 100% !important;" [ngClass]="(is_add_rc) ? 'opacity2' : 'opacity1'">
+            <p class="text-color-primary font-size-heading headingFont" style="margin-top: 40px !important;margin-left: 20px !important;">Root Cause</p>
+            <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+                <ion-textarea placeholder="Enter detail description of issue" [(ngModel)]="root_c" name="root_c" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="6" style="margin-top: 30px !important;padding: 10px !important;"
+                    [disabled]="is_add_rc" mode="md"></ion-textarea>
+            </div>
+        </div>
+        <!-- in progress : {{is_in_progress}} -->
+        <div style="width: 100% !important;">
+            <p [ngClass]="(is_add_a_point) ? 'opacity2 text-color-primary font-size-heading headingFont' : 'opacity1 text-color-primary font-size-heading headingFont'" style="margin-top: 40px !important;margin-left: 20px !important;">Action Points</p>
+            <div *ngIf="1>actionpoints_list.length" style="margin-left: 30px;" [ngClass]="(is_add_a_point) ? 'opacity2 font-size-input textfont' : 'opacity1 font-size-input textfont'">Action points not added</div>
+            <div *ngIf="actionpoints_list.length>0" [ngClass]="(is_add_a_point) ? 'opacity2' : 'opacity1'">
+                <div *ngFor="let action_point of actionpoints_list let i=index " style="width: 100% !important;padding-left: 30px !important;">
+                    <div style="display: flex; width: 100%;">
+                        <div style="width: 10%;">
+                            <div *ngIf="isAllowToChange(action_points_assign[i])">
+                                <ion-icon *ngIf="action_points_check[i]=='false' " name="checkmark-circle-outline" style="font-size: 30px !important;margin: 4px;color:#ccc;" (click)="changeStatus(i,'true')"></ion-icon>
+                                <ion-icon *ngIf="action_points_check[i]=='true' " name="checkmark-circle-outline" style="font-size: 30px !important;margin: 4px;color:#28c3cb;" (click)="changeStatus(i,'false')"></ion-icon>
+                            </div>
+
+                        </div>
+                        <div style="width: 50%;padding-top: 7px;padding-left: 5px;"><span style="margin-top: 6px; " class="font-size-input textfont">{{action_point}}</span></div>
+                        <div style="width: 30%;padding-top: 7px;text-align: center;">
+                            <ion-label (click)="OpenEmpList(i,action_points_assign[i])" class="font-size-input textfont">{{getUserName(i)}}</ion-label>
+                        </div>
+                        <div style="width: 10%;" *ngIf="is_delete_enable">
+                            <ion-icon name="trash-outline" style="font-size: 24px !important;margin: 4px;color:rgb(241, 8, 8);" (click)="deleteActionPoint(i)"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div [ngClass]="(is_add_a_point) ? 'opacity2' : 'opacity1'" style="width: 100% !important;padding-left: 30px !important;display: flex !important;margin-top: 20px !important;">
+                <div style="width: 80% !important;">
+                    <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="Add action" [(ngModel)]="action_point" name="action_point" required [disabled]="is_add_a_point"></ion-input>
+                </div>
+
+                <div [ngClass]="(is_add_a_point) ? 'opacity2' : 'opacity1'" style="width: 20% !important;text-align: center;
+            justify-content: center;
+            margin-top: 13px;">
+                    <ion-label mode="md" slot="end" class="addBtnCss" (click)="AddPonit()">
+                        Add
+                    </ion-label>
+                </div>
+            </div>
+
+        </div>
+        <div class="margin10 " [ngClass]="(is_Check_Action_P) ? 'opacity2' : 'opacity1'">
+            <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                <ion-checkbox [disabled]="is_Check_Action_P" checked="{{isCheckedAR}}" (ionChange)="onChangeAR($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                <p style="margin: 0px 0px 0px 10px;">Approval Required</p>
+            </div>
+
+            <div *ngIf="isCheckedAR">
+                <div [ngClass]="(is_Check_Action_P) ? 'opacity2' : 'opacity1'" style="width: 100% !important;padding-left: 10px !important;display: flex !important;margin-top: 20px !important;">
+                    <div style="width: 50% !important;">
+                        <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="Add Assign to Name" [(ngModel)]="assign_name" name="assign_name" required [disabled]="is_Check_Action_P"></ion-input>
+                    </div>
+
+                    <div [ngClass]="(is_Check_Action_P) ? 'opacity2 font-size-input textfont' : 'opacity1 font-size-input textfont'" style="width: 50% !important;margin-left: 10px;padding: 15px;border: 1px solid rgb(212, 212, 212); border-radius: 10px;">
+                        <ion-label *ngIf="due_date=='Add Due Date'" mode="md" slot="end" (click)="calendarModal()" style="color: #828282 !important;">
+                            {{due_date}}
+                        </ion-label>
+
+                        <ion-label *ngIf="due_date!='Add Due Date'" mode="md" slot="end" (click)="calendarModal()" style="color: #000 !important;">
+                            {{due_date}}
+                        </ion-label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="margin10 " [ngClass]="(!is_in_progress) ? 'opacity2' : 'opacity1'">
+            <div style="display: flex;width: 100%;padding-left: 10px !important;margin-top: 20px;">
+                <div style="display: flex;width: 85%;"><span class="text-color-primary marginLeft font-size-heading headingFont">  Upload Images </span></div>
+                <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectOrgAdminImage()" /></div>
+            </div>
+            <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                <div style="display: flex;text-transform: uppercase;">
+                    <ion-list style="padding-bottom: 20px;width: 100%;">
+                        <ion-row style="margin: 4px !important;">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of selected_images_cl let i=index">
+                                <div style="width: 100% !important;height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                    <img class="user-profile-img " src="{{image}}" alt="" style="width: 100% !important;height: 100%;border-radius: 20px;object-fit: cover;" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background-color: #455A64 !important;">
+    <ion-button *ngIf="btnTitle == 'Save'" fill="clear" expand="full" (click)="saveResponse()" style="color: #fff !important;">
+        Update
+    </ion-button>
+    <ion-button *ngIf="btnTitle == 'Update'" fill="clear" expand="full" (click)="closeIssue()" style="color: #fff !important;">
+        Close
+    </ion-button>
+</ion-footer>

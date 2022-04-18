@@ -1,0 +1,104 @@
+// .container_login {
+//     height: 100% !important;
+//     padding: 0%;
+//     position: relative;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+// }
+ion-content {
+    // --background: url('/assets/imgs/signinbg.png') no-repeat cover fixed center;
+    // background: url('/assets/imgs/signinbg.png') no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.list-ios {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 15px !important;
+    margin-bottom: 0px !important;
+    background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+// .center {
+//     text-align: center;
+//     width: 100%;
+// }
+// .center p {
+//     line-height: 1.5;
+//     display: inline-block;
+//     vertical-align: middle;
+// }
+// .topleft {
+//     position: absolute;
+//     top: 16px;
+//     left: 16px;
+//     font-size: 1.5em;
+//     margin-top: 10px !important;
+// }
+.center {
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center !important;
+    margin: 0;
+}
+
+.div-center {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.btn-label {
+    text-align: start !important;
+    color: #E9CD00 !important;
+}
+
+#inner {
+    display: table;
+    margin: 0 auto;
+    width: 80% !important;
+}
+
+#outer {
+    width: 100%
+}
+
+.btn-getstarted {
+    width: 100% !important;
+    height: 48px !important;
+    --background: #f5f3e2 !important;
+    --box-shadow: none !important;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.77;
+    letter-spacing: 0.52px;
+    text-align: center;
+    color: #E9CD00 !important;
+    --border-radius: 25px !important;
+    --border-color: #E9CD00 !important;
+    --border-width: 1px !important
+}
+
+.itemBG {
+    --background: transparent !important;
+    width: 100% !important;
+}
+
+item-native {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.inputIconCss {
+    --height: 90% !important;
+    margin-top: 12px !important;
+    margin-inline-end: 12px !important;
+    color: #4C4C4C !important;
+}

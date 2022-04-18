@@ -1,0 +1,26 @@
+.cardCss1,
+.item-inner {
+    .input-wrapper {
+        .label-md,
+        .label-ios {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    border: 1px solid #d4d4d4 !important;
+    background: #E5E9F2 !important;
+    border-radius: 5px;
+    margin: 12px !important;
+    padding: 4px !important;
+}
+
+.pClose {
+    background: #FEF1F0 !important;
+    color: #EE6C6C !important;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+}

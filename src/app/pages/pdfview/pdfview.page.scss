@@ -1,0 +1,47 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.border-background-stylesheet {
+    background: #fff;
+    border-top: none;
+}
+
+.card {
+    color: white;
+    height: auto;
+}
+
+.cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 0.5rem;
+}
+
+@media (min-width: 300px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1800px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

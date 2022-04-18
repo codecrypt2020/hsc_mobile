@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont" style="text-align: center !important;text-transform: capitalize;">{{type}} Permit </p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="container_login">
+        <div style="height: 100%;">
+            <div style="height: 40%;">
+                <p class="text-color-primary font-size1-large headingFont" style="margin-left: 20px !important;">Comment Below(Optional)</p>
+                <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+                    <ion-textarea placeholder="Enter Your Comment" [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="10" style="margin-top: 30px !important;padding: 10px !important;"></ion-textarea>
+                </div>
+            </div>
+            <div style="height: 20%;">
+                <ion-button class="btn_login font-size-button fontButton" (click)="updateStatus()" expand="block"> {{type}} Permit</ion-button>
+            </div>
+        </div>
+    </div>
+</ion-content>

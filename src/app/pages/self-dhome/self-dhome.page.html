@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons>
+            <ion-title>
+                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">Self Declaration</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="divBoxCss" (click)="openSDForm()">
+        <ion-icon name="document-text-outline" mode="md" class="iconCss"></ion-icon>
+        <div style="margin-left: 8px;">
+            <p class="tabButtonFont pMargin">Parent on Behalf of Student</p>
+            <p class="tabButtonFont pMargin">COVID Screening Form</p>
+        </div>
+    </div>
+
+    <div *ngIf="is_submitted" class="parent" style="text-align: center;padding-top: 20px;">
+        <div class="contentDiv clear">
+            <ion-icon *ngIf="result" name="checkmark-circle" style="width: 100px;height: 100px;color: green;padding-bottom: 20px !important;"></ion-icon>
+            <ion-icon *ngIf="!result" name="close-circle-outline" style="width: 100px;height: 100px;color: red;padding-bottom: 20px !important;"></ion-icon>
+            <div class="(result)? safeCss : unsafeCss">
+                <p class="margin10 font-size1-heading headingFont">{{title}}</p>
+                <p class="font-size-input headingFont" style="text-align: center;">{{msg}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!is_submitted" class="parent" style="text-align: center;margin-top: 100px;">
+        <div class="contentDiv clear">
+            <ion-icon name="document-text-outline" style="width: 100px;height: 100px;color: gray;"></ion-icon>
+            <p class="font-size-input headingFont" style="text-align: center;">You are not suubmitted Self Declaration</p>
+            <ion-button size="small" class="shodowCss" shape="round" mode="ios" (click)="openSDForm()" style="margin-bottom: 14px !important;
+            height: 40px;">
+                Submit
+            </ion-button>
+        </div>
+    </div>
+
+</ion-content>

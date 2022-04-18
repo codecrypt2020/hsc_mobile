@@ -1,0 +1,85 @@
+.TabBarIcon {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.ionToolbar {
+    // border-bottom: 1px solid #f1f1f1;
+}
+
+.marginLeft {
+    margin-left: 28px !important;
+}
+
+.calenderIcon {
+    width: 56px !important;
+    height: 56px !important;
+}
+
+.p1 {
+    margin: 0px !important;
+}
+
+.cardCss1,
+.item-inner {
+    .input-wrapper {
+        .label-md,
+        .label-ios {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    border: 1px solid #dad9d9 !important;
+    background: #F8F9F9 !important;
+    border-radius: 2px;
+    margin: 12px !important;
+    padding: 4px !important;
+}
+
+.main-card {
+    background: var(--ion-color-primary);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 12px;
+    overflow: hidden;
+    ion-col {
+        display: flex;
+        justify-content: center;
+        padding: 4px;
+    }
+    ion-card {
+        background: #fff;
+        margin-bottom: 12px;
+        margin-top: 12px;
+        width: 100%;
+    }
+    ion-card-content {
+        color: #fff;
+    }
+}
+
+.drop-icon {
+    font-size: 20px;
+    position: absolute;
+    right: 0px;
+    z-index: -1;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+ionic-selectable-modal ion-content ion-icon[aria-label="checkmark circle"] {
+    color: #ec9e0d!important;
+}
+
+ionic-selectable-modal ion-content ion-icon {
+    color: #ec9e0d!important;
+}
+
+.cssNP {
+    font-size: 24px !important;
+    color: gray !important;
+}

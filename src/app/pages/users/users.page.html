@@ -1,0 +1,24 @@
+<ion-tabs mode="md">
+    <ion-tab-bar slot="bottom" mode="md">
+        <ion-tab-button tab="home" *ngIf="isUAUC">
+            <ion-icon name="eye-outline"></ion-icon>
+            <ion-label mode="md" class="tabButtonFont">UA/UC List</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="self-d-home" *ngIf="isSD">
+            <ion-icon mode="md" name="bag-add-outline"></ion-icon>
+            <ion-label class="tabButtonFont">Self D</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="inspections" *ngIf="isChecklist">
+            <ion-icon mode="md" name="document-text-outline"></ion-icon>
+            <ion-label class="tabButtonFont">Inspection</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile">
+            <ion-icon mode="md" name="person-circle-outline"></ion-icon>
+            <ion-label class="tabButtonFont">Profile</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+
+</ion-tabs>

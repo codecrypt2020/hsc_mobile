@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">Inspection Details</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="ViewPDf()">
+                <ion-icon name="arrow-down-circle" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <!-- <p class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pOpen">
+        Inspection Submitted by {{userName}}
+    </p> -->
+
+    <p (click)="calendarModal()" class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pClose">
+        Selected Date : {{selectedStartDate | date:'MMM d, y'}}
+    </p>
+
+    <div *ngFor="let question of questionlist let i=index">
+        <ion-card-header>
+            <span class="marginLeft font-size-heading headingFont"> {{i+1}} . </span>
+            <span class="marginLeft font-size-heading headingFont"> {{question['question']}} </span>
+        </ion-card-header>
+
+        <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont">
+            <p class="font-size-input lightFont" style="color:#000 !important;" *ngIf="question['question_type']=='1'">Selected Answer : {{getSAns(checklistSD[i])}}</p>
+            <p class="font-size-input lightFont" style="color:#000 !important;" *ngIf="question['question_type']=='2'">Input Answer : {{getIAns(checklistSD[i])}}</p>
+            <p class="font-size-input lightFont" style="color:#000 !important;">Comments : {{getComments(checklistSD[i])}}</p>
+            <p *ngIf="getILength(saved_Images[i])>0" class="font-size-input lightFont" style="color:#000 !important;">Uploaded Images : </p>
+            <div *ngIf="getILength(saved_Images[i])>0">
+                <ion-list style="padding-bottom: 0px;">
+                    <ion-row style="margin: 4px !important;">
+                        <ion-col class="thumbnail" size="4" *ngFor="let image of saved_Images[i] let j=index">
+                            <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{baseUrl}}{{image}}" alt="" style="border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';"></div>
+                        </ion-col>
+                    </ion-row>
+                </ion-list>
+            </div>
+        </ion-card-content>
+        <!-- <div style="padding: 8px;">
+            <p class="marginLeft font-size-content headingFont" style="margin: 0px;text-align: end;padding-bottom: 8px;padding-right: 8px;"> {{item['created_at'] | date:'MMM dd, YYYY hh:mm:ss'}} </p>
+        </div> -->
+    </div>
+</ion-content>

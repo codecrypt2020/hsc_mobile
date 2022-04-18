@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Self Declaration</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="margin:10px !important;" *ngIf="is_show">
+        <div *ngIf="!is_q_present">
+            <div class="fullheight xc">
+                <div style="text-align: center !important;margin: 24px !important;">
+                    <div class="parent">
+                        <div class="contentDiv clear">
+                            <p class="margin10 text-color-primary font-size1-heading headingFont">Self Declaration</p>
+                            <p class="font-size-content lightFont" style="text-align: center;">Self Declaration not available.</p>
+
+                            <div style="margin: 20px;">
+                                <ion-button expand="block" style="margin: 10px;text-transform: capitalize;" (click)="goBack()">OK</ion-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="is_q_present">
+            <div class="margin10">
+                <ion-list>
+                    <ion-radio-group *ngFor="let item of questionlist let i=index" (ionChange)="mcqAnswer($event,item['id'],i)" mode="md">
+                        <ion-list-header style="padding-left: 0px;">
+                            <ion-label>
+                                <p class="font-size-heading  lightFont text-color-black ">{{item['question']}} *</p>
+                            </ion-label>
+                        </ion-list-header>
+
+                        <div *ngIf="questionlist[questionIndex]['question_type']=='1'">
+                            <div style="display: flex;margin-left: 20px;">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_a']}}" style="margin-top: 8px;width: 18px !important;
+                              height: 18px !important;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_a']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_b']}}" style="margin-top: 8px;width: 18px !important;
+                              height: 18px !important;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_b']}} </p>
+                            </div>
+
+                        </div>
+
+                    </ion-radio-group>
+                </ion-list>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer *ngIf="is_q_present" class="ion-no-border">
+    <ion-button class="buttonCssSD font-size-button fontButton" (click)="saveUserAnswer()" expand="block">Submit</ion-button>
+</ion-footer>

@@ -1,0 +1,210 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+/* Core CSS required for Ionic components to work properly */
+
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+.li-ionic4-datePicker {
+    z-index: 9999 !important;
+    // 20006
+    .modal-wrapper {
+        height: 450px;
+        width: 310px;
+        border-radius: 0px;
+        @media (min-width: 768px) {
+            width: 350px;
+            height: 65%;
+        }
+    }
+    ion-toolbar {
+        --background: #EDD436 !important;
+    }
+    button {
+        background: #EDD436 !important;
+    }
+    .dp-selecteddate {
+        background: #EDD436 !important;
+    }
+    .dp-today {
+        border-color: #EDD436 !important;
+    }
+    ion-header ion-toolbar:first-of-type {
+        padding-top: 1px !important;
+    }
+}
+
+.ionic-selectable-icon {
+    position: relative;
+    width: 20px;
+    display: none!important;
+}
+
+ionic-selectable-modal ion-toolbar {
+    --background: #EDD436 !important;
+}
+
+ionic-selectable-modal ion-content {
+    // --background: #f2f4f8;
+}
+
+ionic-selectable-modal ion-content ion-icon[aria-label="checkmark circle"] {
+    color: #EDD436 !important;
+}
+
+ionic-selectable-modal ion-content ion-icon {
+    color: #EDD436 !important;
+}
+
+ion-item.ionic-selectable-item {
+    margin-top: 0px;
+    background-color: #f2f4f8;
+}
+
+ionic-selectable-modal span {
+    color: #fff;
+}
+
+ionic-selectable-modal button.item-native {
+    background-color: #f2f4f8;
+}
+
+.modal-wrapper {
+    background: transparent !important;
+}
+
+.ios ion-modal {
+    --overflow: none;
+}
+
+
+/* DOES NOT WORK - not specific enough */
+
+.popover-content {
+    --width: 100px !important;
+}
+
+
+/* Works - pass "my-custom-class" in cssClass to increase specificity */
+
+// .my-custom-class .popover-content {
+//     // background: #222;
+// }
+
+/* animation */
+
+.slide-in-left-right {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+.slide-in-left-right.ng-enter,
+.slide-in-left-right>.ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+
+.slide-in-left-right.ng-enter-active,
+.slide-in-left-right>.ng-enter-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-in-left-right.ng-leave,
+.slide-in-left-right>.ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+
+/* animation end */
+
+.popover-content.sc-ion-popover-md {
+    border-radius: 8px;
+    background: transparent !important;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+.pIN_P_R_C {
+    padding: 5px !important;
+    margin: 0px !important;
+    text-align: center !important;
+    height: 30px !important;
+    border: 2px solid #F19A4C !important;
+    border-radius: 10px !important;
+    background: #FFF4EB !important;
+    text-align: center !important;
+    color: #F19A4C !important;
+    font-size: 14px !important;
+    font-family: AvantGardeITCbyBT-Medium !important;
+    letter-spacing: normal !important;
+}
+
+// ion-picker>.picker-wrapper {
+//     background-color: #EDD436 !important;
+// }
+// .picker-opt {
+//     color: #EDD436 !important;
+// }
+// .picker-opt.picker-opt-selected {
+//     color: #000 !important;
+// }
+// ion-datetime {
+//     color: #0c80f3 !important;
+// }
+.picker-wrapper.sc-ion-picker-ios {
+    color: #000 !important;
+    background: #EDD436 !important;
+    --background: #EDD436 !important;
+    border-top: 0.5px solid var(--ion-color-danger);
+}
+
+.picker-ios .picker-prefix,
+.picker-ios .picker-suffix,
+.picker-ios .picker-opt.picker-opt-selected {
+    border-radius: 10px;
+    font-family: Montserrat-bold;
+    color: #000 !important;
+}
+
+.picker-ios .picker-opt {
+    color: #EDD436 !important;
+}
+
+.picker-ios .picker-button,
+.picker-ios .picker-button.activated {
+    color: #000;
+    font-family: Montserrat-bold;
+    --background: #EDD436 !important;
+    background: #EDD436 !important;
+}
+
+.picker-toolbar.sc-ion-picker-ios {
+    background: #EDD436 !important;
+    border-bottom: 0px solid transparent;
+    border-top: 0.5px solid #000;
+}

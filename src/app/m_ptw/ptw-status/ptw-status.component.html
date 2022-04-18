@@ -1,0 +1,9 @@
+<div class="statusCss">
+    <div [hidden]="!isOpen">
+        <p class="pTop-no-b-border font-size-content headingFont" (click)="suspendStatus()">Suspend</p>
+    </div>
+    <div [hidden]="isOpen">
+        <p class="pTop font-size-content headingFont" (click)="suspendStatus()">Suspend</p>
+        <p style="margin: 5px 0px 5px 0px;" class="font-size-content headingFont" (click)="closeStatus()">Close</p>
+    </div>
+</div>

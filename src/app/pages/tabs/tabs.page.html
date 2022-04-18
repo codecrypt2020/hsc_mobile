@@ -1,0 +1,36 @@
+<div style="background-color: aqua;padding: 20px;">
+    <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()" mode="md" selectedIndex="2">
+        <ion-tab-bar slot="bottom" mode="md">
+            <ion-tab-button mode="md" tab="action" *ngIf="(this.showDetails['issue_selected']==1 || this.showDetails['checklist_selected']==1 || this.showDetails['work_permit_selected']==1)">
+                <ion-icon mode="md" name="analytics-outline"></ion-icon>
+                <ion-label class="tabButtonFont">Dashboard</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button mode="md" tab="self-dreports" *ngIf="this.showDetails['sd_selected']==1">
+                <ion-icon mode="md" name="bag-add-outline"></ion-icon>
+                <ion-label class="tabButtonFont">SD Reports</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button mode="md" tab="overview" *ngIf="this.showDetails['issue_selected']==1">
+                <ion-icon name="eye-outline"></ion-icon>
+                <ion-label mode="md" class="tabButtonFont">UA/UC List</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button mode="md" tab="inspections" *ngIf="this.showDetails['checklist_selected']==1">
+                <ion-icon mode="md" name="document-text-outline"></ion-icon>
+                <ion-label class="tabButtonFont">Inspection</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button mode="md" tab="ptw" *ngIf="this.showDetails['work_permit_selected']==1">
+                <ion-icon mode="md" name="construct-outline"></ion-icon>
+                <ion-label class="tabButtonFont">PTW</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button mode="md" tab="profile">
+                <ion-icon mode="md" name="person-circle-outline"></ion-icon>
+                <ion-label class="tabButtonFont">Profile</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+
+    </ion-tabs>
+</div>

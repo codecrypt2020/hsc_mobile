@@ -1,0 +1,835 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar my-toolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-title>
+                <p class="font-size1-heading headingFont" style="margin:0px !important;">{{userName}}</p>
+                <p class="font-size-input headingFont" style="margin:0px !important; color: #b4b4b4;display: none;">{{userRole}}</p>
+                <!-- <p class="margin10 text-color-primary font-size1-heading headingFont" style="display: none !important;">Dashboard</p>    -->
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="secondary" style="padding-right: 4px !important;" (click)="openNotiFication()">
+            <ion-icon class="notiIcon" slot="icon-only" name="notifications-outline"></ion-icon><span class="badge badge-light lightFont font-size-content" *ngIf="notificatioCount != '00'"> {{notificatioCount}}</span>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+    <div *ngIf="!netStatus">
+        <p class="lightFont font-size-content pNet">You are in offline mode</p>
+    </div>
+</ion-header>
+<ion-content [fullscreen]="true" style="--background: {{bColor}} !important;">
+    <!-- <div style="margin: 10px !important;" (click)="calendarModal()">
+        <p class="lightFont font-size-heading p_header"> Load Date</p>
+    </div> -->
+    <!-- Default Progressbar -->
+
+    <!-- <div>
+        <ion-progress-bar class="progressBarCss" type="indeterminate" *ngIf="showLoader"></ion-progress-bar>
+    </div> -->
+
+    <div *ngIf="showLoader">
+        <div class="slider">
+            <div class="line"></div>
+            <div class="subline inc"></div>
+            <div class="subline dec"></div>
+        </div>
+    </div>
+    <!-- <div>
+        <p>Test</p>
+        <div class="progress-circle over50 p50">
+            <span>10%</span>
+            <div class="left-half-clipper">
+                <div class="first50-bar"></div>
+                <div class="value-bar"></div>
+            </div>
+        </div>
+        <div class="progress-circle over50 p50">
+            <span>10%</span>
+            <div class="left-half-clipper">
+                <div class="first50-bar"></div>
+                <div class="value-bar"></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing....."></ion-refresher-content>
+    </ion-refresher> -->
+
+    <!-- <div style="display: flex !important;width: 100% !important;padding: 16px !important;">
+        <div style="width: 75% !important;">
+            <p class="font-size1-heading headingFont">{{userDetails['emp_name']}}</p>
+            <p class="font-size-input headingFont" style="margin:0px !important;">{{getDesiganation()}}</p>
+        </div>
+        <div style="width: 25% !important;">
+            <div class="userProfile"><img style="width: 90% !important;" src="{{profileImg}}" onerror="this.onerror=null;this.src='/assets/imgs/user-default.png';" />
+            </div>
+        </div>
+    </div> -->
+    <div style="width: 100% !important;padding: 0px 16px 0px 16px !important;">
+        <!-- [ngClass]="(selectedCatIndex==i) ? 'catCHCss selectionCss' : 'catCHCss'" style="background: {{bcolor[i]}} !important;" -->
+        <ion-grid>
+            <ion-row>
+                <div *ngFor="let accessObj of userAccess let i=index" style="padding: 10px;">
+                    <ion-col size="4" *ngIf="accessObj['is_show']" [ngClass]="(accessObj['is_selected']) ? 'selectionCssD' : 'unSelectionCssD'" (click)="segmentChanged(accessObj['s_id'])">
+                        <div style="padding: 2px !important;text-align: center;">
+                            <div>
+                                <img *ngIf="accessObj['is_selected']" src="/assets/imgs/{{accessObj['s_img']}}" style="width: 50px;height: 50px;" />
+                                <img *ngIf="!accessObj['is_selected']" src="/assets/imgs/{{accessObj['img']}}" style="width: 50px;height: 50px;" /> </div>
+                            <div class="font-size-input headingFont" style="padding-top: 8px !important;">
+                                {{accessObj['name']}}
+                            </div>
+                            <span *ngIf="accessObj['is_selected']" class="dot"></span>
+                        </div>
+                    </ion-col>
+                </div>
+
+                <!-- <ion-col *ngIf="is_UAUC" size="4" [ngClass]="(isIssue) ? 'selectionCssD' : 'unSelectionCssD'" (click)="segmentChanged('i_d')">
+                    <div style="padding: 2px !important;text-align: center;">
+                        <div>
+                            <img *ngIf="isIssue" src="/assets/imgs/i_m.png" style="width: 50px;height: 50px;" />
+                            <img *ngIf="!isIssue" src="/assets/imgs/i_d.png" style="width: 50px;height: 50px;" /> </div>
+                        <div class="font-size-input headingFont" style="padding-top: 8px !important;">
+                            UA-UC
+                        </div>
+                        <span *ngIf="isIssue" class="dot"></span>
+                    </div>
+                </ion-col>
+                <ion-col *ngIf="is_INC" size="4" [ngClass]="(!isIssue) ? 'selectionCssD' : 'unSelectionCssD'" (click)="segmentChanged('c_d')">
+                    <div style="padding: 2px !important;text-align: center;">
+                        <div>
+                            <img *ngIf="isIssue" src="/assets/imgs/chk_d.png" style="width: 50px;height: 50px;" />
+                            <img *ngIf="!isIssue" src="/assets/imgs/chk_m.png" style="width: 50px;height: 50px;" />
+                        </div>
+                        <div class="font-size-input headingFont" style="padding-top: 8px !important;">
+                            Inspection
+                        </div>
+                        <span *ngIf="!isIssue" class="dot"></span>
+                    </div>
+                </ion-col> -->
+
+            </ion-row>
+        </ion-grid>
+    </div>
+    <!-- <div style="background-color: #f5f5f5;display: none !important;">
+        <ion-segment (ionChange)="segmentChanged($event)" value="{{currentDashbord}}">
+            <ion-segment-button value="i_d">
+                <ion-label>Issue Dashboard</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="c_d">
+                <ion-label>Inspection Dashboard</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </div> -->
+    <!-- <div>
+        isUAUC - {{isUAUC}}<br/> isChecklist - {{isChecklist}}<br/> is_sd - {{is_sd}}<br/> is_ptw - {{is_ptw}}<br/>
+    </div> -->
+
+    <!-- Issue Block -->
+    <div [hidden]="!isUAUC">
+        <div style="margin: 10px !important;">
+            <p class="lightFont font-size-heading p_header"> {{sinceLastDays}} Days Since Last Issue</p>
+        </div>
+        <div style="padding-left: 10px !important;padding-right: 10px !important; display: none !important;">
+            <div class="shodowCss">
+                <div (click)="toggleFilterCat()" class="filter-down ratingsCssH" style="height: 45px;display: flex !important;
+                background: transparent; 
+                width: 100%;
+                border-radius: 25px !important;">
+                    <ion-label class="fontSize12-0-500-2 headingFont">{{filterCriteriaCat || 'Filter'}}</ion-label>
+                    <ion-icon [name]="!toggledFilterCat ? 'chevron-down-outline' : 'chevron-up-outline'" slot="end" style="font-size: 1.5rem;"></ion-icon>
+                </div>
+
+                <div class="dropCss">
+                    <div class="dropdown-content" *ngIf="toggledFilterCat">
+                        <ion-list no-lines style="background: #fff !important;">
+                            <button ion-item *ngFor="let org of orgList let i=index" [ngClass]="{'selectedButton fontSize11-0-0-1-64 headingFont': (isSelectedCat==i),'unselectedButton fontSize11-0-0-1-64 headingFont': (isSelectedCat !=i)}" (click)="loadCatData(org['id'],org['org_name'],i)">{{org['org_name']}}</button>
+                        </ion-list>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="padding-left: 10px !important;padding-right: 10px !important;display: flex !important;">
+
+            <div class="bottombarCss" style="display: flex;margin-top: 20px;">
+                <div style="display: flex !important;" (click)="calendarModal()">
+                    <ion-icon class="padding-left-right" name="calendar-outline"></ion-icon>
+                    <div>
+                        <div class="date4picker lightFont font-size-content">{{ minDate | date:'MMM d, y'}}</div>
+                    </div>
+                    <div class="padding-left-right">-</div>
+                    <div>
+                        <div class="date4picker lightFont font-size-content ">{{ maxDate | date:'MMM d, y'}}</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none !important;width: 60% !important;margin-top: 20px;">
+                <div style="display: flex !important;" class="bottombarCss">
+                    <ion-icon class="padding-left-right" name="calendar-outline"></ion-icon>
+                    <div>
+                        <div class="date4picker lightFont font-size-content">Select Date</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="bottombarCss" style="display: flex !important;width: 60% !important;margin-top: 20px;">
+                <ion-icon class="padding-left-right" name="calendar-outline"></ion-icon>
+                <div>
+                    <div (click)="openDatePicker('start')" class="date4picker lightFont font-size-content">{{ minDate | date:'MMM d, y'}}</div>
+                </div>
+                <div class="padding-left-right">-</div>
+                <div>
+                    <div (click)="openDatePicker('end')" class="date4picker lightFont font-size-content ">{{ maxDate | date:'MMM d, y'}}</div>
+                </div>
+            </div> -->
+
+
+            <div style="width: 40%;margin-left: 10px;">
+                <div style="margin-top: 10px !important;width: 100%;">
+                    <ion-item class="filter-down ratingsCssH" style="height: 35px;
+                display: flex !important;
+                background: transparent;
+                width: 100%;
+                border-radius: 16px !important;">
+                        <span class="plant-label lightFont font-size-content" *ngIf="isHideSpan">{{plant_d_name}}</span>
+                        <img src="/assets/imgs/a_down.png" class="drop-icon" />
+                        <ionic-selectable class="lightFont font-size-content" style="width: auto !important;" [(ngModel)]="plant" [items]="plantSearchList" itemValueField="id" itemTextField="name" [canSearch]="true" (onChange)="loadReport($event)">
+                        </ionic-selectable>
+                    </ion-item>
+                </div>
+                <!-- <ion-item>
+                    <div (click)="toggleFilter()" class="filter-down ratingsCssH" style="height: 35px;display: flex !important;background: #fff;width: 100%;border-radius: 25px !important;  align-items: center;padding-top: 5px;
+                    justify-content: space-around;">
+                        <span class="plant-label lightFont font-size-content" *ngIf="isHideSpan">{{plant_d_name}}</span>
+                        <img src="/assets/imgs/a_down.png" class="drop-icon" />
+                        <ionic-selectable style="padding-left:10px;" class="lightFont font-size-content" [(ngModel)]="plant" [items]="plantSearchList" itemValueField="id" itemTextField="name" [canSearch]="true" (onChange)="loadReport($event)">
+                        </ionic-selectable>
+                    </div>
+                </ion-item> -->
+            </div>
+
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <ion-label class="lightFont font-size-content" style="color: #f90101 !important;padding-left: 10px;">{{dateErrorMsg}}</ion-label>
+        </div>
+
+        <div *ngIf="!is_list">
+            <ion-list>
+                <ion-item style="height:170px;">
+                    <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 10px !important;">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 0px !important;">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                </ion-item>
+                <ion-item style="height:170px;">
+                    <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 10px !important;">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-thumbnail slot="start" style="height:170px;width: 50%;margin-right: 0px !important;">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+
+            </ion-list>
+        </div>
+        <p [hidden]="isShowgraph" class="text-color-primary font-size-heading headingFont" style="text-align: center !important;margin-top: 50px !important;">Dashboard data not found. <br>Please change date and plant filter.</p>
+        <div class="topShadow topBorder" [hidden]="!isShowgraph">
+
+            <div>
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;"> UA/UC : {{totalUAUCNode}}</p>
+                </div>
+            </div>
+            <div style="padding-left: 20px;padding-right: 20px;">
+                <div class="pieCss" style="display: flex !important;">
+                    <div style="width: 60% !important;">
+                        <canvas #doughnutCanvas style="position: relative; height:200px !important; width:100% !important">  <p>Hello Fallback World</p></canvas>
+                    </div>
+                    <div style="width: 40% !important;" id="container_outer">
+                        <div id="content_inner">
+                            <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                <ion-badge mode="md" color="primary" style="font-size: 14px;background: #3140B5 !important;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                <div class="lightFont font-size-heading" style="color: #000 !important;padding-left: 10px;">UC</div>
+                            </div>
+                            <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                <ion-badge mode="md" style="font-size: 14px;background: #44C8F5 !important;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                <div class="lightFont font-size-heading" style="color: #000 !important;padding-left: 10px;">UA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 10px !important;">
+                <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Severity</p>
+            </div>
+            <div style="padding-left: 20px;padding-right: 20px;">
+                <div class="severityCss">
+                    <div id="parentDivH" class="tooltip">
+                        <div id="backdropH" class="lightFont font-size-content" *ngIf="isHigh" style="width: {{highP}}% !important;">
+                            High
+                        </div>
+                        <div id="curtainH" class="lightFont">
+                            High
+                        </div>
+                        <span class="tooltiptextH lightFont font-size-content" (click)="OpenIssueList('High')">High : {{highPN}}</span>
+                    </div>
+                    <div id="parentDivM" class="tooltip">
+                        <div id="backdropM" class="lightFont font-size-content" *ngIf="isMedium" style="width: {{mediumP}}% !important;">
+                            <span>Medium</span>
+                        </div>
+                        <div id="curtainM" class="lightFont">
+                            <span>Medium</span>
+                        </div>
+                        <span class="tooltiptextM lightFont font-size-content" (click)="OpenIssueList('Medium')">Medium : {{mediumPN}}</span>
+                    </div>
+                    <div id="parentDivL" class="tooltip">
+                        <div id="backdropL" class="lightFont font-size-content" *ngIf="isLow" style="width: {{lowP}}% !important;">
+                            Low
+                        </div>
+                        <div id="curtainL" class="lightFont">
+                            Low
+                        </div>
+                        <span class="tooltiptextL lightFont font-size-content" (click)="OpenIssueList('Low')">Low : {{lowPN}}</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 10px !important;">
+                <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;"> By Status</p>
+            </div>
+            <div style="padding-left: 20px;
+            padding-right: 20px;">
+                <div class="pieCss" style="display: flex !important;">
+                    <div style="width: 100% !important;">
+                        <canvas #doughnutCanvasStatus style="position: relative; height:200px !important; width:100% !important"></canvas>
+                    </div>
+                    <div style="width: 40% !important;display: none;" id="container_outer">
+                        <div id="content_inner">
+                            <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                <ion-badge mode="md" color="primary" style="font-size: 12px;background: #85D4A4 !important;border: 1px solid #949393;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                <div class="lightFont font-size-content pieChartLabel ">Open</div>
+                            </div>
+                            <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                <ion-badge mode="md" style="font-size: 12px;background: #FEF1F0 !important;border: 1px solid #949393;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                <div class="lightFont font-size-content pieChartLabel ">Review</div>
+                            </div>
+                            <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                <ion-badge mode="md" style="font-size: 12px;background: #F19A4C !important;border: 1px solid #949393;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                <div class="lightFont font-size-content pieChartLabel ">In Progress</div>
+                            </div>
+                            <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                <ion-badge mode="md" style="font-size: 12px;background: #EE6C6C !important;border: 1px solid #949393;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                <div class="lightFont font-size-content pieChartLabel ">Close</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 10px !important;">
+                <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Area</p>
+            </div>
+            <div style="padding-left: 20px;padding-right: 20px;">
+                <div class="areaCss">
+                    <div style="position: relative; height:auto !important; width:100% !important">
+                        <canvas #doughnutCanvasByArea style="position: relative; height:auto !important; width:100% !important"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-bottom: 20px;">
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Category</p>
+                </div>
+                <div style="padding-left: 20px;padding-right: 20px;">
+                    <div class="catCss">
+                        <div style="position: relative; height:auto !important; width:100% !important">
+                            <canvas #doughnutCanvasByCat style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div style="padding-bottom: 10px;">
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Severity</p>
+                </div>
+                <div style="padding-left: 20px;padding-right: 20px;">
+                    <div class="pieCss">
+                        <div style="position: relative; height:auto !important; width:100% !important">
+                            <canvas #horizontalCanvas style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div style="padding-bottom: 20px; display: none;">
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Severity</p>
+                </div>
+                <div style="padding-left: 20px;
+                padding-right: 20px;">
+
+                    <div class="pieCss" style="display: flex !important;">
+                        <div style="width: 60% !important;">
+                            <canvas #horizontalCanvas style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                        <div style="width: 40% !important;" id="container_outer">
+                            <div id="content_inner">
+                                <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                    <ion-badge mode="md" color="primary" style="font-size: 12px;background: #FA0102 !important;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                    <div class="lightFont font-size-heading" style="color: #000 !important;padding-left: 10px;">High</div>
+                                </div>
+                                <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                    <ion-badge mode="md" style="font-size: 12px;background: #EC9E0C !important;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                    <div class="lightFont font-size-heading" style="color: #000 !important;padding-left: 10px;">Medium</div>
+                                </div>
+                                <div style="padding: 4px !important;display: flex !important;margin-left: 20%;">
+                                    <ion-badge mode="md" style="font-size: 12px;background: #574CB9 !important;">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+                                    <div class="lightFont font-size-heading" style="color: #000 !important;padding-left: 10px;">Low</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CheckList Block -->
+    <div [hidden]="!isChecklist" style="height: 100vh;margin-top: 10px;">
+        <!-- <ion-row>
+            <div style="overflow-x: scroll;padding-bottom: 56px; padding-top: 30px;">
+                <div style="display: flex;margin-right: 100px !important;text-transform: uppercase;">
+                    [ngClass]="selectDateIndexValue == i ? 'boxSelection ripple' : 'box'"
+                    <div *ngFor="let item of chkCatList let i=index" (click)="loadCHKDataP(item['id'])">
+                        <div class="divChCSS">
+                            <p class="pCHk">{{item['cat_name']}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </ion-row> -->
+        <div class="topShadow topBorder" style="padding-bottom: 60px !important;">
+            <div style="margin: 10px !important;">
+                <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">Category
+                </p>
+            </div>
+            <ion-grid style="padding: 10px !important;">
+                <ion-row>
+                    <!-- {{chkCatListLength}} -->
+                    <ion-col size="6" *ngFor="let item of chkCatList let i=index" (click)="loadChkByCat(item['id'],i)">
+                        <div style="padding: 2px !important;border-radius: 10px;margin: 10px;" class="shodowCssDiv">
+                            <div style=" display: flex;justify-content: center;align-items: center; ">
+                                <div class="progress-circle {{getTypeP(chCatP[i] | number : '1.0-0')}} p{{chCatP[i] | number : '1.0-0'}}">
+                                    <span class="font-size1-heading headingFont text-color-black">{{chCatP[i] | number : '1.0-0'}}%</span>
+                                    <div class="left-half-clipper">
+                                        <div class="first50-bar"></div>
+                                        <div class="value-bar" style=" border: 0.45em solid #e9cd02 !important;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="font-size-content headingFont text-color-black" style="text-align: center;margin: 10px;">{{item['cat_name']}}</p>
+                            <!-- <div [ngClass]="(selectedCatIndex==i) ? 'catCHCss selectionCss' : 'catCHCss'" style="background: {{bcolor[i]}} !important;">
+                                <p class="font-size1-heading headingFont pmargin-0 text-color-white" style="padding-top: 10px;">{{item['cat_name']}}</p>
+                                <p class="font-size-e-large headingFont pmargin-0 text-color-white" style="padding-top: 5px;font-weight: bold;">{{chCatP[i] | number : '1.2-2'}}%</p>
+                            </div> -->
+                        </div>
+                    </ion-col>
+
+                </ion-row>
+            </ion-grid>
+            <div [hidden]="!isShowAreaCHK" style="margin-bottom: 30px;">
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Area</p>
+                </div>
+                <div style="padding-left: 20px;padding-right: 20px;">
+                    <div class="areaCss">
+                        <div style="position: relative; height:auto !important; width:100% !important">
+                            <canvas #doughnutCanvasByAreaCHK style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <div style="margin: 10px 10px 0px 10px !important;">
+                    <div class="lightFont font-size-heading" style="margin-bottom: 0px !important;display: flex !important;">Inspection : &nbsp;&nbsp;
+                        <ion-label (click)="updateCHK()">{{checkListName}}
+                        </ion-label>
+                        <div>
+                            <ion-icon name="chevron-down-outline" style="margin-top: 2px;margin-left: 5px;
+                            font-size: 18px;"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <ion-grid style="padding: 10px !important;">
+                        <div style="display: flex;width: 100%;">
+                            <div size="3" class="shodowCssDiv" style="padding: 10px !important;width: 30%;margin: 4px;">
+                                <div>
+                                    <ion-icon name="newspaper-outline" style="color: #44C8F5 !important;font-size: 20px;"></ion-icon>
+                                </div>
+                                <div>
+                                    <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{assignedChk}}</p>
+                                </div>
+                                <div>
+                                    <p class="font-size-e-small headingFont  pmargin-0" style="color:#525252 !important; ">Assigned</p>
+                                </div>
+                            </div>
+                            <div size="3" class="shodowCssDiv" style="padding: 10px !important;width: 30%;margin: 4px;">
+                                <div>
+                                    <ion-icon name="checkmark-circle-outline" style="color: #1dcf26 !important;font-size: 20px;"></ion-icon>
+                                </div>
+                                <div>
+                                    <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{completedChk}}</p>
+                                </div>
+                                <div>
+                                    <p class="font-size-e-small headingFont  pmargin-0" style="color:#525252 !important; ">Completed</p>
+                                </div>
+                            </div>
+                            <div size="3" class="shodowCssDiv" style="padding: 10px !important;width: 30%;margin: 4px;">
+                                <div>
+                                    <ion-icon name="close-circle-outline" style="color: #f31202 !important;font-size: 20px;"></ion-icon>
+                                </div>
+                                <div>
+                                    <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{inCompletedChk}}</p>
+                                </div>
+                                <div>
+                                    <p class="font-size-e-small headingFont  pmargin-0" style="color:#525252 !important; ">Not Completed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-grid>
+                </div>
+                <ion-grid style="padding: 10px !important;display: none;">
+                    <ion-row class="border" style="padding: 8px !important;">
+                        <ion-col size="4">
+                            <div style="padding: 2px !important;">
+                                <div class="text-center">
+                                    <ion-button fill="clear" style="background: #f7f5f1;border-radius: 10px;font-size: 20px;">
+                                        <ion-icon name="newspaper-outline" style="color: #44C8F5 !important;"></ion-icon>
+                                    </ion-button>
+
+                                    <p class="font-size-content lightFont " style="color:#525252 !important; ">Assigned</p>
+                                    <p class="font-size1-heading headingFont pmargin-0 ">{{assignedChk}}</p>
+                                </div>
+                            </div>
+                        </ion-col>
+                        <ion-col size="4">
+                            <div style="padding: 2px !important;">
+                                <div class="text-center">
+                                    <ion-button fill="clear" style="background: #e8e6d2;border-radius: 10px;font-size: 20px;">
+                                        <ion-icon name="checkmark-circle-outline" style="color: #1dcf26 !important;"></ion-icon>
+                                    </ion-button>
+
+                                    <p class="font-size-content lightFont " style="color:#525252 !important; ">Completed</p>
+                                    <p class="font-size1-heading headingFont pmargin-0 ">{{completedChk}}</p>
+                                </div>
+                            </div>
+                        </ion-col>
+                        <ion-col size="4">
+                            <div style="padding: 2px !important;">
+                                <div class="text-center">
+                                    <ion-button fill="clear" style="background: aliceblue;border-radius: 10px;font-size: 20px;">
+                                        <ion-icon name="close-circle-outline" style="color: #f31202 !important;"></ion-icon>
+                                    </ion-button>
+                                    <p class="font-size-content lightFont " style="color:#525252 !important; ">Not Completed</p>
+                                    <p class="font-size1-heading headingFont pmargin-0 ">{{inCompletedChk}}</p>
+                                </div>
+                            </div>
+                        </ion-col>
+                        <ion-col size="4" style="display: none;">
+                            <div style="padding: 2px !important;">
+                                <div class="text-center">
+                                    <ion-button fill="clear" style="background: aliceblue;border-radius: 10px;font-size: 20px;">
+                                        <ion-icon name="stopwatch-outline"></ion-icon>
+                                    </ion-button>
+                                    <p class="font-size-content lightFont " style="color:#525252 !important; ">Score</p>
+                                    <p class="font-size1-heading headingFont pmargin-0 ">{{chkScore}}</p>
+                                </div>
+                            </div>
+                        </ion-col>
+
+                    </ion-row>
+                </ion-grid>
+            </div>
+
+            <div style="margin: 10px !important;">
+                <div class="lightFont font-size-heading" style="margin-bottom: 0px !important;display: flex !important;">Score &nbsp;&nbsp;
+                </div>
+            </div>
+            <div style="padding-bottom: 20px;">
+                <!-- <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Category</p>
+                </div> -->
+                <div style="padding-left: 20px;padding-right: 20px;">
+                    <div class="catCss">
+                        <div style="position: relative; height:auto !important; width:100% !important">
+                            <canvas #scorePercentage style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ion-grid style="padding: 10px !important; display: none;">
+                <ion-row>
+                    <ion-col size="6">
+                        <div style="padding: 2px !important;">
+                            <div class="gCHKCss" style="background: #fff !important;">
+                                <!-- <p class="font-size1-heading headingFont pmargin-0 " style="padding-top: 10px;">data</p>
+                                <p class="font-size-large headingFont pmargin-0 " style="padding-top: 5px;">data</p> -->
+                            </div>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div style="padding: 2px !important;">
+                            <div class="gCHKCss" style="background: #fff !important;">
+                                <!-- <p class="font-size1-heading headingFont pmargin-0 " style="padding-top: 10px;">data</p>
+                                <p class="font-size-large headingFont pmargin-0 " style="padding-top: 5px;">data</p> -->
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+
+    <!-- Self Declaration Block  -->
+    <div [hidden]="!is_sd" style="height: 100vh;margin-top: 10px;">
+        SD
+    </div>
+    <!-- PTW Block -->
+    <!-- [hidden]="!is_ptw" -->
+    <div [hidden]="!is_ptw" style="height: 100vh;margin-top: 10px;">
+        <div class="topShadow topBorder" style="padding-bottom: 60px !important;">
+            <div>
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">Permit Stats</p>
+                </div>
+                <ion-grid style="padding: 10px !important;">
+                    <div style="display: flex;width: 100%;">
+                        <div class="shodowCssDiv tile6 " style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="newspaper-outline" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_open}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">New Permits</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shodowCssDiv tile2" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="construct-outline" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['totalopen']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">Open</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex;width: 100%;">
+                        <div class="shodowCssDiv tile5" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="construct-outline" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['process']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">In Progress</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shodowCssDiv tile3" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="document-lock-outline" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['suspend']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">Suspended</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex;width: 100%;">
+                        <div class="shodowCssDiv tile4" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="close-circle-outline" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['closed']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shodowCssDiv tile1" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="expand-outline" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['extend']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">Extended</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex;width: 100%;">
+
+                        <div class="shodowCssDiv tile2" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="lock-closed" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['expire']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">Expired</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shodowCssDiv tile6" style="padding: 10px !important;width: 50%;margin: 4px;display: flex;">
+                            <div class="centerDivCSS">
+                                <ion-icon name="lock-closed" style="color: #000 !important;font-size: 28px;"></ion-icon>
+                            </div>
+                            <div class="centerDivCSS">
+                                <div>
+                                    <div>
+                                        <p class="font-size-32 headingFont" style="margin: 4px 0px 4px 0px;">{{ptw_stats['data']}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="font-size-heading headingFont  pmargin-0" style="color:#525252 !important; ">Worker On Site</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ion-grid>
+            </div>
+            <!-- [hidden]="!isShowPTWCat" -->
+            <div style="margin-bottom: 30px;">
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Category</p>
+                </div>
+                <div style="padding-left: 20px;padding-right: 20px;">
+                    <div class="areaCss">
+                        <div style="position: relative; height:auto !important; width:100% !important">
+                            <canvas #doughnutCanvasByPtwCat style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom: 30px;">
+                <div style="margin: 10px !important;">
+                    <p class="lightFont font-size-heading" style="margin-bottom: 0px !important;">By Activity</p>
+                </div>
+                <div style="padding-left: 20px;padding-right: 20px;">
+                    <div class="areaCss">
+                        <div style="position: relative; height:auto !important; width:100% !important">
+                            <canvas #doughnutCanvasByPtwActivity style="position: relative; height:auto !important; width:100% !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</ion-content>

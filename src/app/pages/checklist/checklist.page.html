@@ -1,0 +1,160 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Questions</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="margin:10px !important;" *ngIf="is_show">
+        <div *ngIf="!is_q_present">
+            <div class="fullheight xc">
+                <div style="text-align: center !important;margin: 24px !important;">
+                    <div class="parent">
+                        <div class="contentDiv clear">
+                            <p class="margin10 text-color-primary font-size1-heading headingFont">Empty Inspection</p>
+                            <p class="font-size-content lightFont" style="text-align: center;">Question not added in Inspection.</p>
+                            <div style="margin: 20px;">
+                                <ion-button expand="block" style="margin: 10px;text-transform: capitalize;" (click)="goBack()">OK</ion-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="is_q_present">
+            <div>
+                <ion-list>
+                    <ion-radio-group (ionChange)="mcqAnswer($event)" mode="md" value="{{selected_answer}}">
+                        <!-- <ion-list-header style="padding-left: 0px;">
+                            <ion-label>
+                                <p class="font-size-heading  lightFont text-color-black ">{{questionlist[questionIndex]['question']}} *</p>
+                            </ion-label>
+                        </ion-list-header> -->
+                        <ion-card-header style="display: flex !important;width: 100%;">
+                            <div class="marginLeft font-size-heading headingFont" style="width: 10%;"> {{questionIndex+1}}. </div>
+                            <div class="marginLeft font-size-heading headingFont" style="width: 90%;"> {{questionlist[questionIndex]['question']}} </div>
+                        </ion-card-header>
+
+                        <div *ngIf="questionlist[questionIndex]['question_type']=='1'" style="margin-left: 20px !important;">
+                            <!-- Current answer : {{answer_object[questionIndex]['input_answer']}} -->
+                            <div style="display: flex;margin-left: 20px;" (click)="selectedAnswer(questionlist[questionIndex]['option_a'])">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_a']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{questionlist[questionIndex]['option_a']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" (click)="selectedAnswer(questionlist[questionIndex]['option_b'])">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_b']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{questionlist[questionIndex]['option_b']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf=" questionlist[questionIndex]['option_c'] !=''" (click)="selectedAnswer(questionlist[questionIndex]['option_c'])">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_c']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{questionlist[questionIndex]['option_c']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf=" questionlist[questionIndex]['option_d'] !=''" (click)="selectedAnswer(questionlist[questionIndex]['option_d'])">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_d']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{questionlist[questionIndex]['option_d']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf=" questionlist[questionIndex]['option_e'] !=''" (click)="selectedAnswer(questionlist[questionIndex]['option_e'])">
+                                <ion-radio mode="md" value="{{questionlist[questionIndex]['option_e']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{questionlist[questionIndex]['option_e']}} </p>
+                            </div>
+                        </div>
+
+                    </ion-radio-group>
+                </ion-list>
+            </div>
+            <p style="text-align: start;color: red;margin-left: 40px;" class="lightFont font-size-content" *ngIf="isAnswerSelected">Please select your answer.</p>
+            <div *ngIf="questionlist[questionIndex]['question_type']=='2'">
+                <p class=" font-size-heading lightFont text-color-black ">Answer *</p>
+                <div style="width: 100% !important;padding-left: 20px !important;padding-right: 30px !important;">
+                    <ion-textarea mode="md" placeholder="Enter answer here" [(ngModel)]="answer" name="answer" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="5" style="margin-top: 20px !important;padding: 2px !important;"></ion-textarea>
+                </div>
+            </div>
+            <div *ng="isShowDescription(questionlist[questionIndex]['description'])">
+                <p class=" font-size-heading lightFont text-color-black ">Description </p>
+                <p class=" font-size-content lightFont text-color-dark-gray ">{{questionlist[questionIndex]['description']}} </p>
+            </div>
+            <div>
+                <ion-card-header>
+                    <span class="marginLeft font-size-heading headingFont"> Comments </span>
+                </ion-card-header>
+                <div style="width: 100% !important;padding-left: 20px !important;padding-right: 30px !important;">
+                    <ion-textarea mode="md" placeholder="Enter comment here" [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="5" style="margin-left: 20px !important;padding: 2px !important;"
+                        (ionInput)="onCommentChange()"></ion-textarea>
+                    <p style="text-align: end;color: red;" class="lightFont font-size-content" *ngIf="isComment">Please enter your Comment.</p>
+                </div>
+            </div>
+            <div *ngIf="questionlist[questionIndex]['accept_file']=='1'">
+                <div style="display: flex;width: 100%;padding-left: 20px !important;margin-top: 20px;">
+                    <div style="display: flex;width: 85%;"><span class="marginLeft font-size-heading headingFont"> Pictorial Evidence </span></div>
+                    <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectImage()" /></div>
+                </div>
+
+                <div *ngIf="saved_Images.length>0">
+                    <ion-list style="padding-bottom: 0px;">
+                        <ion-row style="margin: 4px !important;">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of saved_Images let i=index">
+                                <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                    <img class="user-profile-img" src="{{baseUrl}}{{image}}" alt="" style="border-radius: 10px;object-fit: cover;height: 100%;width: 100%;" (click)="viewImage(baseUrl+image)">
+                                </div>
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                    <!-- <div *ngIf="saved_Images.length>0" class="imgDivCss"><img class="user-profile-img" src="{{baseUrl}}{{saved_Images}}" alt="" style="height: 100%;border-radius: 10px;" (click)="viewImage(saved_Images)"></div> -->
+                </div>
+                <div *ngIf="selected_mages.length>0" style="width: 100% !important;padding-left: 20px !important;padding-right: 30px !important;">
+                    <p class="text-color-primary font-size-content headingFont">Selected images</p>
+                    <ion-list style="padding-bottom: 0px;">
+                        <ion-row style="margin: 4px !important;">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of selected_mages let i=index">
+                                <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                    <img class="user-profile-img" src="{{image}}" alt="" style="height: 100%;width: 100%;border-radius: 10px;object-fit: cover;">
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer *ngIf="is_q_present" class="ion-no-border" style="background-color: #fff !important;">
+    <div>
+        <ion-row>
+            <ion-col class="ion-align-self-start" size="3">
+                <ion-button fill="clear" mode="ios" (click)="preQuestion()" *ngIf="questionIndex!=0">
+                    Back
+                    <ion-icon slot="start" mode="md" name="arrow-back-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="2">
+
+            </ion-col>
+            <ion-col size="4">
+                <!-- <p class="font-size-heading lightFont text-color-dark-gray text-center">Question {{questionIndex+1}} </p> -->
+            </ion-col>
+            <!-- <ion-col size="1">
+
+            </ion-col> -->
+            <ion-col class="ion-align-self-end" size="3">
+                <ion-button *ngIf="questionIndex!=totalQuestion" fill="clear" mode="ios" (click)="saveUserAnswer()">
+                    <ion-icon slot="end" name="arrow-forward-circle" style="font-size: 36px !important;"></ion-icon>
+                    <!-- <ion-icon  slot="end" name="chevron-forward-circle-outline"></ion-icon> -->
+                </ion-button>
+                <ion-button size="small" class="shodowCss" shape="round" *ngIf="questionIndex==totalQuestion" expand="full" mode="ios" (click)="saveLastUserAnswer()" style="margin-bottom: 14px !important;
+                height: 35px;">
+                    Submit
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-footer>

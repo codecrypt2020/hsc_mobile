@@ -1,0 +1,20 @@
+.buttonCssSD {
+    width: 100% !important;
+    height: 40px !important;
+    --background: var(--ion-color-primary) !important;
+    bottom: 0;
+    --box-shadow: none !important;
+    padding-left: 8%;
+    padding-right: 8%;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.77;
+    letter-spacing: 0.52px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px !important;
+    --border-radius: 10px !important;
+    --background-focused: var(--ion-color-primary) !important;
+    --background-hover: var(--ion-color-primary) !important;
+}

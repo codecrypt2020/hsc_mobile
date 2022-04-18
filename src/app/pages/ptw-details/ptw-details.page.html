@@ -1,0 +1,612 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">PTW Details</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <div>
+                <!--  <ion-icon *ngIf="showCL_SUP" name="chevron-forward-outline" style="margin-top: 2px;margin-left: 3px;"></ion-icon> -->
+                <ion-label *ngIf="this.ptwDetails['permit_status']==1" class="marginLeft p1 text-color-primary font-size-content headingFont openStatusPTW" (click)="showStatusOpen($event)">
+                    Open
+                    <ion-icon *ngIf="isAllowSuspend()" name="chevron-forward-outline" style="margin-top: 2px;margin-left: 3px;"></ion-icon>
+                </ion-label>
+                <ion-label *ngIf="this.ptwDetails['permit_status']==2" class="marginLeft p1 text-color-primary font-size-content headingFont iPStatusPTW" (click)="showStatusIP($event)">
+                    In Progress
+                    <ion-icon *ngIf="showCL_SUP" name="chevron-forward-outline" style="margin-top: 2px;margin-left: 3px;"></ion-icon>
+                </ion-label>
+                <ion-label *ngIf="this.ptwDetails['permit_status']==3" class="marginLeft p1 text-color-primary font-size-content headingFont closeStatusPTW">
+                    Closed
+                </ion-label>
+                <ion-label *ngIf="this.ptwDetails['permit_status']==4" class="marginLeft p1 text-color-primary font-size-content headingFont suspendStatusPTW">
+                    Suspended
+                </ion-label>
+                <ion-label *ngIf="this.ptwDetails['permit_status']==5" class="marginLeft p1 text-color-primary font-size-content headingFont expiredStatusPTW">
+                    Expired
+                </ion-label>
+                <ion-label *ngIf="this.ptwDetails['permit_status']==6" class="marginLeft p1 text-color-primary font-size-content headingFont extendStatusPTW">
+                    Extended
+                </ion-label>
+            </div>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<!-- 
+permit_status = Open=1 , In Progress=2 , Close=3 , Suspend=4 , Expired=5 , Extend=6 -->
+
+<ion-content>
+    <!-- <div style="width: 100% !important;">
+        <div class="dropdown">
+            <ion-item (click)="toggleFilter()" class="filter-down ratingsCssH" style="height: 40px;display: flex !important; background: transparent;width: 100%;">
+                <ion-label class="fontSize12-0-500-2">{{filterCriteria || 'Filter'}}</ion-label>
+                <ion-icon [name]="!toggledFilter ? 'md-arrow-dropdown' : 'md-arrow-dropup'" slot="end" style="font-size: 1.5rem;"></ion-icon>
+            </ion-item>
+            <div class="dropCss">
+                <div>
+                    <ion-list no-lines class="dropdown-content" *ngIf="toggledFilter">
+                        <button ion-item (click)="loadReport(-1)" [ngClass]="{'selectedButton fontSize11-0-0-1-64': (isSelected==-1),'unselectedButton fontSize11-0-0-1-64': (isSelected !=-1)}">All Courses</button>
+                        <button ion-item *ngFor="let courseData of statusList let i=index" [ngClass]="{'selectedButton fontSize11-0-0-1-64': (isSelected==i),'unselectedButton fontSize11-0-0-1-64': (isSelected !=i)}" (click)="loadReport(i)">{{courseData.name}}</button>
+                    </ion-list>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <p class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pClose">
+        Permit ID : {{ptwDetails['permit_id']}}
+    </p>
+
+    <!-- <div>
+        <div class="scrollmenu">
+            <span (click)="selectDetails(1)" class="labelCss">Basic Details</span>
+            <span (click)="selectDetails(2)" class="labelCss">Contractor Details</span>
+            <span (click)="selectDetails(3)" class="labelCss">Questions</span>
+            <span (click)="selectDetails(4)" class="labelCss">Actions</span>
+            <span (click)="selectDetails(5)" class="labelCss">Documents</span>
+        </div>
+    </div> -->
+
+    <div class="scrolling-wrapper">
+        <div [ngClass]="(currentTab==1) ? 'cardActive' : 'card'" (click)="selectDetails(1)">
+            <label>Basic Details</label>
+        </div>
+        <div [ngClass]="(currentTab==2) ? 'cardActive' : 'card'" (click)="selectDetails(2)">
+            <label>Contractor Details</label>
+        </div>
+        <div [ngClass]="(currentTab==3) ? 'cardActive' : 'card'" (click)="selectDetails(3)">
+            <label>Questions</label>
+        </div>
+        <div [ngClass]="(currentTab==4) ? 'cardActive' : 'card'" (click)="selectDetails(4)">
+            <label>Actions</label>
+        </div>
+        <div [ngClass]="(currentTab==5) ? 'cardActive' : 'card'" (click)="selectDetails(5)">
+            <label>Documents</label>
+        </div>
+    </div>
+
+    <div *ngIf="currentTab==4">
+        <ion-card *ngIf="ptwDetails['co_signer_1_valid']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <div style="display: flex;width: 100%;">
+                    <div style="width: 100%;">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Co-Signer 1</p>
+                    </div>
+                </div>
+            </ion-card-header>
+
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Name : {{ptwDetails['coSigner_1_officer_name']}} </p>
+                    </h2>
+                </ion-label>
+                <!-- <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Comments : {{ptwDetails['co_signer_1_comment']}} </p>
+                    </h2>
+                </ion-label> -->
+                <div style="display:flex;margin-top: 20px;margin-left: 10px;width: 100%;" [ngClass]="(isShowApproveBtn(ptwDetails['co_signer_1'])==true) ? 'opacity2' : 'opacity1'">
+                    <div style="width: 8%;margin-top: 5px;">
+                        <ion-checkbox [disabled]="!(isShowApproveBtn(ptwDetails['co_signer_1'])==true)" checked="{{isCoSigner1Approved}}" (ionChange)="approveCO1($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                    </div>
+                    <div style="width: 92%;">
+                        <ion-label style="margin: 0px 0px 0px 10px;" class="text-color-primary font-size-sub-heading headingFont ">Approve
+                        </ion-label>
+                    </div>
+                </div>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px;margin-top: 20px; " class="text-color-primary font-size-sub-heading headingFont ">Comments : </p>
+                    </h2>
+                </ion-label>
+                <ion-label [ngClass]="(isShowApproveBtn(ptwDetails['co_signer_1'])==true) ? 'opacity2' : 'opacity1'">
+                    <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+                        <ion-textarea [disabled]="!(isShowApproveBtn(ptwDetails['co_signer_1'])==true)" placeholder="Co Signer 2 comment" [(ngModel)]="co_signer_1_comment" name="co_signer_1_comment" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea"
+                            rows="5" style="margin-top: 10px !important;padding: 10px !important;"></ion-textarea>
+                    </div>
+                </ion-label>
+                <div style="text-align: end;margin-top: 10px;" *ngIf="isShowApproveBtn(ptwDetails['co_signer_1'])==true">
+                    <ion-button size="small" (click)="addPTWComment(1)">Save</ion-button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="ptwDetails['co_signer_2_valid']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <div style="display: flex;width: 100%;">
+                    <div style="width: 100%;">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Co-Signer 2</p>
+                    </div>
+                </div>
+            </ion-card-header>
+
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Name : {{ptwDetails['coSigner_2_officer_name']}} </p>
+                    </h2>
+                </ion-label>
+                <!-- <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Comments : {{ptwDetails['co_signer_2_comment']}} </p>
+                    </h2>
+                </ion-label> -->
+                <div style="display:flex;margin-top: 20px;margin-left: 10px;width: 100%;" [ngClass]="(isShowApproveBtn(ptwDetails['co_signer_2'])==true) ? 'opacity2' : 'opacity1'">
+                    <div style="width: 8%;margin-top: 5px;">
+                        <ion-checkbox [disabled]="!(isShowApproveBtn(ptwDetails['co_signer_2'])==true)" checked="{{isCoSigner2Approved}}" (ionChange)="approveCO2($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                    </div>
+                    <div style="width: 92%;">
+                        <ion-label style="margin: 0px 0px 0px 10px;" class="text-color-primary font-size-sub-heading headingFont ">Approve
+                        </ion-label>
+                    </div>
+                </div>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px;margin-top: 20px; " class="text-color-primary font-size-sub-heading headingFont ">Comments : </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+                        <ion-textarea [disabled]="!(isShowApproveBtn(ptwDetails['co_signer_2'])==true)" placeholder="Co Signer 2 comment" [(ngModel)]="co_signer_2_comment" name="co_signer_2_comment" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea"
+                            rows="5" style="margin-top: 10px !important;padding: 10px !important;"></ion-textarea>
+                    </div>
+                </ion-label>
+                <div style="text-align: end;" *ngIf="isShowApproveBtn(ptwDetails['co_signer_2'])==true">
+                    <ion-button size="small" (click)="addPTWComment(2)">Save</ion-button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="ptwDetails['safety_officer_valid']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <div style="display: flex;width: 100%;">
+                    <div style="width: 100%;">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Safety Officer
+                        </p>
+                    </div>
+                </div>
+            </ion-card-header>
+
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Name : {{ptwDetails['safety_officer_name']}} </p>
+                    </h2>
+                </ion-label>
+                <div style="display:flex;margin-top: 20px;margin-left: 10px;width: 100%;" [ngClass]="(isShowApproveBtn(ptwDetails['safety_officer'])==true) ? 'opacity2' : 'opacity1'">
+                    <div style="width: 8%;margin-top: 5px;">
+                        <ion-checkbox [disabled]="!(isShowApproveBtn(ptwDetails['safety_officer'])==true)" checked="{{isSafetyOfficerApproved}}" (ionChange)="approveSO($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                    </div>
+                    <div style="width: 92%;">
+                        <ion-label style="margin: 0px 0px 0px 10px;" class="text-color-primary font-size-sub-heading headingFont ">Approve
+                        </ion-label>
+                    </div>
+                </div>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px;margin-top: 20px; " class="text-color-primary font-size-sub-heading headingFont ">Comments :</p>
+                    </h2>
+                </ion-label>
+                <ion-label [ngClass]="(isShowApproveBtn(ptwDetails['safety_officer'])==true) ? 'opacity2' : 'opacity1'">
+                    <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+                        <ion-textarea [disabled]="!(isShowApproveBtn(ptwDetails['safety_officer'])==true)" placeholder="Safety officer comment" [(ngModel)]="safety_officer_comment" name="safety_officer_comment" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea"
+                            rows="5" style="margin-top: 10px !important;padding: 10px !important;"></ion-textarea>
+                    </div>
+                </ion-label>
+                <div style="text-align: end;" *ngIf="isShowApproveBtn(ptwDetails['safety_officer'])==true">
+                    <ion-button size="small" (click)="addPTWComment(3)">Save</ion-button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+    <!-- -->
+    <ion-card [hidden]="!(isShowApproveBtn(ptwDetails['co_signer_1']) || isShowApproveBtn(ptwDetails['co_signer_2']) || isShowApproveBtn(ptwDetails['safety_officer']))">
+        <ion-card-header style="background: #f3d31d !important; ">
+            <div style="display: flex;width: 100%;">
+                <div style="width: 100%;">
+                    <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Upload Signature(Optional)
+                    </p>
+                </div>
+            </div>
+        </ion-card-header>
+
+        <ion-card-content style="margin-left: 8px;margin-top: 4px; " *ngIf="signatureImgSaved=='' || signatureImgSaved==null ">
+            <div>
+                <div>
+                    <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)" class="canvasCss"></canvas>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="6">
+                                <ion-button color="danger" (click)="clearPad()">Clear</ion-button>
+                            </ion-col>
+                            <ion-col size="4" offset="2">
+                                <ion-button color="secondary" (click)="savePad()">Save</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+                <!-- <img src='{{ signatureImg }}' /> -->
+            </div>
+            <div style="text-align: end;" *ngIf="isShowApproveBtn(ptwDetails['safety_officer'])==true">
+                <ion-button size="small">Upload</ion-button>
+            </div>
+        </ion-card-content>
+
+        <ion-card-content style="margin-left: 8px;margin-top: 4px;" *ngIf="signatureImgSaved!='' && signatureImgSaved!=null">
+            <div>
+                <img src='{{baseSignUrl}}{{ signatureImgSaved }}' />
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="currentTab==3">
+        <ion-card *ngIf="questionList.length>0">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <div style="display: flex;width: 100%;">
+                    <div style="width: 100%;">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Questions
+                        </p>
+                    </div>
+                </div>
+            </ion-card-header>
+
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <div *ngFor="let item of questionList let i=index ">
+                    <ion-radio-group (ionChange)="saveOption($event,item['id'])" mode="md" value="{{getQuestionAnswer(item['id'])}}">
+                        <div style="width: 100%;display: flex;">
+                            <div class="marginLeft font-size-heading headingFont" style="width: 10%;"> {{i+1}}. </div>
+                            <div class="marginLeft font-size-heading headingFont" style="width: 90%;"> {{item['question']}} </div>
+                        </div>
+                        <div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf="item['option_1']!=''">
+                                <ion-radio [disabled]="allowSelectAns()" mode="md" value="{{item['option_1']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_1']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf="item['option_2']!=''">
+                                <ion-radio [disabled]="allowSelectAns()" mode="md" value="{{item['option_2']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_2']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf="item['option_3']!=''">
+                                <ion-radio [disabled]="allowSelectAns()" mode="md" value="{{item['option_3']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_3']}} </p>
+                            </div>
+                            <div style="display: flex;margin-left: 20px;" *ngIf="item['option_4']!=''">
+                                <ion-radio [disabled]="allowSelectAns()" mode="md" value="{{item['option_4']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_4']}} </p>
+                            </div>
+                        </div>
+                    </ion-radio-group>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+    <div *ngIf="currentTab==1">
+        <ion-card>
+            <ion-card-header style="background: #f3d31d !important; ">
+                <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Basic Details
+                </p>
+
+            </ion-card-header>
+
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Permit Name : {{ptwDetails['cat_name']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Contactor : {{ptwDetails['contractor']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Contractor Name : {{ptwDetails['contractor_name']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">No. of workers expected : {{ptwDetails['no_of_workers_expected']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">From date : {{ptwDetails['proposed_start_day_from']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">To date : {{ptwDetails['proposed_start_day_to']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Scheduled work day : {{ptwDetails['scheduled_work_day']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Working Hours From : {{ptwDetails['working_hours_from']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Working Hours To : {{ptwDetails['working_hours_to']}} </p>
+                    </h2>
+                </ion-label>
+                <!-- <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Worker Compensation : {{ptwDetails['worker_compensation']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Employees State Insurance : {{ptwDetails['employees_state_insurance']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Provident Fund : {{ptwDetails['provident_fund']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Medical Reports : {{ptwDetails['medical_reports']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Gov. ID evidences : {{ptwDetails['gov_id_evidences']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Children below 14 years : {{ptwDetails['below_14_years_children']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">List of all workers : {{ptwDetails['list_all_workers']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Safe Operating Procedure : {{ptwDetails['safe_operating_procedure']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Has a valid test report and certificate : {{ptwDetails['co_signer_2_comment']}} </p>
+                    </h2>
+                </ion-label> -->
+            </ion-card-content>
+
+        </ion-card>
+
+        <ion-card *ngIf="this.ptwDetails['permit_status']==6">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Previous Permit Information
+                </p>
+
+            </ion-card-header>
+
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Contactor : {{previoudDetails['contactor']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Contractor Name : {{previoudDetails['contractor_name']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">No. of workers expected : {{previoudDetails['no_of_workers_expected']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">From date : {{previoudDetails['proposed_start_day_from']}} </p>
+                    </h2>
+                </ion-label>
+                <ion-label>
+                    <h2>
+                        <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">To date : {{previoudDetails['proposed_start_day_to']}} </p>
+                    </h2>
+                </ion-label>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <ion-card *ngIf="currentTab==2">
+        <ion-card-header style="background: #f3d31d !important; ">
+            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">{{getContractorType()}}
+            </p>
+        </ion-card-header>
+
+        <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Worker Compensation : {{getYesNo(ptwDetails['worker_compensation'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Employees State Insurance : {{getYesNo(ptwDetails['employees_state_insurance'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Provident Fund : {{getYesNo(ptwDetails['provident_fund'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Medical Reports : {{getYesNo(ptwDetails['medical_reports'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Gov. ID evidences : {{getYesNo(ptwDetails['gov_id_evidences'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Children below 14 years : {{getYesNo(ptwDetails['below_14_years_children'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">List of all workers : {{getYesNo(ptwDetails['list_all_workers'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Safe Operating Procedure : {{getYesNo(ptwDetails['safe_operating_procedure'])}} </p>
+                </h2>
+            </ion-label>
+            <ion-label>
+                <h2>
+                    <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Has a valid test report and certificate : {{getYesNo(ptwDetails['co_signer_2_comment'])}} </p>
+                </h2>
+            </ion-label>
+        </ion-card-content>
+    </ion-card>
+
+    <!-- <div>
+        medical_reports : {{ptwDetails['medical_reports']}}
+    </div>
+    <div>
+        list_all_workers : {{ptwDetails['list_all_workers']}}
+    </div>
+    <div>
+        gov_id_evidences : {{ptwDetails['gov_id_evidences']}}
+    </div>
+    <div>
+        ppe_equipment_tool : {{ptwDetails['ppe_equipment_tool']}}
+    </div> -->
+
+
+    <div *ngIf="currentTab==5">
+        <ion-card *ngIf="ptwDetails['medical_reports']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Medical Reports Images
+                </p>
+            </ion-card-header>
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <div *ngIf=" imageListMD.length==0" style="margin-left: 8px;margin-top: 8px; ">
+                    <p class="text-color-gray font-size-sub-heading headingFont ">Images Not Uploaded</p>
+                </div>
+                <div *ngIf="imageListMD.length>0">
+                    <ion-list style="padding-bottom: 0px;">
+                        <ion-row style="margin: 4px !important;" scrollX="true">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of imageListMD let j=index">
+                                <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                    <img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                    <!-- <img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/d-2.png';"> -->
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="ptwDetails['list_all_workers']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Gov Id Images
+                </p>
+            </ion-card-header>
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <div *ngIf=" imageListGI.length==0" style="margin-left: 8px;margin-top: 8px; ">
+                    <p class="text-color-gray font-size-sub-heading headingFont ">Images Not Uploaded</p>
+                </div>
+                <div *ngIf="imageListGI.length>0">
+                    <ion-list style="padding-bottom: 0px;">
+                        <ion-row style="margin: 4px !important;" scrollX="true">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of imageListGI let j=index">
+                                <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';"></div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="ptwDetails['gov_id_evidences']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Gov Id Evidences
+                </p>
+            </ion-card-header>
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <div *ngIf=" imageListGI.length==0" style="margin-left: 8px;margin-top: 8px; ">
+                    <p class="text-color-gray font-size-sub-heading headingFont ">Images Not Uploaded</p>
+                </div>
+                <div *ngIf="imageListGI.length>0">
+                    <ion-list style="padding-bottom: 0px;">
+                        <ion-row style="margin: 4px !important;" scrollX="true">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of imageListGI let j=index">
+                                <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                    <img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="ptwDetails['ppe_equipment_tool']==1">
+            <ion-card-header style="background: #f3d31d !important; ">
+                <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Certificate of Tools Images
+                </p>
+            </ion-card-header>
+            <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                <div *ngIf=" imageListTRC.length==0" style="margin-left: 8px;margin-top: 8px; ">
+                    <p class="text-color-gray font-size-sub-heading headingFont ">Images Not Uploaded</p>
+                </div>
+                <div *ngIf="imageListTRC.length>0">
+                    <ion-list style="padding-bottom: 0px;">
+                        <ion-row style="margin: 4px !important;" scrollX="true">
+                            <ion-col class="thumbnail" size="4" *ngFor="let image of imageListTRC let j=index">
+                                <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';"></div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+</ion-content>

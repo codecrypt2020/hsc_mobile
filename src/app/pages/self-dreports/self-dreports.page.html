@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-title>
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Self Declaration Reports</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="secondary" style="padding-right: 4px !important;">
+            <ion-icon class="TabBarIcon" (click)="openDatePicker()" slot="icon-only" name="calendar-outline"></ion-icon>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <p (click)="openDatePicker()" class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pClose">
+        Selected Date : {{selectedStartDate | date:'MMM d, y'}}
+    </p>
+    <div style="margin: 40px !important;text-align: center;" *ngIf="!geListLength()">
+        <p class="text-color-primary font-size-heading headingFont" style="text-align: center !important;margin-top: 50px !important;">Self Declaration not submitted by <br> any user</p>
+    </div>
+    <div *ngIf="geListLength()">
+        <div *ngFor="let item of checklistSDUser let i=index">
+            <div class="cardCss1" (click)="openSDResult(item)" *ngIf="isIDNull(item['id'])=='true'">
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-row>
+                            <ion-col size="10" class="font-size-content headingFont">
+
+                                <div style="display: flex !important;">
+                                    <ion-label style="padding-top: 2px !important;">Submitted By : {{item['emp_name']}}</ion-label>
+                                </div>
+                            </ion-col>
+                            <ion-col size="2" class="end-align font-size-content headingFont text-color-red">
+                                <ion-icon class="closeCSSIcon" name="close-outline" style="display: none !important;"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col class="font-size-content headingFont text-color-primary">
+                                Submitted Date : {{selectedStartDate | date:'MMM d, y'}}{{item['updated_at'] | date:'MMM d, y, h:mm:ss a'}}
+                            </ion-col>
+                        </ion-row>
+                        <!-- <ion-row>
+                            <ion-col size="12" class="font-size-content headingFont text-color-primary">
+                                Status : Unsafe to enter
+                            </ion-col>
+                        </ion-row> -->
+                    </ion-col>
+                </ion-row>
+            </div>
+        </div>
+    </div>
+
+
+</ion-content>

@@ -1,0 +1,598 @@
+<!-- <ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">{{title}}</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-header class="ion-no-border" style="height: 50px !important;">
+    <ion-toolbar class="ion-no-border" mode="md" style="height: 50px !important;">
+        <ion-buttons slot="start">
+            <ion-title class="headerCss">
+
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="secondary" style="padding-right: 4px !important;">
+
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+<!--  [fullscreen]="true" -->
+<!-- <div class="topBarProgress">
+    <div class="arrow-steps clearfix" style="width: 100% !important;margin-left: 1px;margin-top: 5px !important;">
+        <div [ngClass]="(isHighloght(1)) ? 'step current' : 'step current'" style="width:19% !important;height: 24px !important;"> <span>&nbsp; </span> </div>
+        <div [ngClass]="(isHighloght(2)) ? 'step current' : 'step'" style="width: 19% !important;height: 24px !important;"> <span></span>&nbsp;</div>
+        <div [ngClass]="(isHighloght(3)) ? 'step current' : 'step'" style="width: 19% !important;height: 24px !important;"> <span></span>&nbsp;</div>
+        <div [ngClass]="(isHighloght(4)) ? 'step current' : 'step'" style="width: 19% !important;height: 24px !important;"> <span></span> &nbsp;</div>
+        <div [ngClass]="(isHighloght(5)) ? 'step current' : 'step'" style="width: 21% !important;height: 24px !important;border-radius: 3px;"> <span></span> &nbsp;</div>
+    </div>
+</div> -->
+<ion-content>
+    <div style="height: 100% !important;">
+        <div class="topBarProgress">
+            <div class="arrow-steps clearfix" style="width: 100% !important;margin-left: 1px;margin-top: 5px !important;">
+                <div [ngClass]="(isHighlight(1)) ? 'step current' : 'step current'" style="width:18% !important;height: 24px !important;"> <span>&nbsp; </span> </div>
+                <div [ngClass]="(isHighlight(2)) ? 'step current' : 'step'" style="width: 15% !important;height: 24px !important;"> <span></span>&nbsp;</div>
+                <div [ngClass]="(isHighlight(3)) ? 'step current' : 'step'" style="width: 15% !important;height: 24px !important;"> <span></span>&nbsp;</div>
+                <div [ngClass]="(isHighlight(4)) ? 'step current' : 'step'" style="width: 15% !important;height: 24px !important;"> <span></span> &nbsp;</div>
+                <div [ngClass]="(isHighlight(5)) ? 'step current' : 'step'" style="width: 15% !important;height: 24px !important;"> <span></span> &nbsp;</div>
+                <div [ngClass]="(isHighlight(6)) ? 'step current' : 'step'" style="width: 18% !important;height: 24px !important;"> <span></span> &nbsp;</div>
+            </div>
+        </div>
+        <div style="height: 80% !important;">
+            <div style="height: 100% !important;">
+                <div *ngIf="step==0" style="align-items: unset !important;height: 100%;">
+                    <p class="text-color-primary font-size-e-large headingFont" style="padding-left: 20px;margin-top: 40px;">{{stepTitle[step]}}</p>
+                    <div class="fullheight xc">
+                        <div>
+                            <div style="padding-left: 30px;">
+                                <div>
+                                    <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                                        <!-- <ion-checkbox checked="{{co_signer_1}}" (ionChange)="coSigner1($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox> -->
+                                        <ion-icon [ngClass]="(co_signer_1) ? 'yellowIcon' : 'grayIcon'" name="person-add" (click)="coSignerIcon1()"></ion-icon>
+                                        <p style="margin: 4px 0px 0px 10px;" [ngClass]="(co_signer_1) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" (click)="OpenEmpList(2)">{{ptwDetails['coSigner_1_officer_name']}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding-left: 30px;">
+                                <div>
+                                    <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                                        <!-- <ion-checkbox checked="{{co_signer_1}}" (ionChange)="coSigner1($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox> -->
+                                        <ion-icon [ngClass]="(co_signer_2) ? 'yellowIcon' : 'grayIcon'" name="person-add" (click)="coSignerIcon2()"></ion-icon>
+                                        <p style="margin: 4px 0px 0px 10px;" [ngClass]="(co_signer_2) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" (click)="OpenEmpList(3)">{{ptwDetails['coSigner_2_officer_name']}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding-left: 30px;">
+                                <div>
+                                    <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                                        <!-- <ion-checkbox checked="{{co_signer_1}}" (ionChange)="coSigner1($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox> -->
+                                        <ion-icon [ngClass]="(isSafetyOfficer) ? 'yellowIcon' : 'grayIcon'" name="person-add" (click)="safetyOfficer3()"></ion-icon>
+                                        <p style="margin: 4px 0px 0px 10px;" [ngClass]="(isSafetyOfficer) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" (click)="OpenEmpList(1)">{{ptwDetails['safety_officer_name']}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div style="padding-left: 30px;">
+                    <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                        <ion-checkbox checked="{{co_signer_1}}" (ionChange)="coSigner1($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                        <p style="margin: 0px 0px 0px 10px;">Co-Signer 1</p>
+                    </div>
+
+                    <div *ngIf="co_signer_1">
+                        <div style="width: 100% !important;padding-left: 20px !important;display: flex !important;margin-top: 20px !important;">
+                            <div style="width: 100%;padding-top: 7px;text-align: left;">
+                                <p (click)="OpenEmpList(2)" class="font-size-input textfont roundClass" style="width: max-content;margin-left: 10px;">{{ptwDetails['coSigner_1_officer_name']}}
+                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                    <!-- <div style="padding-left: 30px;">
+                    <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                        <ion-checkbox checked="{{co_signer_2}}" (ionChange)="coSigner2($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                        <p style="margin: 0px 0px 0px 10px;">Co-Signer 2 </p>
+                    </div>
+
+                    <div *ngIf="co_signer_2">
+                        <div style="width: 100% !important;padding-left: 20px !important;display: flex !important;margin-top: 20px !important;">
+                            <div style="width: 100%;padding-top: 7px;text-align: left;">
+                                <p (click)="OpenEmpList(3)" class="font-size-input textfont roundClass" style="width: max-content;margin-left: 10px;">{{ptwDetails['coSigner_2_officer_name']}}
+                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                    <!-- <div style="padding-left: 30px;">
+                    <div style="display:flex;margin-top: 40px;margin-left: 10px;">
+                        <ion-checkbox checked="{{isSafetyOfficer}}" (ionChange)="safetyOfficer($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                        <p style="margin: 0px 0px 0px 10px;">Safety Officer</p>
+                    </div>
+
+                    <div *ngIf="isSafetyOfficer">
+                        <div style="width: 100% !important;padding-left: 20px !important;display: flex !important;margin-top: 20px !important;">
+                            <div style="width: 100%;padding-top: 7px;text-align: left;">
+                                <p (click)="OpenEmpList(1)" class="font-size-input textfont roundClass" style="width: max-content;margin-left: 10px;">{{ptwDetails['safety_officer_name']}}
+                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                </div>
+
+                <div *ngIf="step==1" style="align-items: unset !important;height: 100%;">
+                    <p class=" text-color-primary font-size-e-large headingFont" style="width: 100% !important;padding-left: 20px;margin-top: 40px;">{{stepTitle[step]}}</p>
+                    <div>
+                        <div style="padding-left: 20px;padding-right: 20px;width: 100% !important;">
+                            <div style="width: 100% !important;margin-bottom: 20px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="Process Owner Name" [(ngModel)]="process_owner_name" name="process_owner_name" required></ion-input>
+                                <div style="padding: 4px;text-align: right;" *ngIf="is_process_owner_name">
+                                    <ion-label class="font-size-content lightFont text-color-red">Process Owner name required</ion-label>
+                                </div>
+                            </div>
+                            <div style="width: 100% !important;margin-bottom: 20px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="Department/Company (Contactor)" [(ngModel)]="dept_c_contractor" name="dept_c_contractor"
+                                    required></ion-input>
+                                <div style="padding: 4px;text-align: right;" *ngIf="is_dept_c_contractor">
+                                    <ion-label class="font-size-content lightFont text-color-red">Department/Company (Contactor) required</ion-label>
+                                </div>
+                            </div>
+                            <div style="width: 100% !important;margin-bottom: 20px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="number" placeholder="Owner Contact no" [(ngModel)]="owner_contact_no" name="owner_contact_no" required></ion-input>
+                                <div style="padding: 4px;text-align: right;" *ngIf="is_owner_contact_no">
+                                    <ion-label class="font-size-content lightFont text-color-red">Please enter correct Owner Contact</ion-label>
+                                </div>
+                            </div>
+                            <div style="width: 100% !important;margin-bottom: 20px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="Site co-ordinator/ Contractor Name" [(ngModel)]="contractor_name" name="contractor_name"
+                                    required></ion-input>
+                                <div style="padding: 4px;text-align: right;" *ngIf="is_contractor_name">
+                                    <ion-label class="font-size-content lightFont text-color-red">Site co-ordinator required</ion-label>
+                                </div>
+                            </div>
+                            <div style="width: 100% !important;margin-bottom: 20px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="number" placeholder="No. of workers expected" [(ngModel)]="no_of_workers" name="no_of_workers" required></ion-input>
+                                <div style="padding: 4px;text-align: right;" *ngIf="is_no_of_workers">
+                                    <ion-label class="font-size-content lightFont text-color-red">No. of workers expected required</ion-label>
+                                </div>
+                            </div>
+                            <div style="width: 100% !important;margin-bottom: 20px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="number" placeholder="Contractor Contact no" [(ngModel)]="contractor_contact_no" name="contractor_contact_no"
+                                    required></ion-input>
+                                <div style="padding: 4px;text-align: right;" *ngIf="is_contractor_contact_no">
+                                    <ion-label class="font-size-content lightFont text-color-red">Contractor Contact no. required</ion-label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="step==2" style="align-items: unset !important;height: 100%;">
+                    <p class=" text-color-primary font-size-e-large headingFont" style="padding-left: 20px;margin-top: 40px;">{{stepTitle[step]}}</p>
+
+                    <div class="fullheight">
+                        <div style="height: 100% !important;">
+                            <div style="height: 30% !important;">
+                                <ion-item lines="none" (click)="calendarModal()" style="padding: 10px;">
+                                    <ion-icon [ngClass]="(isDateFilter) ? 'blackText' : 'grayText'" name="calendar-outline"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <ion-label [ngClass]="(isDateFilter) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" *ngIf="!isDateFilter">
+                                        Start - End Date
+                                    </ion-label>
+                                    <ion-label [ngClass]="(isDateFilter) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" *ngIf="isDateFilter">
+                                        {{dateList[0] | date:'MMM d, y'}} - {{dateList[1] | date:'MMM d, y'}}
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item lines="none" (click)="OpenSgiftList()" style="padding: 10px;">
+                                    <ion-icon [ngClass]="(isShift) ? 'blackText' : 'grayText'" name="alarm-outline" style="font-size:28px;"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <ion-label [ngClass]="(isShift) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" *ngIf="!isShift">
+                                        Select Shift
+                                    </ion-label>
+                                    <ion-label [ngClass]="(isShift) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" *ngIf="isShift">
+                                        {{shift_name}}
+                                    </ion-label>
+                                </ion-item>
+                            </div>
+                            <div style="height: 50% !important;margin-left: 20px;">
+                                <p class=" text-color-primary font-size-e-large headingFont" style="margin-top: 40px;margin-bottom: 10px;">Shift Timing</p>
+                                <p class="margin10 text-color-primary font-size-16  headingFont" style="margin-left: 20px !important;margin-top: 30px !important;">Start Time</p>
+                                <div style="margin-top: 20px !important;">
+                                    <div style="padding-left: 30px;">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                <div class="content">
+                                                    <div class="arrow left-arrow" (click)="preHourStart()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-back-outline"></ion-icon>
+                                                    </div>
+                                                    <div class="time-type-box headingFont shodowCss font-size-sub-heading">{{start_hours}}</div>
+                                                    <div class="arrow right-arrow" (click)="nextHourStart()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-forward-outline"></ion-icon>
+                                                    </div>
+                                                </div>
+                                            </ion-col>
+                                            <ion-col size="4">
+                                                <div class="content">
+                                                    <div class="arrow left-arrow" (click)="preMinuteStart()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-back-outline"></ion-icon>
+                                                    </div>
+                                                    <div class="time-type-box headingFont shodowCss font-size-sub-heading">{{start_minutes}}</div>
+                                                    <div class="arrow right-arrow" (click)="nextMinuteStart()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-forward-outline"></ion-icon>
+                                                    </div>
+                                                </div>
+                                            </ion-col>
+                                        </ion-row>
+                                    </div>
+                                </div>
+                                <p class="margin10 text-color-primary font-size-16  headingFont" style="margin-left: 20px !important;margin-top: 30px !important;">End time</p>
+                                <div>
+                                    <div style="margin-top: 20px !important;padding-left: 30px;">
+                                        <ion-row>
+                                            <ion-col size="4">
+                                                <div class="content">
+                                                    <div class="arrow left-arrow" (click)="preHourEnd()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-back-outline"></ion-icon>
+                                                    </div>
+                                                    <div class="time-type-box headingFont shodowCss font-size-sub-heading">{{end_hours}}</div>
+                                                    <div class="arrow right-arrow" (click)="nextHourEnd()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-forward-outline"></ion-icon>
+                                                    </div>
+                                                </div>
+                                            </ion-col>
+                                            <ion-col size="4">
+                                                <div class="content">
+                                                    <div class="arrow left-arrow" (click)="preMinuteEnd()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-back-outline"></ion-icon>
+                                                    </div>
+                                                    <div class="time-type-box headingFont shodowCss font-size-sub-heading">{{end_minutes}}</div>
+                                                    <div class="arrow right-arrow" (click)="nextMinuteEnd()">
+                                                        <ion-icon style="width: 24px;height: 24px;" name="chevron-forward-outline"></ion-icon>
+                                                    </div>
+                                                </div>
+                                            </ion-col>
+                                        </ion-row>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div style="padding-left: 20px;padding-right: 20px;">
+                    <div style="display: flex;width: 100%;">
+                        <div style="width: 50% !important;margin: 4px;">
+                            <div class="font-size-input textfont" style="width: 100% !important;padding: 15px;border: 1px solid rgb(212, 212, 212); border-radius: 10px;">
+                                <ion-label mode="md" slot="end" (click)="openCalender('start')">
+                                    {{start_date}}
+                                </ion-label>
+                            </div>
+                        </div>
+                        <div style="width: 50% !important;margin: 4px;">
+                            <div class="font-size-input textfont" style="width: 100% !important;margin-left: 10px;padding: 15px;border: 1px solid rgb(212, 212, 212); border-radius: 10px;">
+                                <ion-label mode="md" slot="end" (click)="openCalender('end')">
+                                    {{end_date}}
+                                </ion-label>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 100% !important;padding: 20px 20px 20px 0px !important;display: flex !important;margin-top: 20px !important;">
+                        <div style="width: 100%;padding-top: 7px;text-align: left;">
+                            <ion-label>Selected Shift : &nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+                            <ion-label (click)="OpenSgiftList()" class="font-size-input textfont roundClass" style="width: max-content;">{{shift_name}}
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                            </ion-label>
+                        </div>
+                    </div>
+                    <div style="display: flex;width: 100%;">
+                        <div style="width: 50% !important;">
+                            <div style="width: 100% !important;margin: 4px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="Start Time" [(ngModel)]="start_time" name="start_time" required></ion-input>
+                            </div>
+                        </div>
+                        <div style="width: 50% !important;margin-left: 4px;">
+                            <div style="width: 100% !important;margin: 4px;">
+                                <ion-input class="font-size-input textfont" style="border: 1px solid rgb(212, 212, 212);border-radius: 10px;" autocomplete="off" mode="md" type="text" placeholder="End Time" [(ngModel)]="end_time" name="end_time" required></ion-input>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+                </div>
+
+                <div *ngIf="step==3" style="align-items: unset !important;">
+                    <p class=" text-color-primary font-size-e-large headingFont" style="padding-left: 20px;margin-top: 40px;">{{stepTitle[step]}}</p>
+
+                    <div class="fullheight">
+                        <div>
+                            <!-- <div style="width: 100% !important;padding: 20px 20px 20px 0px !important;display: flex !important;margin-top: 20px !important;">
+                            <div style="width: 100%;padding-top: 7px;text-align: left;">
+                                <ion-label>Contractor Type : &nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+                                <ion-label (click)="OpenContractorTypeList()" class="font-size-input textfont roundClass" style="width: max-content;">{{contractor_type_name}}
+                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                </ion-label>
+                            </div>
+                        </div> -->
+                            <ion-item lines="none" (click)="OpenContractorTypeList()" style="padding: 10px;">
+                                <ion-icon [ngClass]="(isContractorSelect) ? 'blackText' : 'grayText'" name="bag-add"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <ion-label [ngClass]="(isContractorSelect) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" *ngIf="!isContractorSelect">
+                                    Select Contractor Type
+                                </ion-label>
+                                <ion-label [ngClass]="(isContractorSelect) ? 'font-size-16 headingFont blackText' : 'font-size-16 headingFont grayText'" *ngIf="isContractorSelect">
+                                    {{contractor_type_name}}
+                                </ion-label>
+                            </ion-item>
+
+                            <div style="margin-left: 25px;margin-right: 20px;">
+                                <div style="display:flex;margin-left: 10px;margin-top: 20px;" *ngIf="contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isWorkerCompansation}}" (ionChange)="workerCompansation($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Worker Compensation</ion-label>
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isWorkerStateInsurance}}" (ionChange)="workerStateInsurance($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Employees’ State Insurance</ion-label>
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isProvidentFund}}" (ionChange)="providentFund($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Provident Fund</ion-label>
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='1' || contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isMedicalReports}}" (ionChange)="medicalReports($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Medical Reports</ion-label>
+                                </div>
+                                <div class="margin10" *ngIf="isMedicalReports">
+                                    <div style="display: flex;width: 100%;padding-left: 10px !important;margin-top: 20px;">
+                                        <div style="display: flex;width: 85%;"><span class="marginLeft headingFont shodowCss font-size-sub-heading">  Upload Medical Report</span></div>
+                                        <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectImage('medicalReports')" /></div>
+                                    </div>
+                                    <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                        <div style="display: flex;text-transform: uppercase; ">
+                                            <ion-list style="padding-bottom: 20px;width: 100%;">
+                                                <ion-row style="margin: 4px !important;">
+                                                    <ion-col class="thumbnail" size="4" *ngFor="let image of medical_reports_imgs_ui let i=index">
+                                                        <div style="width: 100% !important;height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                            <img class="user-profile-img " src="{{image}}" alt="" style="width: 100% !important;height: 100%;border-radius: 20px;object-fit: cover;" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                                        </div>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-list>
+                                        </div>
+                                    </div>
+                                    <!-- <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                    <div style="display: flex;text-transform: uppercase;">
+                                        <ion-list style="padding-bottom: 20px;">
+                                            <ion-row style="margin: 4px !important;">
+                                                <ion-col class="thumbnail" size="4" *ngFor="let image of medical_reports_imgs_ui let i=index">
+                                                    <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                        <img class="user-profile-img " src="{{image}}" alt="" style="width: 100%;height: 100%;border-radius: 20px;object-fit: cover;">
+                                                    </div>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-list>
+                                    </div>
+                                </div> -->
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='2' || contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isGovID}}" (ionChange)="govId($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Gov. ID evidences</ion-label>
+                                </div>
+                                <div class="margin10" *ngIf="isGovID">
+                                    <div style="display: flex;width: 100%;padding-left: 10px !important;margin-top: 20px;">
+                                        <div style="display: flex;width: 85%;"><span class="marginLeft  headingFont shodowCss font-size-sub-heading">  Upload Gov. ID </span></div>
+                                        <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectImage('govId')" /></div>
+                                    </div>
+                                    <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                        <div style="display: flex;text-transform: uppercase; ">
+                                            <ion-list style="padding-bottom: 20px;width: 100%;">
+                                                <ion-row style="margin: 4px !important;">
+                                                    <ion-col class="thumbnail" size="4" *ngFor="let image of gov_id_imgs_ui let i=index">
+                                                        <div style="width: 100% !important;height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                            <img class="user-profile-img " src="{{image}}" alt="" style="width: 100% !important;height: 100%;border-radius: 20px;object-fit: cover;" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                                        </div>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-list>
+                                        </div>
+                                    </div>
+                                    <!-- <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                    <div style="display: flex;text-transform: uppercase;">
+                                        <ion-list style="padding-bottom: 20px;">
+                                            <ion-row style="margin: 4px !important;">
+                                                <ion-col class="thumbnail" size="4" *ngFor="let image of gov_id_imgs_ui let i=index">
+                                                    <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                        <img class="user-profile-img " src="{{image}}" alt="" style="width: 100%;height: 100%;border-radius: 20px;object-fit: cover;">
+                                                    </div>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-list>
+                                    </div>
+                                </div> -->
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isChildrenBelow14}}" (ionChange)="childrenBelow14($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Are children below 14 years engaged in the work ?</ion-label>
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='1' || contractor_type_id=='2' || contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isAllWorkers}}" (ionChange)="allWorkers($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <ion-label style="margin: 0px 0px 0px 10px;">List of all workers</ion-label>
+                                </div>
+                                <div class="margin10" *ngIf="isAllWorkers">
+                                    <div style="display: flex;width: 100%;padding-left: 10px !important;margin-top: 20px;">
+                                        <div style="display: flex;width: 85%;"><span class="marginLeft headingFont shodowCss font-size-sub-heading">  Upload All Worker List</span></div>
+                                        <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectImage('workers')" /></div>
+                                    </div>
+                                    <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                        <div style="display: flex;text-transform: uppercase; ">
+                                            <ion-list style="padding-bottom: 20px;width: 100%;">
+                                                <ion-row style="margin: 4px !important;">
+                                                    <ion-col class="thumbnail" size="4" *ngFor="let image of all_worker_imgs_ui let i=index">
+                                                        <div style="width: 100% !important;height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                            <img class="user-profile-img " src="{{image}}" alt="" style="width: 100% !important;height: 100%;border-radius: 20px;object-fit: cover;" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                                        </div>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-list>
+                                        </div>
+                                    </div>
+                                    <!-- <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                    <div style="display: flex;text-transform: uppercase;">
+                                        <ion-list style="padding-bottom: 20px;">
+                                            <ion-row style="margin: 4px !important;">
+                                                <ion-col class="thumbnail" size="4" *ngFor="let image of all_worker_imgs_ui let i=index">
+                                                    <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                        <img class="user-profile-img " src="{{image}}" alt="" style="width: 100%;height: 100%;border-radius: 20px;object-fit: cover;">
+                                                    </div>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-list>
+                                    </div>
+                                </div> -->
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;" *ngIf="contractor_type_id=='3'">
+                                    <ion-checkbox checked="{{isSafePro}}" (ionChange)="safeOpratPro($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    <p style="margin: 0px 0px 0px 10px;" class=" headingFont shodowCss font-size-sub-heading">Safe Operating Procedure</p>
+                                </div>
+                                <div style="display:flex;margin-top: 20px;margin-left: 10px;width: 100%;" *ngIf="contractor_type_id=='2' || contractor_type_id=='3'">
+                                    <div style="width: 8%;">
+                                        <ion-checkbox checked="{{isValidTestTools}}" (ionChange)="validTestTools($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                    </div>
+                                    <div style="width: 92%;">
+                                        <p style="margin: 0px 0px 0px 2px;" class=" headingFont shodowCss font-size-sub-heading">All the PPE & equipment, tools and tackles used at site has a valid test report and certificate
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="margin10" *ngIf="isValidTestTools">
+                                    <div style="display: flex;width: 100%;padding-left: 10px !important;margin-top: 20px;">
+                                        <div style="display: flex;width: 85%;"><span class="text-color-primary marginLeft font-size-heading headingFont">  Upload Test Report and certificate</span></div>
+                                        <div style="display: flex;width: 15%;"><img src="/assets/imgs/add.png" style="width: 30px; height: 30px;" (click)="selectImage('Tools')" /></div>
+                                    </div>
+                                    <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                        <div style="display: flex;text-transform: uppercase; ">
+                                            <ion-list style="padding-bottom: 20px;width: 100%;">
+                                                <ion-row style="margin: 4px !important;">
+                                                    <ion-col class="thumbnail" size="4" *ngFor="let image of trc_imgs_ui let i=index">
+                                                        <div style="width: 100% !important;height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                            <img class="user-profile-img " src="{{image}}" alt="" style="width: 100% !important;height: 100%;border-radius: 20px;object-fit: cover;" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                                        </div>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-list>
+                                        </div>
+                                    </div>
+                                    <!-- <div style="overflow-x: scroll;padding-bottom: 16px; padding-top: 10px; ">
+                                    <div style="display: flex;text-transform: uppercase;">
+                                        <ion-list style="padding-bottom: 20px;">
+                                            <ion-row style="margin: 4px !important;">
+                                                <ion-col class="thumbnail" size="4" *ngFor="let image of trc_imgs_ui let i=index">
+                                                    <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                                        <img class="user-profile-img " src="{{image}}" alt="" style="width: 100%;height: 100%;border-radius: 20px;object-fit: cover;">
+                                                    </div>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-list>
+                                    </div>
+                                </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="step==4" style="align-items: unset !important;">
+                    <p class="text-color-primary font-size-e-large headingFont" style="margin-left: 20px !important;margin-top: 40px;">{{stepTitle[step]}}</p>
+                    <div class="fullheight xc">
+                        <div style="margin-left: 30px;">
+                            <div *ngFor="let item of questionList let i=index" style="margin-bottom: 30px;">
+                                <!-- value="{{getQuestionAnswer(item['id'])}}" -->
+                                <ion-radio-group (ionChange)="saveOption($event,i,item['id'])" value="{{getQuestionAnswer(item['id'])}}" mode="md">
+                                    <div style="width: 100%;display: flex;">
+                                        <div class="marginLeft font-size-heading headingFont" style="width: 8%;"> {{i+1}}. </div>
+                                        <div class="marginLeft font-size-heading headingFont" style="width: 92%;"> {{item['question']}} </div>
+                                    </div>
+                                    <div style="margin-left: 10x;">
+                                        <div style="display: flex;margin-left: 25px;" *ngIf="item[ 'option_1']!=''">
+                                            <ion-radio mode="md" value="{{item[ 'option_1']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                            <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_1']}} </p>
+                                        </div>
+                                        <div style="display: flex;margin-left: 25px;" *ngIf="item[ 'option_2']!=''">
+                                            <ion-radio mode="md" value="{{item[ 'option_2']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                            <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_2']}} </p>
+                                        </div>
+                                        <div style="display: flex;margin-left: 25px;" *ngIf="item[ 'option_3']!=''">
+                                            <ion-radio mode="md" value="{{item[ 'option_3']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                            <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_3']}} </p>
+                                        </div>
+                                        <div style="display: flex;margin-left: 25px;" *ngIf="item[ 'option_4']!=''">
+                                            <ion-radio mode="md" value="{{item[ 'option_4']}}" style="margin-top: 8px;--color-checked:#E9CD00;"></ion-radio>
+                                            <p class="margin10 font-size-sub-heading lightFont text-color-black">{{item['option_4']}} </p>
+                                        </div>
+                                    </div>
+                                </ion-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="step==5" style="align-items: unset !important;width: 100% !important; height: 100%;">
+                    <p class=" text-color-primary font-size-e-large headingFont" style="padding-left: 20px;margin-top: 40px;">{{stepTitle[step]}}</p>
+                    <div style="height: 100% !important;">
+                        <div style="height: 50% !important;">
+                            <div style="width: 100% !important;padding-left: 30px !important;padding-right: 30px !important;">
+                                <ion-textarea placeholder="Brief Description of Work" [(ngModel)]="description" name="description" autocomplete="on" autocorrect="on" class="headingFont shodowCss font-size-sub-heading txtArea" rows="10" style="margin-top: 30px !important;padding: 10px !important;"></ion-textarea>
+                            </div>
+                        </div>
+                        <div style="height: 50% !important;">
+                            <div style="display:flex;margin-top: 40px;margin-left: 35px;">
+                                <div style="width: 8%;">
+                                    <ion-checkbox checked="{{isUnderstandWork}}" (ionChange)="understandWork($event)" mode="md" style="--background-checked:#E9CD00;--border-color-checked:#E9CD00;"></ion-checkbox>
+                                </div>
+                                <div>
+                                    <ion-label style="margin: 0px 0px 0px 10px;" class="headingFont shodowCss font-size-sub-heading">Inspected the work site with concerned team and understood the work to be done</ion-label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border" style="background-color: #fff !important;margin-bottom: 10px;">
+    <div>
+        <ion-row>
+            <ion-col class="ion-align-self-start" size="3">
+                <ion-button fill="clear" mode="ios" (click)="preStep()">
+                    Back
+                    <ion-icon slot="start" mode="md" name="arrow-back-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="6"></ion-col>
+            <ion-col class="ion-align-self-end" size="3">
+                <ion-button *ngIf="step!=totalStep" fill="clear" mode="ios" (click)="nextStep()">
+                    <ion-icon slot="end" name="arrow-forward-circle" style="font-size: 36px !important;"></ion-icon>
+                </ion-button>
+                <ion-button size="small" class="shodowCss" shape="round" *ngIf="step==totalStep && !isHideSave" expand="full" mode="ios" (click)="savePTW()" style="margin-bottom: 14px !important;
+            height: 35px;">
+                    Save
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-footer>

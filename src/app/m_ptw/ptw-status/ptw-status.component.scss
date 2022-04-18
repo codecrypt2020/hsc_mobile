@@ -1,0 +1,35 @@
+.statusCss {
+    padding: 5px !important;
+    margin: 0px !important;
+    text-align: center !important;
+    height: auto !important;
+    border: 2px solid #F19A4C !important;
+    border-radius: 10px !important;
+    background: #FFF4EB !important;
+    text-align: center !important;
+    color: #F19A4C !important;
+}
+
+.statusCssWithout-borrder {
+    padding: 5px !important;
+    margin: 0px !important;
+    text-align: center !important;
+    height: auto !important;
+    border-radius: 10px !important;
+    background: #FFF4EB !important;
+    text-align: center !important;
+    color: #F19A4C !important;
+}
+
+popover-content.sc-ion-popover-md {}
+
+.pTop {
+    padding: 5px 0px 5px 0px;
+    border-bottom: 1px solid;
+    margin: 0px;
+}
+
+.pTop-no-b-border {
+    padding: 5px 0px 5px 0px;
+    margin: 0px;
+}

@@ -1,0 +1,21 @@
+.divBoxCss {
+    display: flex;
+    margin: 16px;
+    border: 2px solid #E9CD00;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 #0003, 0 6px 20px 0 #00000030;
+}
+
+.pMargin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #E9CD00 !important;
+    font-weight: bold;
+}
+
+.iconCss {
+    color: #E9CD00 !important;
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">Download PDF</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="downloadInvoice()">
+                <ion-icon name="arrow-down-circle" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <!-- <!DOCTYPE html>
+        <html>
+
+        <body>
+
+            <h1 style="color:blue;text-align:center;">This is a heading</h1>
+            <p style="color:red;">This is a paragraph.</p>
+
+        </body>
+
+        </html> -->
+
+    </div>
+    <div id="PrintReports">
+        <div style="text-align: end;margin: 5px;"><img class="user-profile-img" src="https://www.momentumindia.in/wp-content/uploads/2021/07/Momentum-India-Logo.png" onerror="this.onerror=null;this.src='/assets/imgs/logo.png';" alt="" style="width: 80px;"></div>
+        <div style="border: 1px solid #000;margin: 10px;padding: 10px;">
+            <table class="border-background-stylesheet" *ngFor="let question of questionlist let i=index">
+                <tbody>
+                    <div style="text-align: center !important; color: #f3d11e;padding-top: 10px;padding-bottom: 10px;font-size: 22px;" *ngIf="i==0">{{chk_name}}</div>
+                    <tr>
+                        <th>{{i+1}} . {{question['question']}} </th>
+                    </tr>
+                    <tr>
+                        <td *ngIf="question['question_type']=='1'">Selected Answer : {{getSelectedOptions(checklistSD[i])}}</td>
+                        <td *ngIf="question['question_type']=='2'">Input Answer : {{checklistSD[i]['input_answer']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Comments : {{getCommets(checklistSD,i)}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="margin-top: 0;">
+                                <ion-label *ngIf="isImages(checklistSD,i)">Uploaded Images : </ion-label>
+                                <ion-label *ngIf="!isImages(checklistSD,i)">Images Not Uploaded </ion-label>
+                            </p>
+                            <div class="cards" *ngIf="isImages(checklistSD,i)">
+                                <div class="card" *ngFor="let image of saved_Images[i] let j=index">
+                                    <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;">
+                                        <img src="{{baseUrl}}{{image}}" alt="" style="border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- <div style="text-align: end;margin: 5px;">
+        <img class="user-profile-img" src="../../../assets/imgs/logo.png" alt="" style="width: 80px;">
+    </div>
+    <div style="border: 1px solid #a6a6a6;margin: 15px;">
+        <p class="marginLeft text-color-yellow p1 font-size-heading headingFont center-align">
+            {{chk_name}}
+        </p>
+        <div *ngFor="let question of questionlist let i=index">
+            <ion-card-header>
+                <span class="marginLeft font-size-heading headingFont"> {{i+1}} . </span>
+                <span class="marginLeft font-size-heading headingFont"> {{question['question']}} </span>
+            </ion-card-header>
+
+            <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont">
+                <p class="font-size-input lightFont" style="color:#000 !important;" *ngIf="question['question_type']=='1'">Selected Answer : {{checklistSD[i]['selected_options']}}</p>
+                <p class="font-size-input lightFont" style="color:#000 !important;" *ngIf="question['question_type']=='2'">Input Answer : {{checklistSD[i]['input_answer']}}</p>
+                <p class="font-size-input lightFont" style="color:#000 !important;">Comments : {{checklistSD[i]['comments']}}</p>
+                <p *ngIf="saved_Images[i].length>0" class="font-size-input lightFont" style="color:#000 !important;">Uploaded Images : </p>
+                <div *ngIf="saved_Images[i].length>0">
+                    <ion-row style="margin: 4px !important;">
+                        <ion-col class="thumbnail" size="4" *ngFor="let image of saved_Images[i] let j=index">
+                            <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{image}}" alt="" style="border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';"></div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </ion-card-content>
+           </div>
+    </div> -->
+</ion-content>

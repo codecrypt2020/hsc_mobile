@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-title>
+                <p class="margin10 text-color-primary font-size1-heading headingFont"></p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="secondary" style="padding-right: 4px !important;">
+            <div>
+                <p class="headingFont font-size-heading doneCss" (click)="closeModel()"> Close</p>
+            </div>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <!-- class="topShadowD topBorderD" style="margin-top: 25px;height: 100vh;" -->
+    <div>
+        <div>
+
+            <div>
+                <ion-item lines="none">
+                    <div style="display: flex !important;">
+                        <div slot="start">
+                            <div *ngIf="dataObj['percent'] == 0" class="progressCircleP">
+                                <ion-label>{{dataObj['percent']}}%</ion-label>
+                            </div>
+                            <div *ngIf="99 > dataObj['percent']  && dataObj['percent'] > 0" class="progressCircleIP">
+                                {{dataObj['percent']}}%
+                            </div>
+                            <div *ngIf="dataObj['percent'] == 100" class="progressCircleC">
+                                {{dataObj['percent']}}%
+                            </div>
+                        </div>
+                        <ion-label style="margin-top: 12px;margin-left: 8px;width: 100%;">
+                            <p class="font-size-heading headingFont" style="color: #455A64 !important;">{{dataObj['name']}} </p>
+                            <p class="font-size-content lightFont" style="color: #888787 !important;"> {{dataObj['cat_name']}} - {{dataObj['emp_name']}}</p>
+                            <p *ngIf="dataObj['percent'] == 0" class="font-size-content lightFont statusCSSPending" style="width:100px;">Pending</p>
+                            <p *ngIf="dataObj['percent'] == 100" class="font-size-content lightFont statusCSSCompleted" style="width:100px;">Completed</p>
+                            <p *ngIf="99 > dataObj['percent']  && dataObj['percent'] > 0" class="font-size-content lightFont statusCSSInP" style="width:100px;">In Progress</p>
+                        </ion-label>
+                    </div>
+                </ion-item>
+                <div style="margin: 20px;" *ngIf="isShowBtn">
+                    <ion-button expand="block" style="margin: 10px;text-transform: capitalize;" (click)="openQuestionPage(status)"><span *ngIf="status == 'In Progress' ">Continue Inspection</span><span *ngIf="status == 'Pending' ">Start Inspection</span> <span *ngIf="status == 'Completed' ">Inspection Already Submitted</span></ion-button>
+                </div>
+                <div *ngIf="status == 'Completed'">
+                    <hr style="background: #e8e7e7;margin-top: 24px;margin-bottom: 0px;">
+                    <p class="font-size-input headingFont actionCss" style="padding-left: 30px;">Share Inspection</p>
+                    <div style="padding-left: 48px;padding-right: 48px;">
+                        <p class="shareCss">Share Inspection</p>
+                    </div>
+                </div>
+                <hr style="background: #e8e7e7;margin-top: 16px;margin-bottom: 0px;">
+            </div>
+            <div>
+                <ion-item style="padding-left: 10px;" (click)="openReportDetailsPage()" *ngIf=" getUserRole() != 'user' ">
+                    <ion-label class="font-size-input lightFont actionCss">
+                        <ion-icon name="eye-outline" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon>View Report
+                    </ion-label>
+                </ion-item>
+
+                <ion-item style="padding-left: 10px;" (click)="openCheckListReportNS()" *ngIf="getUserRole() != 'user'">
+                    <ion-label class="font-size-input lightFont actionCss">
+                        <ion-icon name="document-text-outline" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon> Not Submitted
+                    </ion-label>
+                </ion-item>
+                <!-- <ion-item style="padding-left: 10px;">
+                    <ion-label class="font-size-input lightFont actionCss">
+                        <ion-icon name="download-outline" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon>Download Report
+                    </ion-label>
+                </ion-item> -->
+                <ion-item style="padding-left: 10px;display: none !important;" (click)="openDetailsPage()" *ngIf="status == 'Completed'">
+                    <ion-label class="font-size-input lightFont actionCss">
+                        <ion-icon name="document-text-outline" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon> Details
+                    </ion-label>
+                </ion-item>
+                <!-- <ion-item style="padding-left: 10px;">
+                    <ion-label class="lightFont actionCss">
+                        <ion-icon name="star" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon> Share Inspection
+                    </ion-label>
+                </ion-item>
+                <ion-item style="padding-left: 10px;">
+                    <ion-label class="lightFont actionCss">
+                        <ion-icon name="star" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon> Share Inspection
+                    </ion-label>
+                </ion-item>
+                <ion-item style="padding-left: 10px;">
+                    <ion-label class="lightFont actionCss">
+                        <ion-icon name="star" slot="start" style="margin-inline-end: 8px !important;margin-inline-start: 4px !important;"></ion-icon> Share Inspection
+                    </ion-label>
+                </ion-item> -->
+            </div>
+        </div>
+    </div>
+</ion-content>

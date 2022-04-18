@@ -1,0 +1,29 @@
+.marginLeft {
+    margin-left: 28px !important;
+}
+
+.calenderIcon {
+    width: 56px !important;
+    height: 56px !important;
+}
+
+.p1 {
+    margin: 0px !important;
+}
+
+.cardCss1,
+.item-inner {
+    .input-wrapper {
+        .label-md,
+        .label-ios {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    border: 1px solid #dad9d9 !important;
+    background: #F8F9F9 !important;
+    border-radius: 2px;
+    margin: 12px !important;
+    padding: 4px !important;
+}

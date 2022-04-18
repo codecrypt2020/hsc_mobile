@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Self Declaration Result</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="cardCss1">
+        <ion-row>
+            <ion-col size="12">
+                <ion-row>
+                    <ion-col size="10" class="font-size-content headingFont">
+                        <div style="display: flex !important;">
+                            <ion-label style="padding-top: 2px !important;">Submitted By : {{userDetails['emp_name']}}</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col size="2" class="end-align font-size-content headingFont text-color-red">
+                        <ion-icon class="closeCSSIcon" name="close-outline" style="display: none !important;"></ion-icon>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="font-size-content headingFont text-color-primary">
+                        <!-- {{item['updated_at'] | date:'MMM d, y, h:mm:ss a'}} -->
+                        Submitted Date : {{selectedStartDate | date:'MMM d, y'}}
+                    </ion-col>
+                </ion-row>
+                <!-- <ion-row>
+                    <ion-col size="12" class="font-size-content headingFont text-color-primary">
+                        Status : Unsafe to enter
+                    </ion-col>
+                </ion-row> -->
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <div class="parent">
+        <div class="contentDiv clear" style="text-align: center !important;padding-top: 20px !important;">
+            <ion-icon *ngIf="result" name="checkmark-circle" style="width: 100px;height: 100px;color: green;padding-bottom: 20px !important;"></ion-icon>
+            <ion-icon *ngIf="!result" name="close-circle-outline" style="width: 100px;height: 100px;color: red;padding-bottom: 20px !important;"></ion-icon>
+            <div class="(result)? safeCss : unsafeCss">
+                <p class="margin10 font-size1-heading headingFont">{{title}}</p>
+                <p class="font-size-content headingFont" style="text-align: center;">{{msg}}</p>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

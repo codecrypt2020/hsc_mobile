@@ -1,0 +1,486 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-primary font-size1-heading headingFont">Issue Details</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <div>
+                <ion-label (click)="showPopover($event)" *ngIf="status == 'open' " class="marginLeft p1 text-color-primary font-size-content headingFont openStatus">
+                    {{status | titlecase}}
+                    <ion-icon name="chevron-forward-outline" style="margin-top: 2px;margin-left: 3px;" *ngIf="isAllowToEditPA"></ion-icon>
+                </ion-label>
+                <ion-label *ngIf="status=='Closed' || status =='close' " class="marginLeft p1 font-size-content headingFont closeStatusIR">
+                    {{status | titlecase}}
+                </ion-label>
+                <ion-label (click)="showPopover($event)" *ngIf="status=='review' || status=='in progress'" class="marginLeft p1 text-color-primary font-size-content headingFont inProgressStatus">
+                    {{status | titlecase}}
+                    <ion-icon name="chevron-forward-outline" style="margin-top: 2px;margin-left: 3px;" *ngIf="isAllowToEditPA || isAllowToEditOA"></ion-icon>
+                </ion-label>
+
+            </div>
+
+            <!-- <div style="width: 100px !important; " *ngIf="status != 'close' ">
+                <ion-select mode="ios " interface="popover " placeholder="Status " [(ngModel)]="status " (onchange)="loadModelComp()">
+                    <ion-select-option *ngIf="status == 'open' " value="in progress ">In Progress</ion-select-option>
+                    <ion-select-option *ngIf="status == 'in progress' " value="close ">Close</ion-select-option>
+                </ion-select>
+            </div> -->
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content overflow-scroll="true">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" style="padding-bottom: 10px;background-color: #fff;">
+        <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Updating Data..." class="text-color-primary font-size-sub-heading headingFont" style="background-color: #fff;">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div style="z-index: 999 !important;">
+        <div *ngIf="is_details_loaded">
+            <p *ngIf="status == 'open' " class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pOpen">
+                Issue is {{status | titlecase}} from last {{getDays(inc_details['updated_at'])}} days
+            </p>
+            <p *ngIf="status=='Closed' " class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pClose">
+                Issue {{status }} successfully
+            </p>
+            <p *ngIf="status=='review' || status=='in progress'" class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pIN_P_R">
+                Issue in {{status | titlecase}} from last {{getDays(inc_details['updated_at'])}} days
+            </p>
+
+        </div>
+        <div *ngIf="!is_details_loaded ">
+            <ion-list>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start ">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80% "></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60% "></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngIf="is_details_loaded">
+            <div>
+                <ion-card>
+                    <ion-card-header style="background: #f3d31d !important; ">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Issue Submitted By</p>
+
+                    </ion-card-header>
+
+                    <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Name : {{inc_details['emp_name']}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Email : {{inc_details['emp_email']}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Mobile : {{inc_details['emp_mobile']}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Organization : {{inc_details['org_name']}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Site Name : {{inc_details['name']}} </p>
+                            </h2>
+                        </ion-label>
+                    </ion-card-content>
+                </ion-card>
+
+                <ion-card>
+                    <ion-card-header style="background: #f3d31d !important; ">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Issue Details</p>
+                    </ion-card-header>
+
+                    <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Severity : {{inc_details['severity']}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">What happened? : {{inc_details['what_happned']}} </p>
+                            </h2>
+                        </ion-label>
+
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Category : {{inc_details['inc_cat_name']}} </p>
+                            </h2>
+                        </ion-label>
+
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Date & Time : {{getFormatedDate(inc_details['date_time'])}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Area : {{ inc_details['areaname']}} </p>
+                            </h2>
+                        </ion-label>
+                        <ion-label>
+                            <h2>
+                                <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Description : {{inc_details['incident_description']}} </p>
+                            </h2>
+                        </ion-label>
+                    </ion-card-content>
+                </ion-card>
+
+                <ion-card>
+                    <ion-card-header style="background: #f3d31d !important; ">
+                        <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Issue Images</p>
+
+                    </ion-card-header>
+
+                    <ion-card-content style="margin-left: 8px;margin-top: 4px; ">
+                        <div *ngIf="!is_images " style="margin-left: 8px;margin-top: 8px;">
+                            <img class="user-profile-img" src="assets/imgs/noimage.jpg" alt="" style="margin: 0px;
+                            height: 100px;
+                            width: 100px;
+                            object-fit: cover;
+                            border-radius: 10px;
+                            border: 1px solid #d2d0d0;">
+                        </div>
+                        <div *ngIf="is_images">
+                            <ion-list style="padding-bottom: 0px;">
+                                <ion-row style="margin: 4px !important;" scrollX="true">
+                                    <ion-col class="thumbnail" size="4" *ngFor="let image of inc_images let j=index">
+                                        <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{baseUrl}}{{image['name']}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseUrl+image['name'])" onerror="this.onerror=null;this.src='assets/imgs/noimage.jpg';"></div>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-list>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+
+                <p class="marginLeft font-size-heading headingFont " style="text-align: center; margin: 0px;padding: 8px;background: #f3d31d; ">Site Admin Action({{plantAdminName}})</p>
+                <div *ngIf="show_plant_admin ">
+                    <ion-card>
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Immediate Containment Action</p>
+                        </ion-card-header>
+
+                        <ion-card-content class="marginLeft p1 text-color-primary font-size-sub-heading headingFont" style="padding-top: 16px !important;">
+                            <p>{{inc_details['imc_action']}}</p>
+                        </ion-card-content>
+                    </ion-card>
+
+                    <ion-card>
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft  font-size-sub-heading headingFont" style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Underlying Cause </p>
+                        </ion-card-header>
+
+                        <ion-card-content class="marginLeft p1 text-color-primary  font-size-sub-heading headingFont" style="padding-top: 16px !important;">
+                            <p> {{inc_details['underlying_cause']}}</p>
+                        </ion-card-content>
+                    </ion-card>
+
+                    <ion-card>
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Images </p>
+                        </ion-card-header>
+
+                        <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont " style="padding-top: 16px !important;">
+                            <div *ngIf=" plant_admin_images_count== 0 " style="margin-left: 8px;margin-top: 8px;">
+                                <img class="user-profile-img" src="assets/imgs/noimage.jpg" alt="" style="margin: 0px;
+                                height: 100px;
+                                width: 100px;
+                                object-fit: cover;
+                                border-radius: 10px;
+                                border: 1px solid #d2d0d0;" onerror="this.onerror=null;this.src='assets/imgs/noimage.jpg';">
+                            </div>
+
+                            <div>
+                                <ion-list style="padding-bottom: 0px;">
+                                    <ion-row style="margin: 4px !important;" scrollX="true">
+                                        <ion-col class="thumbnail" size="4" *ngFor="let image of plant_admin_images let j=index">
+                                            <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';"></div>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-list>
+                            </div>
+
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+                <div *ngIf="!show_plant_admin " style="text-align: center;">
+                    <p class="marginLeft font-size-heading headingFont " style="text-align: center; margin: 0px;padding: 8px; ">Action Not Taken by Site admin</p>
+                </div>
+            </div>
+            <!-- <p *ngIf="isAllowToEditPA" style="text-align: center;">
+            <ion-label (click)="loadModelComp()" class="marginLeft p1 text-color-primary font-size-content headingFont inProgressStatus">
+                Add Comment
+            </ion-label>
+        </p> -->
+
+            <!-- <div style="margin: 20px;border: 1px solid #000;padding: 5px;">
+            <div>
+                plant_admin_images_count : {{plant_admin_images_count}} <br/>Image : {{plant_admin_images[0]}}
+            </div>
+            <div>
+                Org_admin_images_count : {{Org_admin_images_count}} <br/>Image : {{Org_admin_images[0]}}
+            </div>
+        </div> -->
+
+            <div style="margin-top: 40px !important; ">
+                <!-- Organization Admin Action -->
+                <p class="marginLeft font-size-heading headingFont" style="text-align: center; margin: 0px;padding: 8px;background: #f3d31d; ">Action Taken({{orgAdminName}}) </p>
+                <div *ngIf="show_org_admin">
+                    <ion-card *ngIf="inc_details['severity']=='High'">
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Action Points </p>
+                        </ion-card-header>
+
+                        <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont " style="padding-top: 16px !important;">
+                            <p *ngIf="1>action_points.length" class="marginLeft p1 text-color-gray  font-size-sub-heading headingFont">Action Points Not Added</p>
+                            <div *ngIf="action_points.length>0">
+                                <div *ngFor="let action_point of action_points let i=index ">
+                                    <div style="display: flex; ">
+                                        <span style="width: 30px !important;margin: 4px;">
+                                    <ion-icon *ngIf="action_points_check[i]=='false'" name="checkmark-circle-outline" style="font-size: 24px !important;margin: 4px;color:#ccc;" (click)="changeStatus(i,'true','false')"></ion-icon>
+                                    <ion-icon *ngIf="action_points_check[i]=='true'" name="checkmark-circle-outline" style="font-size: 24px !important;margin: 4px;color:#28c3cb;" (click)="changeStatus(i,'false','true')"></ion-icon>
+                                    <!-- <ion-icon *ngIf="action_points_check[i]=='false' && isValidUser(i)" name="checkmark-circle-outline" style="font-size: 24px !important;margin: 4px;color:#ccc;" (click)="changeStatus(i,'true')"></ion-icon>
+                                    <ion-icon *ngIf="action_points_check[i]=='true' && isValidUser(i)" name="checkmark-circle-outline" style="font-size: 24px !important;margin: 4px;color:#28c3cb;" (click)="changeStatus(i,'false')"></ion-icon> -->
+                                </span>
+                                        <p style="margin-top: 12px;" class="font-size-sub-heading headingFont">{{action_point}} ({{action_points_a_name[i]}})</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+
+                    <ion-card *ngIf="inc_details['severity']=='High' && inc_details['assigned_to']!=''">
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Approval Required </p>
+                        </ion-card-header>
+
+                        <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont " style="padding-top: 16px !important;">
+                            <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Assigned To : {{inc_details['assigned_to']}} </p>
+                            <p style="padding: 4px; " class="text-color-primary font-size-sub-heading headingFont ">Due Date : {{inc_details['due_date'] | date:'MMM d, y'}} </p>
+                        </ion-card-content>
+                    </ion-card>
+
+                    <ion-card *ngIf="inc_details['severity']=='High'">
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Root Cause </p>
+                        </ion-card-header>
+
+                        <ion-card-content *ngIf="inc_details['root_cause']==''" class="marginLeft p1 text-color-gray font-size-sub-heading headingFont " style="padding-top: 16px !important;">
+                            <p> Root Cause Not Added</p>
+                        </ion-card-content>
+
+                        <ion-card-content *ngIf="inc_details['root_cause']!=''" class="marginLeft p1 text-color-primary font-size-sub-heading headingFont " style="padding-top: 16px !important;">
+                            <p> {{inc_details['root_cause']}}</p>
+                        </ion-card-content>
+                    </ion-card>
+
+                    <ion-card *ngIf="status=='Closed'">
+                        <ion-card-header style="background: #f3d31d !important; ">
+                            <p class="marginLeft font-size-heading headingFont " style="text-align: start; margin: 0px;color: #000;text-transform: none !important; ">Images </p>
+                        </ion-card-header>
+
+                        <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont " style="padding-top: 16px !important;">
+                            <!-- Org_admin_images_count==0 -->
+                            <div *ngIf="Org_admin_images_count==0" style="margin-left: 8px;margin-top: 8px;">
+                                <img class="user-profile-img" src="assets/imgs/noimage.jpg" alt="" style="margin: 0px;
+                                height: 100px;
+                                width: 100px;
+                                object-fit: cover;
+                                border-radius: 10px;
+                                border: 1px solid #d2d0d0;" onerror="this.onerror=null;this.src='assets/imgs/noimage.jpg';">
+                            </div>
+                            <div *ngIf="Org_admin_images.length>0">
+                                <ion-list style="padding-bottom: 0px;">
+                                    <ion-row style="margin: 4px !important;" scrollX="true">
+                                        <ion-col class="thumbnail" size="4" *ngFor="let image of Org_admin_images let j=index">
+                                            <div style="height: 120px;padding: 4px;border: 1px solid #ccc;border-radius:10px ;"><img class="user-profile-img" src="{{baseNodeUrl}}{{image}}" alt="" style="margin: 0px;border-radius: 10px;height: 100%;width: 100%;object-fit: cover;" (click)="viewImage(baseNodeUrl+image)" onerror="this.onerror=null;this.src='assets/imgs/n-i2.png';"></div>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-list>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+                <div *ngIf="!show_org_admin" style="text-align: center;">
+                    <p class="marginLeft font-size-sub-heading headingFont " style="text-align: center; margin: 0px;padding: 8px;margin-bottom: 32px; ">Action not taken by Organization admin</p>
+                </div>
+                <div *ngIf="(inc_details['severity']=='Low' || inc_details['severity']=='Medium') && status=='in progress'" style="text-align: center;">
+                    <p class="marginLeft font-size-sub-heading headingFont " style="text-align: center; margin: 0px;padding: 8px;margin-bottom: 32px; ">Action not taken by Organization admin</p>
+                </div>
+                <!-- <p *ngIf="isAllowToEditOA" style="text-align: center;">
+                <ion-label (click)="loadModelComp()" class="marginLeft p1 text-color-primary font-size-content headingFont inProgressStatus">
+                    Add Comment
+                </ion-label>
+            </p> -->
+            </div>
+        </div>
+    </div>
+</ion-content>

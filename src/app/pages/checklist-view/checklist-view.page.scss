@@ -1,0 +1,97 @@
+.box {
+    margin-left: 12px;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 30px;
+    color: #000;
+    font-size: 11px;
+    font-weight: 500;
+    // border: 1px solid #f1f1f1 !important;
+    -webkit-box-shadow: 0px 13px 50px -15px #f1f1f1;
+    -moz-box-shadow: 0px 13px 50px -15px #f1f1f1;
+    box-shadow: 0px 13px 50px -15px #f1f1f1;
+}
+
+.innerDivCSS {
+    margin-top: 16px;
+    width: 150px;
+    height: 150px;
+}
+
+.imgCss {
+    width: 100% !important;
+    height: 100% !important;
+    // width: 100px;
+    // height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    /* Do not scale the image */
+    object-position: center;
+}
+
+.openStatus {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #85D4A4 !important;
+    background: #E4FFF0 !important;
+    color: #85D4A4 !important;
+}
+
+.inProgressStatus {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #F19A4C !important;
+    background: #FFF4EB !important;
+    color: #F19A4C !important;
+}
+
+.closeStatus {
+    margin-right: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 1px solid #EE6C6C;
+    background: #FEF1F0 !important;
+    color: #EE6C6C !important;
+}
+
+.pOpen {
+    background: #E4FFF0 !important;
+    color: #608f73 !important;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.pClose {
+    background: #FEF1F0 !important;
+    color: #EE6C6C !important;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.pIN_P_R {
+    background: #fff4eb!important;
+    color: #f19a4c!important;
+    margin: 0;
+    /* text-align: center; */
+    /* height: 30px; */
+    padding: 10px 4px 10px 12px;
+}

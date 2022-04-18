@@ -1,0 +1,320 @@
+<ion-header>
+    <ion-toolbar class="ionToolbar" mode="md">
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon class="TabBarIcon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <ion-title style="padding: 0px !important;">
+                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">{{title}}</p>
+            </ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end" style="padding-right: 4px !important;">
+            <!-- <ion-icon class="TabBarIcon" (click)="openDatePicker()" slot="icon-only" name="calendar-outline" *ngIf="isSubmitted!='1'"></ion-icon> -->
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" style="--background: #f5f5f5 !important;">
+    <!-- <p (click)="openDatePicker()" class="marginLeft p1 text-color-primary font-size-sub-heading headingFont pClose" *ngIf="isSubmitted!='1'">
+        Selected Date : {{selectedStartDate | date:'MMM d, y'}}
+    </p>
+
+    <div style="padding-left: 10px !important;padding-right: 10px !important;display: flex !important;" *ngIf="isSubmitted!='1'">
+        <div style="display: flex !important;width: 30% !important;margin-top: 20px;margin-left: 10px;">Date Range : </div>
+        <div class="bottombarCss" style="display: flex !important;width: 70% !important;margin-top: 20px;margin-left: 10px;">
+            <ion-icon class="padding-left-right" name="calendar-outline"></ion-icon>
+            <div style="margin-left: 10px;">
+                <div (click)="openDatePicker('start')" class="date4picker lightFont font-size-input">{{ minDate }}</div>
+            </div>
+            <div class="padding-left-right" style="margin-left: 10px;margin-right: 10px;">-</div>
+            <div>
+                <div (click)="openDatePicker('end')" class="date4picker lightFont font-size-input ">{{ maxDate }}</div>
+            </div>
+        </div>
+
+    </div>
+-->
+    <div *ngIf="!isSubmittedU">
+        <p class="text-color-primary font-size-heading headingFont" style="text-align: center !important;margin-top: 20px !important;"> {{msg}}</p>
+    </div>
+    <div *ngIf="isSubmittedU">
+        <div style="margin-left: 10px !important;margin-right: 10px !important;margin-top: 10px !important;">
+            <ion-segment style="height: 35px;" mode="ios" (ionChange)="segmentChanged($event)" value="{{segmentModel}}">
+                <ion-segment-button value="u_current">
+                    <ion-label class="tabButtonFont font-size-input">Current</ion-label>
+                </ion-segment-button>
+
+                <!-- --padding-end:2px !important;--padding-start:2px !important; -->
+                <ion-segment-button value="u_past" style="width: 20px;">
+                    <ion-label class="tabButtonFont font-size-input">Past</ion-label>
+                </ion-segment-button>
+                <!-- <ion-segment-button value="not_s">
+            <ion-label class="tabButtonFont font-size-content">Not submitted</ion-label>
+        </ion-segment-button> -->
+
+            </ion-segment>
+        </div>
+        <div *ngIf="!is_list">
+            <ion-list>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div *ngIf="is_list">
+            <div *ngIf="segmentModel === 'u_current'">
+                <div *ngIf="!geListLengthC()">
+                    <p class="text-color-primary font-size-heading headingFont" style="text-align: center !important;margin-top: 20px !important;"> {{msg}}</p>
+                </div>
+
+                <div *ngIf="geListLengthC()">
+                    <div *ngFor="let item of checklistUCurrent let i=index" (click)="openCheckListResult(item['emp_name'],item['submitted_by'])">
+                        <div class="cardCss1">
+                            <ion-row>
+                                <ion-col size="11">
+                                    <ion-row>
+                                        <ion-col size="10" class="font-size-content headingFont">
+                                            <div style="display: flex !important;">
+                                                <ion-label style="padding-top: 2px !important;">Submitted By : {{item['emp_name']}}</ion-label>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="2" class="end-align font-size-content headingFont text-color-red">
+                                            <ion-icon class="closeCSSIcon" name="close-outline" style="display: none !important;"></ion-icon>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <!-- <ion-col class="font-size-content headingFont text-color-primary">
+                                        Submitted Date : {{selectedStartDate | date:'MMM d, y'}}
+                                    </ion-col> -->
+                                        <ion-col class="font-size-content headingFont text-color-primary">
+                                            Mobile : {{getMobile(item['emp_mobile'])}}
+                                            <!-- <ion-button size="small" *ngIf="isSubmitted=='1'" fill="outline" (click)="StartDilar(item['emp_mobile'])">
+                                            <ion-icon name="call-outline" style="font-size: 18px;color: #868585;"></ion-icon>
+                                        </ion-button> -->
+
+                                        </ion-col>
+                                    </ion-row>
+                                    <!-- {{item['updated_at'] | date:'MMM d, y, h:mm:ss a'}}<ion-row>
+                                    <ion-col size="12" class="font-size-content headingFont text-color-primary">
+                                        Status : Unsafe to enter
+                                    </ion-col>
+                                </ion-row> -->
+                                </ion-col>
+                                <ion-col size="1" style="text-align: center !important;">
+                                    <ion-icon name="chevron-forward-outline" style="margin-top: 50%;font-size: 25px;color: #868585;" *ngIf="isSubmittedU"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="segmentModel === 'u_past'">
+                <div *ngIf="!geListLengthP()">
+                    <p class="text-color-primary font-size-heading headingFont" style="text-align: center !important;margin-top: 20px !important;"> {{msg}}</p>
+                </div>
+
+                <div *ngIf="geListLengthP()">
+                    <div *ngFor="let item of checklistUPast let i=index" (click)="openCheckListResult(item['emp_name'],item['submitted_by'])">
+                        <div class="cardCss1">
+                            <ion-row>
+                                <ion-col size="11">
+                                    <ion-row>
+                                        <ion-col size="10" class="font-size-content headingFont">
+                                            <div style="display: flex !important;">
+                                                <ion-label style="padding-top: 2px !important;">Submitted By : {{item['emp_name']}}</ion-label>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="2" class="end-align font-size-content headingFont text-color-red">
+                                            <ion-icon class="closeCSSIcon" name="close-outline" style="display: none !important;"></ion-icon>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <!-- <ion-col class="font-size-content headingFont text-color-primary">
+                                        Submitted Date : {{selectedStartDate | date:'MMM d, y'}}
+                                    </ion-col> -->
+                                        <ion-col class="font-size-content headingFont text-color-primary">
+                                            Mobile : {{getMobile(item['emp_mobile'])}}
+                                            <!-- <ion-button size="small" *ngIf="isSubmitted=='1'" fill="outline" (click)="StartDilar(item['emp_mobile'])">
+                                            <ion-icon name="call-outline" style="font-size: 18px;color: #868585;"></ion-icon>
+                                        </ion-button> -->
+
+                                        </ion-col>
+                                    </ion-row>
+                                    <!-- {{item['updated_at'] | date:'MMM d, y, h:mm:ss a'}}<ion-row>
+                                    <ion-col size="12" class="font-size-content headingFont text-color-primary">
+                                        Status : Unsafe to enter
+                                    </ion-col>
+                                </ion-row> -->
+                                </ion-col>
+                                <ion-col size="1" style="text-align: center !important;">
+                                    <ion-icon name="chevron-forward-outline" style="margin-top: 50%;font-size: 25px;color: #868585;" *ngIf="isSubmittedU"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ion-content>

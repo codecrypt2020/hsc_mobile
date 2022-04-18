@@ -1,0 +1,36 @@
+.center {
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center !important;
+    margin: 0;
+}
+
+.div-center {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+ion-content {
+    // --background: url('/assets/imgs/Landing.png') no-repeat cover fixed center;
+    // background: url('/assets/imgs/Landing.png') no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.btn-label {
+    color: #000 !important;
+}
+
+#inner {
+    display: table;
+    margin: 0 auto;
+    width: 80% !important;
+}
+
+#outer {
+    width: 100%
+}
