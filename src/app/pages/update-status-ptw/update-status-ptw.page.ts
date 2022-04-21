@@ -15,11 +15,13 @@ export class UpdateStatusPTWPage implements OnInit {
   cat_name;
   type;
   description = '';
+  byUrl
   constructor(private activatedRoute:ActivatedRoute,private restApi:RestApiService,private router:Router,private updateData:UpdateDataStatusService) { 
     this.ptw_id = this.activatedRoute.snapshot.paramMap.get('ptw_id');
     this.cat_id = this.activatedRoute.snapshot.paramMap.get('cat_id');
     this.cat_name = this.activatedRoute.snapshot.paramMap.get('cat_name');
     this.type = this.activatedRoute.snapshot.paramMap.get('type');
+    this.byUrl = this.activatedRoute.snapshot.paramMap.get('byUrl');
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class UpdateStatusPTWPage implements OnInit {
     this.restApi.updatePTWStatus(data).then((success) => {
       localStorage.setItem("dataUpdatePTWDetails","1");
       this.updateData.dataChangeState.next(true);
-      this.router.navigate(['ptw-details',{ptw_id:this.ptw_id,cat_id:this.cat_id,cat_name:this.cat_name}]);
+      this.router.navigate(['ptw-details',{ptw_id:this.ptw_id,cat_id:this.cat_id,cat_name:this.cat_name,byUrl:this.byUrl}]);
     }, (error) => {
     });
   }
@@ -42,7 +44,7 @@ export class UpdateStatusPTWPage implements OnInit {
   goBack(){
     localStorage.setItem("dataUpdatePTWDetails","1");
     this.updateData.dataChangeState.next(true);
-    this.router.navigate(['ptw-details',{ptw_id:this.ptw_id,cat_id:this.cat_id,cat_name:this.cat_name}]);
+    this.router.navigate(['ptw-details',{ptw_id:this.ptw_id,cat_id:this.cat_id,cat_name:this.cat_name,byUrl:this.byUrl}]);
   }
 
 }

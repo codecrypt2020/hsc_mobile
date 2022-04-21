@@ -21,8 +21,8 @@ import { UpdateDataStatusService } from 'src/app/services/update-data-status.ser
 export class PtwDetailsPage implements OnInit{
 
   ptw_id;
-  cat_id;
-  cat_name;
+  cat_id = '';
+  cat_name = '';
   requester_id = ''
   safety_officer_comment = ''
   isSafetyOfficerApproved = false;
@@ -206,7 +206,11 @@ export class PtwDetailsPage implements OnInit{
   }
 
   goBack(){
-    this.router.navigate(['ptw-list',{cat_id:this.cat_id,cat_name:this.cat_name}]);
+    if(this.byUrl=='noti'){
+      this.router.navigate(['notifications',{cat_id:this.cat_id,cat_name:this.cat_name}]);
+    }else{
+      this.router.navigate(['ptw-list',{cat_id:this.cat_id,cat_name:this.cat_name}]);
+    }
   }
 
   imgUrl = ENV.NODE_URL + "public/permit/documentImage/";
@@ -224,17 +228,31 @@ export class PtwDetailsPage implements OnInit{
     }
   }
 
+  byUrl = ''
   ngOnInit() {
     this.ptw_id = this.activatedRoute.snapshot.paramMap.get('ptw_id');
-    this.cat_id = this.activatedRoute.snapshot.paramMap.get('cat_id');
-    this.cat_name = this.activatedRoute.snapshot.paramMap.get('cat_name');
+    try{
+      this.cat_id = this.activatedRoute.snapshot.paramMap.get('cat_id');
+    }catch(e){
+      this.cat_id = ''
+    }
+    try{
+      this.cat_name = this.activatedRoute.snapshot.paramMap.get('cat_name');
+    }catch(e){
+      this.cat_name = ''
+    }
+    try{
+      this.byUrl = this.activatedRoute.snapshot.paramMap.get('byUrl');
+    }catch(e){
+      this.byUrl = ''
+    }
     this.loadDetails();
-    this.loadPTWAnswer();
+    //this.loadPTWAnswer();
     this.updateData.dataChangeState.subscribe(state => {
       if (state) {
         if(localStorage.getItem("dataUpdatePTWDetails")=='1'){
           this.loadDetails();
-          this.loadPTWAnswer();
+         // this.loadPTWAnswer();
         }
         localStorage.setItem("dataUpdatePTWDetails","0");
         this.updateData.dataChangeState.next(false);
@@ -255,8 +273,12 @@ export class PtwDetailsPage implements OnInit{
       updateId: this.ptw_id
     }
     this.restApi.getPTWDetails(data).then((success) => {
+      this.appConstant.consoleLog(success,'Ptw Details')
       this.ptwDetails =[]
       this.ptwDetails = success['data'][0]
+      this.cat_id = this.ptwDetails['permit_cat_ref_id']
+      this.cat_name = this.ptwDetails['cat_name']
+      this.loadPTWAnswer();
       this.co_signer_1_comment = this.ptwDetails['co_signer_1_comment']
       this.co_signer_2_comment = this.ptwDetails['co_signer2_comment']
       this.safety_officer_comment = this.ptwDetails['safety_officer_comment']
@@ -410,10 +432,6 @@ export class PtwDetailsPage implements OnInit{
   saveOption(event,question_id){
    this.saveAnswer(event.detail.value,question_id);
   }
-
-//   ques_ref_id: 29
-// selected_option: "test1"
-// work_permit_id: "6"
 
   saveAnswer(answer,question_id){
     let data = {

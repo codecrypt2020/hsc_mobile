@@ -35,13 +35,28 @@ export class NotificationsPage implements OnInit {
     });
   }
 
+  cat_list = []
+  loadCatList(){
+    let data = {
+      page: 0,
+      searchText: "",
+      sortby: "id"
+    }
+    this.restApi.getPTWCategory(data).then((success) => {
+      this.cat_list = success['data']
+    }, (error) => {
+    });
+  }
+
   openIssue(item){
      //this.router.navigate(['/inc-response', {id: inc_id,status:'',type:'noti'}]);
     // console.log(this.noti_list['permit_id'])
     // console.log(this.noti_list['incident_id'])
     if(item['permit_id']!=undefined && item['permit_id']!=null){
-
+      this.router.navigate(['ptw-details',{ptw_id:item['permit_id'],byUrl:'noti'}]);
     }else if(item['incident_id']!=undefined && item['incident_id']!=null){
+      this.router.navigate(['/inc-response', {id: item['incident_id'],status:'',type:'noti'}]);
+     }else if(item['checklist_id']!=undefined && item['checklist_id']!=null){
       this.router.navigate(['/inc-response', {id: item['incident_id'],status:'',type:'noti'}]);
     }
   }

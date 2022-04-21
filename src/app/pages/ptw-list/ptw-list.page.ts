@@ -126,7 +126,7 @@ export class PtwListPage implements OnInit {
 
   openDetails(id,catName){
     let catItem =  this.cat_list.find(x => x.cat_name == catName).id;
-    this.router.navigate(['ptw-details',{ptw_id:id,cat_id:catItem,cat_name:this.cat_name}]);
+    this.router.navigate(['ptw-details',{ptw_id:id,cat_id:catItem,cat_name:this.cat_name,byUrl:'list'}]);
   }
 
   addPTW(){

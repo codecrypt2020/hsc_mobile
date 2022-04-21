@@ -221,7 +221,7 @@ export class PDFViewPage implements OnInit {
     this.content += '</div></div></body></html>'
 
     let options = {
-      documentSize: 'A4',
+      documentSize: 'A3',
       type: 'share',
       // landscape: 'portrait',
       fileName: this.chk_name+'.pdf'
