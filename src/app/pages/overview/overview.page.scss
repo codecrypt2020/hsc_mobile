@@ -83,3 +83,12 @@ ionic-selectable-modal ion-content ion-icon {
     font-size: 24px !important;
     color: gray !important;
 }
+
+ion-refresher {
+    position: initial !important;
+}
+
+.refresher-native .refresher-pulling-text,
+.refresher-native .refresher-refreshing-text {
+    display: block;
+}

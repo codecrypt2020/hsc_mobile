@@ -2,7 +2,7 @@
     <ion-toolbar class="ionToolbar" mode="md">
         <ion-buttons>
             <ion-title>
-                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">UA/UC List</p>
+                <p class="margin10 text-color-black font-size1-heading headingFont" style="text-align: center !important;">UA/UC List</p>
             </ion-title>
         </ion-buttons>
         <ion-buttons slot="secondary" style="padding-right: 4px !important;" (click)="openNotiFication()">
@@ -13,8 +13,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content>
     <!-- <ion-refresher slot="fixed" (ionRefresh)="getAllIncident()">
         <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
         </ion-refresher-content>
@@ -232,10 +231,15 @@
                 </div>
             </div>
         </div>
-        <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 40px;" [routerLink]="['/incident-details']">
-            <ion-fab-button>
-                <ion-icon name="add-outline"></ion-icon>
-            </ion-fab-button>
-        </ion-fab>
     </div>
+    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 40px;outline: none !important;" [routerLink]="['/incident-details']">
+        <ion-fab-button>
+            <ion-icon name="add-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <!-- <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 40px;" [routerLink]="['/incident-details']">
+        <ion-fab-button>
+            <ion-icon name="add-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab> -->
 </ion-content>

@@ -134,32 +134,50 @@ export class AppComponent implements OnInit {
          let jsonAdditionalData = jsonPayload['additionalData'];
          let typeOfScreen = jsonAdditionalData['param'];
          localStorage.setItem('is_noti_r','0')
-      if(typeOfScreen=="issue"){
-        let issue_id = '';
-        try{
-          issue_id =  jsonAdditionalData['id'];
-        }catch(e){
-          issue_id = ''
-        }
-        if(issue_id == '' || issue_id == null || issue_id == undefined){
-          if(this.appConstant.getRoleById(localStorage.getItem(this.appConstant.TAG_IS_USER_ROLE))=='user'){
-            this.router.navigateByUrl('/users/tabs/home');
+        if(typeOfScreen=="issue"){
+          let issue_id = '';
+          try{
+            issue_id =  jsonAdditionalData['id'];
+          }catch(e){
+            issue_id = ''
+          }
+          if(issue_id == '' || issue_id == null || issue_id == undefined){
+            if(this.appConstant.getRoleById(localStorage.getItem(this.appConstant.TAG_IS_USER_ROLE))=='user'){
+              this.router.navigateByUrl('/users/tabs/home');
+            }else{
+              this.router.navigateByUrl('/admin/tabs/overview');
+            } 
           }else{
-            this.router.navigateByUrl('/admin/tabs/overview');
-          } 
-        }else{
-            localStorage.setItem('is_noti_r','1')
-            this.router.navigate(['/inc-response', {id: issue_id,status:'',type:'list'}]);
+              localStorage.setItem('is_noti_r','1')
+              this.router.navigate(['/inc-response', {id: issue_id,status:'',type:'list'}]);
+          }
+          
+        }else if(typeOfScreen=="inspection"){
+          let inc_id = '';
+          try{
+            inc_id =  jsonAdditionalData['id'];
+          }catch(e){
+            inc_id = ''
+          }
+         
+          if(this.appConstant.getRoleById(localStorage.getItem(this.appConstant.TAG_IS_USER_ROLE))=='user'){
+            this.router.navigateByUrl('/users/tabs/inspections');
+          }else{
+            this.router.navigateByUrl('/admin/tabs/inspections');
+          }
+        }else if(typeOfScreen=="permit"){
+          let ptw_id = '';
+          try{
+            ptw_id =  jsonAdditionalData['id'];
+          }catch(e){
+            ptw_id = ''
+          }
+          if(ptw_id == '' || ptw_id == null || ptw_id == undefined){
+            this.router.navigateByUrl('/admin/tabs/ptw'); 
+          }else{
+            this.router.navigate(['ptw-details',{ptw_id:ptw_id,byUrl:'noti'}]);
+          }
         }
-        
-      }else if(typeOfScreen=="inspection"){
-        if(this.appConstant.getRoleById(localStorage.getItem(this.appConstant.TAG_IS_USER_ROLE))=='user'){
-          this.router.navigateByUrl('/users/tabs/inspections');
-        }else{
-          this.router.navigateByUrl('/admin/tabs/inspections');
-        }
-      }
-      
     });
 
     this.oneSignal.enableVibrate(true);

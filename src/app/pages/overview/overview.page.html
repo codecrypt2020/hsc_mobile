@@ -2,7 +2,7 @@
     <ion-toolbar class="ionToolbar" mode="md">
         <ion-buttons>
             <ion-title>
-                <p class="margin10 text-color-black font-size1-heading lightFont" style="text-align: center !important;">UA/UC List</p>
+                <p class="margin10 text-color-primary font-size1-heading headingFont" style="text-align: center !important;">UA/UC List</p>
             </ion-title>
         </ion-buttons>
 
@@ -12,14 +12,12 @@
         <p class="lightFont font-size-content pNet">You are in offline mode</p>
     </div>
 </ion-header>
-
+<!-- <div style="margin: 20px !important;">List of All Incident</div> -->
 <ion-content>
-    <!-- <div style="margin: 20px !important;">List of All Incident</div> -->
-
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" style="padding-bottom: 10px;background-color: #fff;">
-        <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Updating List..." class="text-color-primary font-size-sub-heading headingFont" style="background-color: #fff;">
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" style="padding-bottom: 10px;background-color: transparent !important;color: blue;">
+        <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Updating List..." class="text-color-primary font-size-sub-heading headingFont" style="background-color: transparent;">
         </ion-refresher-content>
-    </ion-refresher>
+    </ion-refresher> -->
     <div style="z-index: 999 !important;">
         <div style="padding-left:20px;padding-right: 20px !important;display: flex;">
             <div style="margin-top: 10px !important;width: 100%;">
