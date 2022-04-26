@@ -7,7 +7,6 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { ModalController } from '@ionic/angular';
 import { Ionic4DatepickerModalComponent } from '@logisticinfotech/ionic4-datepicker';
 import { DatePipe } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { environment as ENV } from "../../../environments/environment"
 import { CalendarModalOptions, CalendarModal, CalendarResult } from 'ion2-calendar';
 

@@ -1,5 +1,4 @@
 import { DatePipe } from '@angular/common';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';

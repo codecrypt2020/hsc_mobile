@@ -1,4 +1,4 @@
-<div style="background-color: aqua;padding: 20px;">
+<div style="padding: 20px;">
     <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab()" mode="md" selectedIndex="2">
         <ion-tab-bar slot="bottom" mode="md">
             <ion-tab-button mode="md" tab="action" *ngIf="(this.showDetails['issue_selected']==1 || this.showDetails['checklist_selected']==1 || this.showDetails['work_permit_selected']==1)">

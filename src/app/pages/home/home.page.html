@@ -2,11 +2,11 @@
     <ion-toolbar class="ionToolbar" mode="md">
         <ion-buttons>
             <ion-title>
-                <p class="margin10 text-color-primary font-size1-heading headingFont" style="text-align: center !important;">UA/UC List</p>
+                <p class="margin10 page-heading-text-color font-size1-heading headingFont" style="text-align: center !important;">UA/UC List</p>
             </ion-title>
         </ion-buttons>
         <ion-buttons slot="secondary" style="padding-right: 4px !important;" (click)="openNotiFication()">
-            <ion-icon class="notiIcon" slot="icon-only" name="notifications-outline"></ion-icon>
+            <ion-icon class="notiIcon page-heading-text-color" slot="icon-only" name="notifications-outline"></ion-icon>
             <span class="badge badge-light lightFont font-size-content" *ngIf="notificatioCount != '00'"> {{notificatioCount}}</span>
         </ion-buttons>
         <ion-title></ion-title>
