@@ -311,31 +311,31 @@ export class SaveIssueResponsePage implements OnInit {
     }
 }
 
-    async selectPlantAdminImage() {
-      if(!this.is_in_progress){
-        const actionSheet = await this.actionSheetController.create({
-          header: "Select Image source",
-          buttons: [{
-            text: 'Load from Library',
-            handler: () => {
-              this.pickImagePA(this.camera.PictureSourceType.SAVEDPHOTOALBUM);
-            }
-          },
-          {
-            text: 'Use Camera',
-            handler: () => {
-              this.pickImagePA(this.camera.PictureSourceType.CAMERA);
-            }
-          },
-          {
-            text: 'Cancel',
-            role: 'cancel'
+  async selectPlantAdminImage() {
+    if(!this.is_in_progress){
+      const actionSheet = await this.actionSheetController.create({
+        header: "Select Image source",
+        buttons: [{
+          text: 'Load from Library',
+          handler: () => {
+            this.pickImagePA(this.camera.PictureSourceType.SAVEDPHOTOALBUM);
           }
-          ]
-        });
-        await actionSheet.present();
-      }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.pickImagePA(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+        ]
+      });
+      await actionSheet.present();
     }
+  }
 
     async selectOrgAdminImage(){
       if(this.is_in_progress){

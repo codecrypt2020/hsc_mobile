@@ -174,6 +174,8 @@ export class AppConstantService {
 
   API_N_PTW_PRI = 'permit/previousPermitDetails'
 
+  API_N_LOGOUT = "emp/logout"
+
 
   
   getRequestHeader() {

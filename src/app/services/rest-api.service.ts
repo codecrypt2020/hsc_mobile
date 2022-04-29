@@ -1301,6 +1301,34 @@ public loadUserDetails(dataObject) {
     })
   }
 
+  // public logoutUser(dataObject) {
+  //   let httpHeaders = new HttpHeaders(this.appConstatnt.getNodeRequestHeader());
+  //   return new Promise((resolve, reject) => {
+  //     this.httpClient.get(ENV.NODE_URL + this.appConstatnt.API_N_LOGOUT {
+  //       headers: httpHeaders
+  //     })
+  //       .subscribe(res => {
+  //         resolve(res);
+  //       }, (err) => {
+  //         reject(err);
+  //       });
+  //   })
+  // }
+ 
+    public logoutUser() {
+      let httpHeaders = new HttpHeaders(this.appConstatnt.getNodeRequestHeader());
+    return new Promise((resolve, reject) => {
+      this.httpClient.get(ENV.NODE_URL+this.appConstatnt.API_N_LOGOUT, {
+        headers: httpHeaders
+      })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   
 
 

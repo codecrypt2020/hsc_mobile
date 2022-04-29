@@ -71,7 +71,6 @@ export class actionPage implements OnInit {
 
   @ViewChild('doughnutCanvas', {static: true}) private doughnutCanvas: ElementRef;
   @ViewChild('doughnutCanvasStatus', {static: true}) private doughnutCanvasStatus: ElementRef;
-  
   @ViewChild('horizontalCanvas', {static: true}) private horizontalCanvas: ElementRef;
   @ViewChild('doughnutCanvasByArea', {static: true}) private doughnutCanvasByArea: ElementRef;
   @ViewChild('doughnutCanvasByCat', {static: true}) private doughnutCanvasByCat: ElementRef;
@@ -121,12 +120,14 @@ export class actionPage implements OnInit {
     private alertController:AlertController,private changeRef: ChangeDetectorRef,) {
       localStorage.setItem('load_d',null)
       localStorage.setItem('status_d',null)
+
       this.connectionService.connectionState.subscribe(state => {
       this.netStatus=state;
       if(!state){
         this.router.navigateByUrl('/admin/tabs/overview');
       }
     });
+    
     interval(10000).subscribe(() => {
       this.getNotiCount();
       this.loadUserAccess();

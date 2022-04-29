@@ -46,33 +46,7 @@ export class ProfilePage implements OnInit{
   }
 
   logout(){
-    this.stopNotification()
-    localStorage.setItem(this.appConstant.TAG_USER_DETAILS, null);
-    localStorage.setItem(this.appConstant.TAG_API_ACCESS_TOKEN, null);
-    localStorage.setItem(this.appConstant.TAG_API_ACCESS_TOKEN_TYPE, null);
-    localStorage.setItem(this.appConstant.TAG_IS_USER_LOGIN, null);
-    localStorage.setItem(this.appConstant.TAG_IS_USER_ID, null);
-    localStorage.setItem(this.appConstant.TAG_IS_USER_ROLE,null);
-
-//New method to clear cache
-    // localStorage.removeItem(this.appConstant.TAG_USER_DETAILS);
-    // localStorage.removeItem(this.appConstant.TAG_API_ACCESS_TOKEN);
-    // localStorage.removeItem(this.appConstant.TAG_API_ACCESS_TOKEN_TYPE);
-    // localStorage.removeItem(this.appConstant.TAG_IS_USER_LOGIN);
-    // localStorage.removeItem(this.appConstant.TAG_IS_USER_ID);
-    // localStorage.removeItem(this.appConstant.TAG_IS_USER_ROLE);
-    
-//    this.authService.authenticationState.next(false);
-    //localStorage.clear();
-
-        // let user_role = this.appConstant.getRoleById(localStorage.getItem(this.appConstant.TAG_IS_USER_ROLE));
-        // if(user_role=='user'){
-        //   this.router.navigateByUrl('/users');
-        // }else{
-        //   this.router.navigateByUrl('/admin');
-        // }
-
-       window.location.reload()
+    this.logoutUser();
   }
 
   stopNotification() {
@@ -105,6 +79,20 @@ export class ProfilePage implements OnInit{
       this.load_profile = false;
       this.appConstant.dismissLoading();
       this.appConstant.handleApiError(error)
+    });
+  }
+
+  logoutUser(){
+    this.restApi.logoutUser().then((success) => {
+      this.stopNotification()
+      localStorage.setItem(this.appConstant.TAG_USER_DETAILS, null);
+      localStorage.setItem(this.appConstant.TAG_API_ACCESS_TOKEN, null);
+      localStorage.setItem(this.appConstant.TAG_API_ACCESS_TOKEN_TYPE, null);
+      localStorage.setItem(this.appConstant.TAG_IS_USER_LOGIN, null);
+      localStorage.setItem(this.appConstant.TAG_IS_USER_ID, null);
+      localStorage.setItem(this.appConstant.TAG_IS_USER_ROLE,null);
+        window.location.reload()
+    }, (error) => {
     });
   }
 

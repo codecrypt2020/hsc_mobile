@@ -381,13 +381,10 @@ export class IncResponsePage implements OnInit {
         this.loadOrgAdmin(this.inc_details['by_org_admin']);
       }catch(e){
       }
-
-
       if(this.status=='open'){
         this.show_plant_admin=false;
         this.show_org_admin=false;
       }else if(this.status=='review'){
-        
         try{
           this.show_plant_admin=true;
           this.show_org_admin=false;
@@ -397,7 +394,6 @@ export class IncResponsePage implements OnInit {
         }catch(e){}
 
       }else if(this.status=='in progress' || this.status=='close'){
-
         try{
           let a_p = this.inc_details['action_points'];
           if(a_p!=''){
@@ -501,6 +497,7 @@ export class IncResponsePage implements OnInit {
         }
       }, (error) => {
     });
+
     setTimeout(()=>{ 
       this.restApi.nodeGetIncImages(nodeParams).then((success) => {
           try{

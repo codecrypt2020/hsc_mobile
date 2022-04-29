@@ -16,7 +16,7 @@
     <div>
         <ion-card *ngFor="let item of noti_list let i=index" (click)="openIssue(item)">
             <ion-card-header>
-                <ion-card-title class="marginLeft font-size-heading headingFont"> {{item['type']}} </ion-card-title>
+                <ion-card-title class="marginLeft font-size-heading headingFont"> {{item['by_name']}} </ion-card-title>
             </ion-card-header>
 
             <ion-card-content class="marginLeft p1 text-color-primary font-size-content headingFont">
